@@ -4,6 +4,7 @@
 //
 // "Enable/Disable Headbob, Changed look rotations - should result in reduced camera jitters" || version 1.0.1
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -198,7 +199,7 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>();
+            var mouse = context.ReadValue<Vector2>() * Time.deltaTime;
             yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
 
             if (!invertCamera)
@@ -394,7 +395,10 @@ public class FirstPersonController : MonoBehaviour
         #endregion
 
         CheckGround();
+    }
 
+    private void LateUpdate()
+    {
         if(enableHeadBob)
         {
             HeadBob();
