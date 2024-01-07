@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Galaxy shader 1
+  m_Name: HandMat
   m_Shader: {fileID: -6465566751694194690, guid: 4b404727d9e25a247a4ac76e68831e29,
     type: 3}
   m_Parent: {fileID: 0}
@@ -58,7 +58,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors: []
   m_BuildTextureStacks: []
---- !u!114 &2398189461731392419
+--- !u!114 &4939217126761991319
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
