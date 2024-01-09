@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.VisualScripting;
+using Object = System.Object;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -129,13 +131,14 @@ public class FirstPersonController : MonoBehaviour
     private float timer = 0;
 
     #endregion
-    
+
     #region InputSystem Shenanigans
 
     private Vector3 _moveVector;
     
     public void OnMove(InputAction.CallbackContext context)
     {
+        Debug.Log("Trying to move");
         var input = context.ReadValue<Vector2>();
         _moveVector = new Vector3(input.x, 0f, input.y);
     }
@@ -264,7 +267,6 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
         crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
