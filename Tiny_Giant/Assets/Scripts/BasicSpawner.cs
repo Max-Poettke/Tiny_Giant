@@ -11,6 +11,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkPrefabRef _playerPrefabPC;
     [SerializeField] private NetworkPrefabRef _playerPrefabVR;
+    [SerializeField] private SpawnNetworkObjects _networkSpawnScript;
     private Dictionary<PlayerRef, NetworkObject> spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
     {
@@ -114,6 +115,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     private NetworkRunner _runner;
+    
     async void StartGame(GameMode mode)
     {
         _runner = gameObject.AddComponent<NetworkRunner>();
@@ -125,7 +127,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         {
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
-
+        
         await _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
@@ -133,6 +135,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
+        
+        _networkSpawnScript.InitialiseScene();
     }
 
     private void OnGUI()
