@@ -108,6 +108,7 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
+        _networkSpawnScript.InitialiseScene();
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
@@ -135,8 +136,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
-        
-        _networkSpawnScript.InitialiseScene();
     }
 
     private void OnGUI()
