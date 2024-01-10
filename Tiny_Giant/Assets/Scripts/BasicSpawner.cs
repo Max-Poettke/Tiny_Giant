@@ -24,21 +24,33 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsServer)
         {
-            Vector3 spawnPos = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
-            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefabPC, spawnPos, Quaternion.identity, player);
-            spawnedCharacters.Add(player, networkPlayerObject);
-        }
-
-        if (runner.IsClient)
-        {
-            Vector3 spawnPos = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
-            NetworkObject networkPlayerObject = runner.Spawn(_playerPrefabVR, spawnPos, Quaternion.identity, player);
-            spawnedCharacters.Add(player, networkPlayerObject);
+            NetworkObject networkPlayerObject;
+            Debug.Log(player.PlayerId);
+            if (player.PlayerId == 1)
+            {
+                Vector3 spawnPos = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
+                networkPlayerObject = runner.Spawn(_playerPrefabPC, spawnPos, Quaternion.identity, player);
+                spawnedCharacters.Add(player, networkPlayerObject);    
+            }
+            else
+            {
+                Vector3 spawnPos = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
+                networkPlayerObject = runner.Spawn(_playerPrefabVR, spawnPos, Quaternion.identity, player);
+                spawnedCharacters.Add(player, networkPlayerObject);
+                Debug.Log("Deactivated Camera");
+                networkPlayerObject.GetComponentInChildren<Camera>().enabled = false;
+            }
+            
         }
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
+        if (spawnedCharacters.TryGetValue(player, out NetworkObject networkPlayerObject))
+        {
+            runner.Despawn(networkPlayerObject);
+            spawnedCharacters.Remove(player);
+        }
     }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
