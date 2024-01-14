@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ using Object = System.Object;
     using System.Net;
 #endif
 
-public class FirstPersonController : MonoBehaviour
+public class FirstPersonController : NetworkBehaviour
 {
     private Rigidbody rb;
 
@@ -119,18 +120,6 @@ public class FirstPersonController : MonoBehaviour
     #endregion
     #endregion
 
-    #region Head Bob
-
-    public bool enableHeadBob = true;
-    public Transform joint;
-    public float bobSpeed = 10f;
-    public Vector3 bobAmount = new Vector3(.15f, .05f, 0f);
-
-    // Internal Variables
-    private Vector3 jointOriginalPos;
-    private float timer = 0;
-
-    #endregion
 
     #region InputSystem Shenanigans
 
@@ -202,7 +191,7 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>() * Time.deltaTime;
+            var mouse = context.ReadValue<Vector2>() * Runner.DeltaTime;
             yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
 
             if (!invertCamera)
@@ -272,7 +261,6 @@ public class FirstPersonController : MonoBehaviour
         // Set internal variables
         playerCamera.fieldOfView = fov;
         originalScale = transform.localScale;
-        jointOriginalPos = joint.localPosition;
 
         if (!unlimitedSprint)
         {
@@ -281,7 +269,7 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-    void Start()
+    public override void Spawned()
     {
         if(lockCursor)
         {
@@ -332,83 +320,10 @@ public class FirstPersonController : MonoBehaviour
 
     float camRotation;
 
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
-        #region CameraZoom
-        // Lerps camera.fieldOfView to allow for a smooth transistion
-        if(isZoomed)
-        {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Time.deltaTime);
-        }
-        else if(!isZoomed && !isSprinting)
-        {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Time.deltaTime);
-        }
-        #endregion
-        #region Sprint
-
-        if(enableSprint)
-        {
-            if(isSprinting)
-            {
-                isZoomed = false;
-                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV, sprintFOVStepTime * Time.deltaTime);
-
-                // Drain sprint remaining while sprinting
-                if(!unlimitedSprint)
-                {
-                    sprintRemaining -= 1 * Time.deltaTime;
-                    if (sprintRemaining <= 0)
-                    {
-                        isSprinting = false;
-                        isSprintCooldown = true;
-                    }
-                }
-            }
-            else
-            {
-                // Regain sprint while not sprinting
-                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
-            }
-
-            // Handles sprint cooldown 
-            // When sprint remaining == 0 stops sprint ability until hitting cooldown
-            if(isSprintCooldown)
-            {
-                sprintCooldown -= 1 * Time.deltaTime;
-                if (sprintCooldown <= 0)
-                {
-                    isSprintCooldown = false;
-                }
-            }
-            else
-            {
-                sprintCooldown = sprintCooldownReset;
-            }
-
-            // Handles sprintBar 
-            if(useSprintBar && !unlimitedSprint)
-            {
-                float sprintRemainingPercent = sprintRemaining / sprintDuration;
-                sprintBar.transform.localScale = new Vector3(sprintRemainingPercent, 1f, 1f);
-            }
-        }
-
-        #endregion
-
-        CheckGround();
-    }
-
-    private void LateUpdate()
-    {
-        if(enableHeadBob)
-        {
-            HeadBob();
-        }
-    }
-
-    void FixedUpdate()
-    {
+        InputSystem.Update();
+        if (!HasInputAuthority) return;
         #region Movement
 
         if (playerCanMove)
@@ -452,7 +367,7 @@ public class FirstPersonController : MonoBehaviour
 
                     if (hideBarWhenFull && !unlimitedSprint)
                     {
-                        sprintBarCG.alpha += 5 * Time.deltaTime;
+                        sprintBarCG.alpha += 5 * Runner.DeltaTime;
                     }
                 }
 
@@ -465,7 +380,7 @@ public class FirstPersonController : MonoBehaviour
 
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
-                    sprintBarCG.alpha -= 3 * Time.deltaTime;
+                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
                 }
 
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
@@ -482,6 +397,78 @@ public class FirstPersonController : MonoBehaviour
         }
 
         #endregion
+    }
+
+    public override void Render()
+    {
+        if (!HasInputAuthority) return;
+        #region CameraZoom
+
+        // Lerps camera.fieldOfView to allow for a smooth transistion
+        if (isZoomed)
+        {
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Runner.DeltaTime);
+        }
+        else if (!isZoomed && !isSprinting)
+        {
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Runner.DeltaTime);
+        }
+
+        #endregion
+
+        #region Sprint
+
+        if (enableSprint)
+        {
+            if (isSprinting)
+            {
+                isZoomed = false;
+                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV,
+                    sprintFOVStepTime * Runner.DeltaTime);
+
+                // Drain sprint remaining while sprinting
+                if (!unlimitedSprint)
+                {
+                    sprintRemaining -= 1 * Runner.DeltaTime;
+                    if (sprintRemaining <= 0)
+                    {
+                        isSprinting = false;
+                        isSprintCooldown = true;
+                    }
+                }
+            }
+            else
+            {
+                // Regain sprint while not sprinting
+                sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Runner.DeltaTime, 0, sprintDuration);
+            }
+
+            // Handles sprint cooldown 
+            // When sprint remaining == 0 stops sprint ability until hitting cooldown
+            if (isSprintCooldown)
+            {
+                sprintCooldown -= 1 * Runner.DeltaTime;
+                if (sprintCooldown <= 0)
+                {
+                    isSprintCooldown = false;
+                }
+            }
+            else
+            {
+                sprintCooldown = sprintCooldownReset;
+            }
+
+            // Handles sprintBar 
+            if (useSprintBar && !unlimitedSprint)
+            {
+                float sprintRemainingPercent = sprintRemaining / sprintDuration;
+                sprintBar.transform.localScale = new Vector3(sprintRemainingPercent, 1f, 1f);
+            }
+        }
+
+        #endregion
+
+        CheckGround();
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
@@ -520,36 +507,6 @@ public class FirstPersonController : MonoBehaviour
             walkSpeed *= speedReduction;
 
             isCrouched = true;
-        }
-    }
-
-    private void HeadBob()
-    {
-        if(isWalking)
-        {
-            // Calculates HeadBob speed during sprint
-            if(isSprinting)
-            {
-                timer += Time.deltaTime * (bobSpeed + sprintSpeed);
-            }
-            // Calculates HeadBob speed during crouched movement
-            else if (isCrouched)
-            {
-                timer += Time.deltaTime * (bobSpeed * speedReduction);
-            }
-            // Calculates HeadBob speed during walking
-            else
-            {
-                timer += Time.deltaTime * bobSpeed;
-            }
-            // Applies HeadBob movement
-            joint.localPosition = new Vector3(jointOriginalPos.x + Mathf.Sin(timer) * bobAmount.x, jointOriginalPos.y + Mathf.Sin(timer) * bobAmount.y, jointOriginalPos.z + Mathf.Sin(timer) * bobAmount.z);
-        }
-        else
-        {
-            // Resets when play stops moving
-            timer = 0;
-            joint.localPosition = new Vector3(Mathf.Lerp(joint.localPosition.x, jointOriginalPos.x, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.y, jointOriginalPos.y, Time.deltaTime * bobSpeed), Mathf.Lerp(joint.localPosition.z, jointOriginalPos.z, Time.deltaTime * bobSpeed));
         }
     }
 }

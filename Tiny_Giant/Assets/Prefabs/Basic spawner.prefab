@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7113738087213839692}
   - component: {fileID: 7793651653591417900}
-  - component: {fileID: 1276569697889818349}
-  - component: {fileID: 1864599833276751802}
   m_Layer: 0
   m_Name: Basic spawner
   m_TagString: Untagged
@@ -50,33 +48,4 @@ MonoBehaviour:
     RawGuidValue: 6bacecc4f3df9584198879c73a6b6c36
   _playerPrefabVR:
     RawGuidValue: 8bde6a2167baedc4ba81c1c02707c3de
---- !u!114 &1276569697889818349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859317474702297426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c53ad2ba11123c469f07dde45074ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1864599833276751802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859317474702297426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SortKey: 3314696900
-  ObjectInterest: 1
-  Flags: 262145
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1276569697889818349}
+  _networkSpawnScript: {fileID: 0}

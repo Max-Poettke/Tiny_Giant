@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,8 +27,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         if (runner.IsServer)
         {
             NetworkObject networkPlayerObject;
-            Debug.Log(player.PlayerId);
-            if (player.PlayerId == 1)
+            Debug.Log("Player joined with ID: " + player.PlayerId);
+            if (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer)
             {
                 Vector3 spawnPos = new Vector3((player.RawEncoded % runner.Config.Simulation.PlayerCount) * 3, 1, 0);
                 networkPlayerObject = runner.Spawn(_playerPrefabPC, spawnPos, Quaternion.identity, player);
@@ -108,7 +109,6 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnSceneLoadDone(NetworkRunner runner)
     {
-        _networkSpawnScript.InitialiseScene();
     }
 
     public void OnSceneLoadStart(NetworkRunner runner)
@@ -122,7 +122,8 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
         
-        var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
+
+        var scene = SceneRef.FromIndex(0);
         var sceneInfo = new NetworkSceneInfo();
         if (scene.IsValid)
         {
@@ -138,18 +139,14 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
         });
     }
 
-    private void OnGUI()
+    public void HostGameStart()
     {
-        if (_runner == null)
-        {
-            if (GUI.Button(new Rect(0, 0, 200, 40), "Host"))
-            {
-                StartGame(GameMode.Host);
-            }
-            if(GUI.Button(new Rect(0,40,200,40), "Join"))
-            {
-                StartGame(GameMode.Client);
-            }
-        }
+        StartGame(GameMode.Shared);
+        StartGame(GameMode.Client);
+    }
+
+    public void JoinGameStart()
+    {
+        StartGame(GameMode.Client);
     }
 }

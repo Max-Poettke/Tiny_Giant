@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using Fusion;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.SceneManagement;
 
 public class SpawnNetworkObjects : NetworkBehaviour
 {
@@ -14,15 +16,15 @@ public class SpawnNetworkObjects : NetworkBehaviour
     
     //Get the list of objects in the scene with a NetworkObject script and put em in a list
     private List<GameObject> oldObjects = new List<GameObject>();
-    private List<GameObject> _objects = new List<GameObject>();
+    private List<NetworkObject> _objects = new List<NetworkObject>();
 
     public void InitialiseScene()
     {
-        FindGameObjectsInScene("0");
+        FindGameObjectsInScene(SceneManager.GetActiveScene());
         ReplaceObjectsWithNetworkedObjects();
     }
 
-    private void FindGameObjectsInScene(string scene)
+    private void FindGameObjectsInScene(Scene scene)
     {
         oldObjects = GameObject.FindGameObjectsWithTag("SpawnNetworkObjects").ToList();
     }
@@ -34,8 +36,13 @@ public class SpawnNetworkObjects : NetworkBehaviour
         //For each Object in the scene, spawn a version in the Network and delete the old object
         foreach (GameObject obj in oldObjects)
         {
-            Runner.Spawn(obj, obj.transform.position, obj.transform.rotation, Object.InputAuthority);
+            Debug.Log("trying to replace object: " + obj.name);
+            obj.AddComponent<NetworkObject>();
+            var newObj = Runner.Spawn(obj, obj.transform.position, obj.transform.rotation, Object.InputAuthority);
+            newObj.AddComponent<NetworkTransform>();
+            _objects.Add(newObj);
             Destroy(obj);
+            Debug.Log("Destroyed object: " + obj.name);
         }
     }
 }

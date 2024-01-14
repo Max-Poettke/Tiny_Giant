@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 893145817
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 4637007768204818592}
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncScale: 0
+  SyncScale: 1
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
@@ -199,7 +199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curCamera: {fileID: 8871027855548987014}
   listener: {fileID: 1376316976497085897}
-  firstPersonController: {fileID: 0}
   controllers:
   - {fileID: 5433879555666793718}
   - {fileID: 7317264419129030890}

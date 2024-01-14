@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7116172541049821933}
   - component: {fileID: 5489160529581455230}
   - component: {fileID: 8245752428895670781}
-  - component: {fileID: 6995604724932204749}
+  - component: {fileID: -7313038292684049603}
   m_Layer: 0
   m_Name: Small Player
   m_TagString: Player
@@ -189,10 +189,6 @@ MonoBehaviour:
   holdToCrouch: 1
   crouchHeight: 0.75
   speedReduction: 0.5
-  enableHeadBob: 1
-  joint: {fileID: 4459864851508666808}
-  bobSpeed: 10
-  bobAmount: {x: 0, y: 0.1, z: 0}
 --- !u!114 &7116172541049821933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,12 +202,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SortKey: 2385254115
-  ObjectInterest: 0
-  Flags: 262145
+  ObjectInterest: 1
+  Flags: 786433
   NestedObjects: []
   NetworkedBehaviours:
+  - {fileID: 4459864850019384740}
   - {fileID: 5489160529581455230}
-  - {fileID: 6995604724932204749}
+  - {fileID: -7313038292684049603}
 --- !u!114 &5489160529581455230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +392,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6995604724932204749
+--- !u!114 &-7313038292684049603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
