@@ -10,14 +10,18 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
-        if (player == Runner.LocalPlayer && (Application.platform == RuntimePlatform.WindowsEditor || Application.platform == RuntimePlatform.WindowsPlayer))
+        /*
+        if (player == Runner.LocalPlayer)
         {
-            Runner.Spawn(playerPrefabPC, new Vector3(0, 1, 0), Quaternion.identity, player);
+            Runner.Spawn(playerPrefabPC, new Vector3(0, 1, 1), Quaternion.identity, player);
+            //
         }
-
-        if (player == Runner.LocalPlayer && (Application.platform == RuntimePlatform.Android))
+        */
+        
+        if (player == Runner.LocalPlayer)
         {
-            Runner.Spawn(playerPrefabVR, new Vector3(0, 1, 1), Quaternion.identity, player);
+            Runner.Spawn(playerPrefabVR, new Vector3(0, 1, 0), Quaternion.identity, player);
         }
+        
     }
 }
