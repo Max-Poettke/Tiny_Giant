@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3033667219593020291, guid: 3a610f4137f59c543b81cb0981b754ee, type: 3}
+  - {fileID: -1134714066672644336, guid: 2f26bf5751b2ae94b88fef2e1df86a60, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   fov: 60
   invertCamera: 0
   cameraCanMove: 1
-  mouseSensitivity: 15
+  mouseSensitivity: 5
   maxLookAngle: 50
   lockCursor: 1
   crosshair: 1
@@ -168,11 +168,11 @@ MonoBehaviour:
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
-  walkSpeed: 5
-  maxVelocityChange: 10
+  walkSpeed: 15
+  maxVelocityChange: 20
   enableSprint: 1
   unlimitedSprint: 1
-  sprintSpeed: 7
+  sprintSpeed: 30
   sprintDuration: 5
   sprintCooldown: 0.5
   sprintFOV: 80
