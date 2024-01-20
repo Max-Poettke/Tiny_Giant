@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5433879555666793718}
   - component: {fileID: 1339633491214400861}
   - component: {fileID: 5778546554676888811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 8707728036728970363}
   - component: {fileID: 4637007768204818592}
   - component: {fileID: 1519745357861307939}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 1376316976497085897}
   - component: {fileID: 1743622868980609476}
   - component: {fileID: 96304647582432759}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 2599293693759818388}
   - component: {fileID: 5106311974373788861}
   - component: {fileID: 10103697954565368}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere (1)
   m_TagString: Interactor
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3668624614213473339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 7317264419129030890}
   - component: {fileID: 4093786473041582452}
   - component: {fileID: 741328659426631953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 732468356829241619}
   - component: {fileID: 8316572522268545547}
   - component: {fileID: 172689018490283801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Interactor
   m_Icon: {fileID: 0}
