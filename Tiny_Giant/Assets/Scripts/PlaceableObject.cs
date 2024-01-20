@@ -11,7 +11,6 @@ public class PlaceableObject : MonoBehaviour
     public bool canSnap = true;
     public Vector3 snapPos = new Vector3();
     public Quaternion snapRotation = new Quaternion();
-    public XRGrabInteractable grabInteractable;
 
     private void OnTriggerEnter(Collider other)
     {

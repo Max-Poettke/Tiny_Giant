@@ -1,0 +1,16 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class SpawnIfVR : MonoBehaviour
+{
+    private void Start()
+    {
+        if (Application.platform != RuntimePlatform.Android)
+        {
+            Destroy(this);
+        }
+    }
+}
