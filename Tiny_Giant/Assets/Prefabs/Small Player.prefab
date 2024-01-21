@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9116301076571498349}
   - component: {fileID: 6812753996991220018}
   - component: {fileID: 5653478301626782563}
+  - component: {fileID: 7833709097427692638}
   m_Layer: 6
   m_Name: Small Player (1)
   m_TagString: Player
@@ -166,11 +167,11 @@ MonoBehaviour:
   zoomFOV: 30
   zoomStepTime: 5
   playerCanMove: 1
-  walkSpeed: 30
-  maxVelocityChange: 20
+  walkSpeed: 5
+  maxVelocityChange: 3
   enableSprint: 1
   unlimitedSprint: 1
-  sprintSpeed: 60
+  sprintSpeed: 8
   sprintDuration: 5
   sprintCooldown: 0.5
   sprintFOV: 80
@@ -182,7 +183,7 @@ MonoBehaviour:
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
   enableJump: 1
-  jumpPower: 20
+  jumpPower: 3
   enableCrouch: 1
   holdToCrouch: 1
   crouchHeight: 0.75
@@ -369,6 +370,28 @@ MonoBehaviour:
   curCamera: {fileID: 4029224397189275590}
   listener: {fileID: 4561099083995699757}
   firstPersonController: {fileID: 9116301076571498349}
+--- !u!114 &7833709097427692638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973117024127979823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _interpolationTarget: {fileID: 0}
+  UsePreciseRotation: 1
+  UseRenderSleepThresholds: 1
+  RenderThresholds:
+    UseEnergy: 1
+    Position: 0.01
+    Rotation: 0.01
+    Scale: 0.01
 --- !u!1 &2078456863844007949
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,11 +846,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3415497993022439399}
-  - component: {fileID: 6327916209824070598}
-  - component: {fileID: 274224403331329149}
   - component: {fileID: 644054290095196389}
   m_Layer: 0
-  m_Name: Small player
+  m_Name: Small Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -849,55 +870,6 @@ Transform:
   - {fileID: 3605969498635660131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6327916209824070598
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6481374819524182072}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &274224403331329149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6481374819524182072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncScale: 0
-  SyncParent: 1
-  _interpolationTarget: {fileID: 3605969498635660131}
-  UsePreciseRotation: 0
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
 --- !u!114 &644054290095196389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -915,9 +887,9 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 274224403331329149}
   - {fileID: 9116301076571498349}
   - {fileID: 5653478301626782563}
+  - {fileID: 7833709097427692638}
 --- !u!1 &9020969123383995174
 GameObject:
   m_ObjectHideFlags: 0

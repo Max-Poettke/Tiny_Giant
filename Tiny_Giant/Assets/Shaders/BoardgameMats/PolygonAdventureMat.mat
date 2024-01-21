@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Log
+  m_Name: PolygonAdventureMat
   m_Shader: {fileID: -6465566751694194690, guid: f4917b85716c15e479e773b414d59466,
     type: 3}
   m_Parent: {fileID: 0}
@@ -28,7 +28,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 7997cab5a87b82a44a3fc36fa6811860, type: 3}
+        m_Texture: {fileID: 2800000, guid: 58b7459601439c242b43a9c49adbf933, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture3D:
@@ -67,7 +67,7 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 1
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 0.16470584, g: 0.14901957, b: 0.14117643, a: 1}
     - _LeftFrontBottom: {r: -76, g: -100, b: -36, a: 0}
     - _Position1: {r: 0, g: 0, b: 0, a: 0}
     - _Position2: {r: 0, g: 0, b: 0, a: 0}

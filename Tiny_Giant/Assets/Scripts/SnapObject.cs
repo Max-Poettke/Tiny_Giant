@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Fusion;
 
 using System.Linq;
+using Object = System.Object;
 
 public class SnapObject : MonoBehaviour
 {
@@ -47,6 +49,8 @@ public class SnapObject : MonoBehaviour
             obj = other.gameObject;
             objPlaceableObject = obj.GetComponent<PlaceableObject>();
             objRigidBody = obj.GetComponent<Rigidbody>();
+            other.GetComponentInParent<NetworkObject>().RequestStateAuthority();
+
         }
         catch (Exception e)
         {
