@@ -346,7 +346,6 @@ GameObject:
   - component: {fileID: 6100206798468776282}
   - component: {fileID: 2479834609146227686}
   - component: {fileID: 86337209411220110}
-  - component: {fileID: 4695949949203960660}
   m_Layer: 6
   m_Name: Sphere
   m_TagString: Interactor
@@ -595,18 +594,6 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 1
---- !u!114 &4695949949203960660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6039445653529687626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c394150fd65c92c42bb8dc49403fe522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6629017412847874087
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +609,6 @@ GameObject:
   - component: {fileID: 1600019715383406371}
   - component: {fileID: 3900948230983952295}
   - component: {fileID: 930956547111855515}
-  - component: {fileID: 7296054906362911836}
   m_Layer: 6
   m_Name: Sphere (1)
   m_TagString: Interactor
@@ -859,18 +845,6 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 1
---- !u!114 &7296054906362911836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629017412847874087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c394150fd65c92c42bb8dc49403fe522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7734957936358053607
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,9 +901,7 @@ MonoBehaviour:
   - {fileID: 6632754875627190619}
   - {fileID: 4984076125422761727}
   - {fileID: 86337209411220110}
-  - {fileID: 4695949949203960660}
   - {fileID: 930956547111855515}
-  - {fileID: 7296054906362911836}
 --- !u!114 &1019165572798321457
 MonoBehaviour:
   m_ObjectHideFlags: 0

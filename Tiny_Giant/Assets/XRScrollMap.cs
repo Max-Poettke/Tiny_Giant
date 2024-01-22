@@ -11,6 +11,9 @@ public class XRScrollMap : MonoBehaviour
     public NetworkObject networkObject;
     public NetworkObject levelParent;
     public List<Material> mapObjectMaterials = new List<Material>();
+    public GameObject leftFrontBottom;
+    public GameObject rightBackTop;
+    public GameObject table;
 
 
     private Vector3 controllerPositionOld = new Vector3();
@@ -22,53 +25,49 @@ public class XRScrollMap : MonoBehaviour
     private void Start()
     {
         //levelParent = GameObject.FindGameObjectWithTag("LevelParent").GetComponent<NetworkObject>();
-        levelParent.RequestStateAuthority();
+        //levelParent.RequestStateAuthority();
+        networkObject = GetComponent<NetworkObject>();
+        leftFrontBottom = GameObject.Find("LeftFrontBottom");
+        rightBackTop = GameObject.Find("RightBackTop");
+        table = GameObject.FindGameObjectWithTag("Table");
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (!networkObject.HasInputAuthority) return;
         GetControllerInput();
-        if (isGripping && networkObject.HasInputAuthority)
+        if (isGripping)
         {
+            controllerPositionChange = (controllerLeft.transform.position - controllerPositionOld);
+            controllerPositionChange.y = 0f;
+            //controllerPositionChange *= 0.5f;
+
+            leftFrontBottom.transform.position -= controllerPositionChange;
+            rightBackTop.transform.position -= controllerPositionChange;
+
             foreach(Material material in mapObjectMaterials)
             {
-                Vector3 originalPosLeftFrontBottom = material.GetVector("_LeftFrontBottom");
-                Vector3 originalPosRightBackTop = material.GetVector("_RightBackTop");
-                Vector3 newPosLeftFrontBottom = UpdatePosition(originalPosLeftFrontBottom);
-                Vector3 newPosRightBackTop = UpdatePosition(originalPosRightBackTop);
-                material.SetVector("_LeftFrontBottom", newPosLeftFrontBottom);
-                material.SetVector("_RightBackTop", newPosRightBackTop);
-            } 
-            controllerPositionOld = controllerLeft.transform.localPosition;
+                material.SetVector("_LeftFrontBottom", leftFrontBottom.transform.position);
+                material.SetVector("_RightBackTop", rightBackTop.transform.position);
+            }
+            
             transform.position -= controllerPositionChange;
+            table.transform.position -= controllerPositionChange;
+            controllerPositionOld = controllerLeft.transform.position;
         }
     }
 
     private void GetControllerInput()
     {
         //Check if left controller is trying to grip and move the world
-        if (controllerLeft.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out triggerValue) &&
-            triggerValue > 0.1f)
+        if (!controllerLeft.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out triggerValue)) return;
+        if (triggerValue > 0.1f)
         {
             isGripping = true;
-            if (controllerPositionOld == Vector3.zero)
-            {
-                controllerPositionOld = controllerLeft.transform.localPosition;
-            }
-            controllerPositionChange = (controllerLeft.transform.localPosition - controllerPositionOld);
-            controllerPositionChange.y = 0f;
-            controllerPositionChange *= Quaternion.Angle(controllerLeft.transform.rotation, transform.rotation);
-            controllerPositionChange *= 0.5f;
-
-        }
-        else
+        } else 
         {
             isGripping = false;
+            controllerPositionOld = controllerLeft.transform.position;
         }
-    }
-    
-    private Vector3 UpdatePosition(Vector3 oldPos)
-    {
-        return oldPos + controllerPositionChange;
     }
 }

@@ -44,18 +44,11 @@ public class SnapObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        try
-        {
+        if(other.CompareTag("PlaceableObject")){
             obj = other.gameObject;
-            objPlaceableObject = obj.GetComponent<PlaceableObject>();
+            objPlaceableObject = obj.GetComponentInChildren<PlaceableObject>();
             objRigidBody = obj.GetComponent<Rigidbody>();
             other.GetComponentInParent<NetworkObject>().RequestStateAuthority();
-
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
         }
     }
 }
