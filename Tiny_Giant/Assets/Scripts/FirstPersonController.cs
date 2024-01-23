@@ -27,7 +27,7 @@ public class FirstPersonController : MonoBehaviour
     public float fov = 60f;
     public bool invertCamera = false;
     public bool cameraCanMove = true;
-    public float mouseSensitivity = 2f;
+    public float mouseSensitivity = 0.05f;
     public float maxLookAngle = 50f;
 
     // Crosshair
@@ -199,7 +199,7 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>() * Time.deltaTime;
+            var mouse = context.ReadValue<Vector2>();
             yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
 
             if (!invertCamera)

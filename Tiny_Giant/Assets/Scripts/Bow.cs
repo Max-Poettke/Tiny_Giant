@@ -16,12 +16,18 @@ public class Bow : MonoBehaviour
     [SerializeField]
     private float shotPower = 2f;
 
-    [SerializeField] private Animation animation;
+    [SerializeField] private new Animation animation;
+
+    private Coroutine drawBow;
+    
+    private GameObject[] activeArrows;
+    [SerializeField] private int maxActiveArrows = 10;
+    private int pointer;
     
     // Start is called before the first frame update
     void Start()
     {
-    
+        activeArrows = new GameObject[maxActiveArrows];
     }
 
     // Update is called once per frame
@@ -38,14 +44,19 @@ public class Bow : MonoBehaviour
         {
             start = Time.time;
             arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
-            StartCoroutine(MoveArrowBack());
+            
+            if(activeArrows[pointer] != null) Destroy(activeArrows[pointer]);
+            activeArrows[pointer++] = arrow;
+            pointer %= maxActiveArrows; 
+            
+            drawBow = StartCoroutine(MoveArrowBack());
         }
 
         
         if (context.canceled)
         {
             end = Time.time;
-            StopCoroutine(MoveArrowBack());
+            StopCoroutine(drawBow);
             var rb = arrow.GetComponent<Rigidbody>();
             rb.isKinematic = false;
             rb.useGravity = true;
@@ -61,15 +72,17 @@ public class Bow : MonoBehaviour
     public IEnumerator MoveArrowBack()
     {
         yield return new WaitForSeconds(0.3f);
+        start = Time.time;
         animation.Play("DrawBow", PlayMode.StopAll);
-        animation["DrawBow"].speed = 0.5f;
-        int time = 0;
-        while(time++ < 90)
+        animation["DrawBow"].speed = 0.4f;
+        while(Time.time - start < 1f)
         {
-            if (time == 30)
-            {
-                animation["DrawBow"].speed = 0.3f;
-            }
+            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
+            yield return null;
+        }
+        animation["DrawBow"].speed = 0.2f;
+        while(Time.time - start < 2.5f)
+        {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
             yield return null;
         }

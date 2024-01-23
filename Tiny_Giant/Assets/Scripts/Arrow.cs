@@ -21,6 +21,6 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 }
