@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e205409525e24f14812c1f928b5764c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrows: {fileID: 1846311025636673151, guid: 29b84697c5b570d4b9e918325ce0d607, type: 3}
+  arrows: {fileID: 551836535061855087, guid: 59249593da22bee438f942d07dfe1ca8, type: 3}
   maxHoldDuration: 2.5
   cam: {fileID: 0}
   shotPower: 2
@@ -97,6 +97,7 @@ Animation:
     type: 3}
   m_Animations:
   - {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
+  - {fileID: -998496362607748373, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0

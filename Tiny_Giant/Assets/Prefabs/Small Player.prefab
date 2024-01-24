@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90ba6530d9bfda47abb4610956b2f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 8677460019991359036}
   fov: 60
   invertCamera: 0
   cameraCanMove: 1
@@ -351,6 +351,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8b7039e-bb0f-474e-8a73-af6dfb464f07
     m_ActionName: Player/Zoom[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8193079224076600003}
+        m_TargetAssemblyTypeName: Bow, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5b3f7b64-ded3-42bc-ab93-8f6b314a4f7c
+    m_ActionName: Player/Shoot[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -940,3 +956,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5321142580246696383}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8193079224076600003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 5321142580246696383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e205409525e24f14812c1f928b5764c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
