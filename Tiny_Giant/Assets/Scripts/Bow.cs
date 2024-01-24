@@ -55,7 +55,7 @@ public class Bow : NetworkBehaviour
             activeArrows[pointer++] = arrow.gameObject;
             pointer %= maxActiveArrows; 
             
-            drawBow = StartCoroutine(MoveArrowBack());
+            drawBow = StartCoroutine(DrawBow());
         }
 
         
@@ -63,7 +63,7 @@ public class Bow : NetworkBehaviour
         {
             end = Time.time;
 
-            if (end - start < minHoldDuration)
+            if (end - start < maxHoldDuration)
             {
                 Destroy(arrow);
                 StopCoroutine(drawBow);
@@ -72,7 +72,7 @@ public class Bow : NetworkBehaviour
             else
             {
                 if(activeArrows[pointer] != null) activeArrows[pointer].GetComponent<Arrow>().Vanish();
-                activeArrows[pointer++] = arrow;
+                activeArrows[pointer++] = arrow.gameObject;
                 pointer %= maxActiveArrows; 
                 
                 StopCoroutine(drawBow);
@@ -91,7 +91,7 @@ public class Bow : NetworkBehaviour
 
     private IEnumerator DrawBow()
     {
-        yield return new WaitForSeconds(minHoldDuration);
+        yield return new WaitForSeconds(maxHoldDuration);
         var start1 = Time.time;
         animation.Play("DrawBow", PlayMode.StopAll);
         animation["DrawBow"].speed = 0.4f;
