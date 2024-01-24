@@ -30,7 +30,7 @@ public class FirstPersonController : NetworkBehaviour
     public float fov = 60f;
     public bool invertCamera = false;
     public bool cameraCanMove = true;
-    public float mouseSensitivity = 2f;
+    public float mouseSensitivity = 0.05f;
     public float maxLookAngle = 50f;
 
     // Crosshair
@@ -208,7 +208,7 @@ public class FirstPersonController : NetworkBehaviour
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
             transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            joint.localEulerAngles = new Vector3(pitch, 0, 0);
         }
         #endregion
     }
