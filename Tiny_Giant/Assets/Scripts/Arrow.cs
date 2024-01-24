@@ -3,19 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Fusion;
 
-public class Arrow : MonoBehaviour
+
+public class Arrow : NetworkBehaviour
 {
     // Start is called before the first frame update
     private Rigidbody rb;
     private Material material;
+
+    //Networked variable for syncing the color change of the arrow
+    [Networked]
+    private Color color { get; set;}
+    //Change detector for detecting changes in the color variable
+    private ChangeDetector changeDetector;
+
+    public override void Spawned()
+    {
+        //Get the change detector for the color variable
+        changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         material = gameObject.GetComponent<MeshRenderer>().material;
     }
 
-    // Update is called once per frame
+    void Update()
+    {
+        //Detect changes in the color variable and apply them to the material
+        foreach (var change in changeDetector.DetectChanges(this))
+        {
+            switch (change)
+            {
+                case nameof(color):
+                    material.color = color;
+                    break;
+            }
+        }
+    }
+
     void FixedUpdate()
     {
         if(rb.velocity != Vector3.zero)
@@ -35,11 +63,11 @@ public class Arrow : MonoBehaviour
 
     public IEnumerator VanishC()
     {
-        var color = material.color;
+        Debug.Log("Vanishing");
+        color = material.color;
         for (float i = 1; i > 0f ; i -= 0.1f)
         {
-            color.a = i;
-            material.color = color;
+            color = new Color(color.r, color.g, color.b, i);
             yield return new WaitForSeconds(0.1f);
         }
         Destroy(gameObject);

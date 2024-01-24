@@ -2,15 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fusion;
 
-public class ButtonGateTrigger : MonoBehaviour
+public class ButtonGateTrigger : NetworkBehaviour
 {
     [SerializeField] private GameObject gate;
 
     [SerializeField] private float raiseTime;
     [SerializeField] private float lowerTime;
+    [SerializeField] private float waitTime = 1f;
 
-    [SerializeField] private bool grabbed;
+    [SerializeField] public bool grabbed;
     
     private enum GateState
     {
@@ -32,8 +34,8 @@ public class ButtonGateTrigger : MonoBehaviour
         state = GateState.Raising;
         var time = 0f;
         Debug.Log("Raising Gate!");
-        var endPosition = new Vector3(startPosition.x, startPosition.y + 5f, startPosition.z);
-        while (time < raiseTime)
+        var endPosition = new Vector3(startPosition.x, startPosition.y + 8f, startPosition.z);
+        while (time < raiseTime && state == GateState.Raising)
         {
             while (grabbed) { yield return null; }
             
@@ -42,19 +44,20 @@ public class ButtonGateTrigger : MonoBehaviour
             time += Time.deltaTime;
 
             yield return null;
-
         }
+        yield return new WaitForSeconds(waitTime);
         StartCoroutine(LowerGate());
     }
 
     private IEnumerator LowerGate()
     {
+        Debug.Log("Lowering Gate!");
         state = GateState.Falling;
         var time = 0f;
 
         var position = gate.transform.position;
         var endPosition = startPosition;
-        while (time < lowerTime)
+        while (time < lowerTime && state == GateState.Falling)
         {
             while (grabbed) { yield return null; }
 
@@ -70,9 +73,9 @@ public class ButtonGateTrigger : MonoBehaviour
 
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Arrow") && state != GateState.Falling)
+        if (collider.gameObject.CompareTag("Arrow") && state != GateState.Falling)
         {
             StartCoroutine(RaiseGate());
         }

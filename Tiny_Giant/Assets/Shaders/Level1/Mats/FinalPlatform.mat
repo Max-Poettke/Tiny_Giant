@@ -68,10 +68,10 @@ Material:
     - _ZWriteControl: 1
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftFrontBottom: {r: -46.608955, g: -100, b: -44.889603, a: 0}
+    - _LeftFrontBottom: {r: -200, g: -200, b: -200, a: 0}
     - _Position1: {r: 0, g: 0, b: 0, a: 0}
     - _Position2: {r: 0, g: 0, b: 0, a: 0}
-    - _RightBackTop: {r: 98.091034, g: 180, b: 220.11014, a: 0}
+    - _RightBackTop: {r: 200, g: 200, b: 400, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &4956025546923117620
 MonoBehaviour:

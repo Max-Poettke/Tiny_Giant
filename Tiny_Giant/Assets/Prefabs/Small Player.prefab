@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 644054290095196389}
   m_Layer: 6
   m_Name: Small Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -914,11 +914,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.586
-      objectReference: {fileID: 0}
-    - target: {fileID: 898045858246463704, guid: 36f94a163b86a6d428e7ed95dc2202ab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 898045858246463704, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}

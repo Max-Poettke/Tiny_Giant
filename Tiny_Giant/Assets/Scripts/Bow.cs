@@ -9,6 +9,7 @@ public class Bow : NetworkBehaviour
 {
     public GameObject arrows;
     public float maxHoldDuration = 2.5f;
+    public float minHoldDuration = 0.2f;
     private NetworkObject arrow;
     public Transform cam;
     
@@ -51,7 +52,9 @@ public class Bow : NetworkBehaviour
             */
             arrow = Runner.Spawn(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, Runner.LocalPlayer);
             arrow.gameObject.transform.SetParent(transform);
-            if(activeArrows[pointer] != null) Destroy(activeArrows[pointer]);
+            if(activeArrows[pointer] != null) {
+                activeArrows[pointer].GetComponent<Arrow>().Vanish();
+            }
             activeArrows[pointer++] = arrow.gameObject;
             pointer %= maxActiveArrows; 
             
@@ -65,7 +68,8 @@ public class Bow : NetworkBehaviour
 
             if (end - start < maxHoldDuration)
             {
-                Destroy(arrow);
+                arrow.TryGetComponent(out Arrow a);
+                if(a) a.Vanish();
                 StopCoroutine(drawBow);
                 animation.Stop();
             }
@@ -91,7 +95,7 @@ public class Bow : NetworkBehaviour
 
     private IEnumerator DrawBow()
     {
-        yield return new WaitForSeconds(maxHoldDuration);
+        yield return new WaitForSeconds(minHoldDuration);
         var start1 = Time.time;
         animation.Play("DrawBow", PlayMode.StopAll);
         animation["DrawBow"].speed = 0.4f;
