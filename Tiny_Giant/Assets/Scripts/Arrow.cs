@@ -38,7 +38,6 @@ public class Arrow : MonoBehaviour
         for (float i = 1; i > 0f ; i -= 0.1f)
         {
             color.a = i;
-            //gameObject.GetComponent<MeshRenderer>().material.color = color;
             material.color = color;
             yield return new WaitForSeconds(0.1f);
         }
