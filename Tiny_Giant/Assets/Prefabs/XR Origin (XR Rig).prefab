@@ -974,6 +974,7 @@ GameObject:
   - component: {fileID: 2299711324668087503}
   - component: {fileID: 3793884675781335788}
   - component: {fileID: 7673634384213842833}
+  - component: {fileID: 3971800223915171561}
   m_Layer: 6
   m_Name: XR Origin (XR Rig)
   m_TagString: Untagged
@@ -1086,8 +1087,25 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 2299711324668087503}
+  - {fileID: 3971800223915171561}
   - {fileID: 7394542924141649330}
   - {fileID: 8422261020436007268}
   - {fileID: 8055780380958199803}
   - {fileID: 3682481549506539596}
   - {fileID: 4099789335405569965}
+--- !u!114 &3971800223915171561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316150055131905715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 1
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
