@@ -8,13 +8,9 @@ public class RequestPermission : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        try
+        if (other.CompareTag("PlaceableObject"))
         {
             other.GetComponentInParent<NetworkObject>().RequestStateAuthority();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.ToString());
         }
     }
 }

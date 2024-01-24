@@ -26,7 +26,6 @@ public class XRScrollMap : MonoBehaviour
     {
         //levelParent = GameObject.FindGameObjectWithTag("LevelParent").GetComponent<NetworkObject>();
         //levelParent.RequestStateAuthority();
-        networkObject = GetComponent<NetworkObject>();
         leftFrontBottom = GameObject.Find("LeftFrontBottom");
         rightBackTop = GameObject.Find("RightBackTop");
         table = GameObject.FindGameObjectWithTag("Table");
@@ -38,7 +37,7 @@ public class XRScrollMap : MonoBehaviour
         GetControllerInput();
         if (isGripping)
         {
-            controllerPositionChange = (controllerLeft.transform.position - controllerPositionOld);
+            controllerPositionChange = controllerLeft.transform.position - controllerPositionOld;
             controllerPositionChange.y = 0f;
             //controllerPositionChange *= 0.5f;
 
@@ -60,7 +59,7 @@ public class XRScrollMap : MonoBehaviour
     private void GetControllerInput()
     {
         //Check if left controller is trying to grip and move the world
-        if (!controllerLeft.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.grip, out triggerValue)) return;
+        if (!controllerLeft.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out triggerValue)) return;
         if (triggerValue > 0.1f)
         {
             isGripping = true;

@@ -10,14 +10,14 @@ public class ProximityShader : MonoBehaviour
     public float maxDistance;
     private Material proximityMaterial;
     public int materialIndex;
-    private BoxCollider collider;
+    private BoxCollider col;
 
     private void Start()
     {
         proximityMaterial = GetComponent<MeshRenderer>().materials[materialIndex];
         try
         {
-            collider = GetComponent<BoxCollider>();
+            col = GetComponent<BoxCollider>();
         }
         catch (Exception e)
         {
@@ -27,7 +27,7 @@ public class ProximityShader : MonoBehaviour
     
     private void Update()
     {
-        if (collider != null)
+        if (col != null)
         {
             
         }

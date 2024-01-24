@@ -20,11 +20,13 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         }
         */
         
+        
+        
         if (player == Runner.LocalPlayer)
         {
             Runner.Spawn(playerPrefabVR, vrSpawnPoint.transform.position, Quaternion.identity, player);
         }
         
-        
+ 
     }
 }
