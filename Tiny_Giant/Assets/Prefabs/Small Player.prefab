@@ -830,6 +830,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}
+      propertyPath: minHoldDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
       propertyPath: playerDirection
       value: 
       objectReference: {fileID: 4459864850019384738}
