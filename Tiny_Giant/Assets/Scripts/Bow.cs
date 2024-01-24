@@ -39,7 +39,7 @@ public class Bow : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        
+        Debug.Log("Shoot");
         if (context.performed)
         {
             start = Time.time;
