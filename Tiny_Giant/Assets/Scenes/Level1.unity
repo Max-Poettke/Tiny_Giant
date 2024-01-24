@@ -2477,6 +2477,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b83247e7d4e0a3349a19ac9ceb4ab3ba, type: 3}
+--- !u!111 &595025530 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 1701731468416554741, guid: 6bacecc4f3df9584198879c73a6b6c36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1310699451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &637148388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 445592, guid: e630370e466d57648b32da531956bf10,
@@ -5309,6 +5315,11 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 646877915}
+    - target: {fileID: 370082626497122208, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: animation
+      value: 
+      objectReference: {fileID: 595025530}
     - target: {fileID: 3866056352214433383, guid: 6bacecc4f3df9584198879c73a6b6c36,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
