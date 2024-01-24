@@ -66,7 +66,7 @@ public class Bow : NetworkBehaviour
         {
             end = Time.time;
 
-            if (end - start < maxHoldDuration)
+            if (end - start < minHoldDuration)
             {
                 arrow.TryGetComponent(out Arrow a);
                 if(a) a.Vanish();
@@ -81,6 +81,7 @@ public class Bow : NetworkBehaviour
                 
                 StopCoroutine(drawBow);
                 var rb = arrow.GetComponent<Rigidbody>();
+                arrow.GetComponent<TrailRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);

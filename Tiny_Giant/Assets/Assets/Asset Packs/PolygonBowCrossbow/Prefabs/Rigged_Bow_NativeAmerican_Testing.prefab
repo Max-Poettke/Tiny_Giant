@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrows: {fileID: 2235522950125039242, guid: 29b84697c5b570d4b9e918325ce0d607, type: 3}
   maxHoldDuration: 1.5
+  minHoldDuration: 0.5
   cam: {fileID: 0}
   shotPower: 20
   animation: {fileID: 5066270461795405929}
