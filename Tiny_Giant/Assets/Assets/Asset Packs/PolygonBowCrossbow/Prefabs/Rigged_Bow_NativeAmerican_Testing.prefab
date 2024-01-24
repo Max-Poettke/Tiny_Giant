@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 118902120728334627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bowString
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 898045858246463704}
   - component: {fileID: 4065577142094091132}
-  m_Layer: 0
+  - component: {fileID: 3086332643567094313}
+  m_Layer: 7
   m_Name: Rigged_Bow_NativeAmerican_Testing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +79,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrows: {fileID: 1846311025636673151, guid: 29b84697c5b570d4b9e918325ce0d607, type: 3}
-  minHoldDuration: 0
+  maxHoldDuration: 2.5
+  cam: {fileID: 0}
+  shotPower: 20
+  animation: {fileID: 3086332643567094313}
+  maxActiveArrows: 10
+--- !u!111 &3086332643567094313
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521765957328882274}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c,
+    type: 3}
+  m_Animations:
+  - {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
+  - {fileID: -998496362607748373, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1183262574192480145
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430513624163210191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643985240623342267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 399316234168740739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7676171116304294370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8424905834740998469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7872583684579272909}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3715332557464956319}
   - component: {fileID: 2031125200676404332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SK_Bow_NativeAmerican_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8055537548337447709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
