@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5066270461795405929}
   m_Layer: 0
   m_Name: Rigged_Bow_NativeAmerican_Testing
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,10 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e205409525e24f14812c1f928b5764c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrows: {fileID: 551836535061855087, guid: 59249593da22bee438f942d07dfe1ca8, type: 3}
-  maxHoldDuration: 2.5
+  arrows: {fileID: 2235522950125039242, guid: 29b84697c5b570d4b9e918325ce0d607, type: 3}
+  maxHoldDuration: 1.5
   cam: {fileID: 0}
-  shotPower: 2
+  shotPower: 20
   animation: {fileID: 5066270461795405929}
   maxActiveArrows: 10
 --- !u!111 &5066270461795405929

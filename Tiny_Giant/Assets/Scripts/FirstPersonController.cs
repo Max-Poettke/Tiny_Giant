@@ -278,8 +278,8 @@ public class FirstPersonController : NetworkBehaviour
 
         if(crosshair)
         {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
+//            crosshairObject.sprite = crosshairImage;
+//            crosshairObject.color = crosshairColor;
         }
         else
         {
@@ -293,7 +293,7 @@ public class FirstPersonController : NetworkBehaviour
         if(useSprintBar)
         {
             sprintBarBG.gameObject.SetActive(true);
-            sprintBar.gameObject.SetActive(true);
+//            sprintBar.gameObject.SetActive(true);
 
             float screenWidth = Screen.width;
             float screenHeight = Screen.height;
@@ -302,7 +302,7 @@ public class FirstPersonController : NetworkBehaviour
             sprintBarHeight = screenHeight * sprintBarHeightPercent;
 
             sprintBarBG.rectTransform.sizeDelta = new Vector3(sprintBarWidth, sprintBarHeight, 0f);
-            sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
+//            sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
 
             if(hideBarWhenFull)
             {
@@ -380,7 +380,7 @@ public class FirstPersonController : NetworkBehaviour
 
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
-                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
+//                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
                 }
 
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;

@@ -19,8 +19,9 @@ public class Arrow : MonoBehaviour
             rb.rotation = Quaternion.LookRotation(rb.velocity);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+        if(other.transform.CompareTag("Player") || other.transform.CompareTag("Arrow")) return;
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Fusion;
 
-public class Bow : MonoBehaviour
+public class Bow : NetworkBehaviour
 {
     public GameObject arrows;
     public float maxHoldDuration = 2.5f;
-    private GameObject arrow;
+    private NetworkObject arrow;
     public Transform cam;
     private float start = 0f;
     private float end = 0f;
@@ -39,14 +40,18 @@ public class Bow : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
+
         Debug.Log("Shoot");
         if (context.performed)
         {
+            /*
             start = Time.time;
             arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
-            
+            */
+            arrow = Runner.Spawn(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, Runner.LocalPlayer);
+            arrow.gameObject.transform.SetParent(transform);
             if(activeArrows[pointer] != null) Destroy(activeArrows[pointer]);
-            activeArrows[pointer++] = arrow;
+            activeArrows[pointer++] = arrow.gameObject;
             pointer %= maxActiveArrows; 
             
             drawBow = StartCoroutine(MoveArrowBack());
