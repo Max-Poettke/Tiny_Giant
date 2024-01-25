@@ -25,17 +25,26 @@ public class Bow : MonoBehaviour
     [SerializeField] private float shotPower = 2f;
 
     [SerializeField] private Transform arrowParent;
-    [SerializeField] private new Animation animation;
+    // [SerializeField] private new Animation animation;
+
+    private Animator _animator;
     
     private GameObject[] activeArrows;
     [SerializeField] private int maxActiveArrows = 10;
     private int pointer;
     
     private Coroutine drawBow;
+    private static readonly int Draw = Animator.StringToHash("Draw");
+    private static readonly int Cancel = Animator.StringToHash("Cancel");
+    private static readonly int Release = Animator.StringToHash("Release");
+
+    private bool _cancelling;
     
+
     // Start is called before the first frame update
     void Start()
     {
+        _animator = GetComponent<Animator>();
         activeArrows = new GameObject[maxActiveArrows];
     }
 
@@ -66,13 +75,18 @@ public class Bow : MonoBehaviour
         
         if (context.canceled)
         {
+            if (_cancelling) return;
+            _cancelling = true;
             end = Time.time;
 
             if (end - start < minHoldDuration)
             {
                 Destroy(arrow);
+                _animator.SetTrigger(Cancel);
+                _animator.ResetTrigger(Draw);
+                _animator.ResetTrigger(Release);
                 StopCoroutine(drawBow);
-                animation.Stop();
+                // animation.Stop();
             }
             else
             {
@@ -81,15 +95,21 @@ public class Bow : MonoBehaviour
                 pointer %= maxActiveArrows; 
                 
                 StopCoroutine(drawBow);
+                _animator.ResetTrigger(Draw);
+                _animator.ResetTrigger(Cancel);
+                _animator.SetTrigger(Release);
                 var rb = arrow.GetComponent<Rigidbody>();
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
                 rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse); 
                 arrow.transform.SetParent(null);
-                animation.Play("Release", PlayMode.StopAll);
-                animation["Release"].speed = 5f;
+                
+                // animation.Play("Release", PlayMode.StopAll);
+                // animation["Release"].speed = 5f;
             }
+
+            _cancelling = false;
         }
         
     }
@@ -97,16 +117,19 @@ public class Bow : MonoBehaviour
 
     private IEnumerator DrawBow()
     {
+        _animator.ResetTrigger(Cancel);
+        _animator.ResetTrigger(Release);
+        _animator.SetTrigger(Draw);
         yield return new WaitForSeconds(minHoldDuration);
         var start1 = Time.time;
-        animation.Play("DrawBow", PlayMode.StopAll);
-        animation["DrawBow"].speed = 0.4f;
+        /*animation.Play("DrawBow", PlayMode.StopAll);
+        animation["DrawBow"].speed = 0.4f;*/
         while(Time.time - start1 < 1f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
             yield return null;
         }
-        animation["DrawBow"].speed = 0.2f;
+        // animation["DrawBow"].speed = 0.2f;
         while(Time.time - start1 < 2.5f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
