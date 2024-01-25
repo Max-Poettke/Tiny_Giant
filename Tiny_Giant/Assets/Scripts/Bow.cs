@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,10 @@ public class Bow : MonoBehaviour
     private float start = 0f;
     private float end = 0f;
 
-    
+    [SerializeField] private Vector3 initialPos;
+    [SerializeField] private Vector3 raisedPos;
+    [SerializeField] private float raiseTime;
+    private bool _ready;
 
     [SerializeField] private float shotPower = 2f;
 
@@ -34,6 +38,12 @@ public class Bow : MonoBehaviour
         activeArrows = new GameObject[maxActiveArrows];
     }
 
+    private void OnEnable()
+    {
+        _ready = false;
+        StartCoroutine(RaiseBow());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +52,7 @@ public class Bow : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
+        if (!gameObject.activeSelf || !_ready) return;
         
         if (context.performed)
         {
@@ -99,5 +110,18 @@ public class Bow : MonoBehaviour
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
             yield return null;
         }
+    }
+
+    private IEnumerator RaiseBow()
+    {
+        var time = 0f;
+        while (time < raiseTime)
+        {
+            transform.localPosition = Vector3.Slerp(initialPos, raisedPos, time / raiseTime);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _ready = true;
     }
 }

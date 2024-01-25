@@ -20,7 +20,7 @@ public class ButtonGateTrigger : MonoBehaviour
     private GateState state;
 
     private Vector3 startPosition;
-    // Start is called before the first frame update
+    
     void Start()
     {
         startPosition = gate.transform.position;
@@ -31,7 +31,6 @@ public class ButtonGateTrigger : MonoBehaviour
     {
         state = GateState.Raising;
         var time = 0f;
-        Debug.Log("Raising Gate!");
         var endPosition = new Vector3(startPosition.x, startPosition.y + 5f, startPosition.z);
         while (time < raiseTime)
         {
