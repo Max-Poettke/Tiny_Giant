@@ -24,6 +24,7 @@ public class Bow : MonoBehaviour
 
     [SerializeField] private float shotPower = 2f;
 
+    [SerializeField] private Transform arrowParent;
     [SerializeField] private new Animation animation;
     
     private GameObject[] activeArrows;
@@ -57,7 +58,7 @@ public class Bow : MonoBehaviour
         if (context.performed)
         {
             start = Time.time;
-            arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
+            arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, arrowParent);
             
             drawBow = StartCoroutine(DrawBow());
         }
@@ -92,6 +93,7 @@ public class Bow : MonoBehaviour
         }
         
     }
+
 
     private IEnumerator DrawBow()
     {
