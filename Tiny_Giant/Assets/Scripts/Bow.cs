@@ -25,9 +25,12 @@ public class Bow : MonoBehaviour
     [SerializeField] private float shotPower = 2f;
 
     [SerializeField] private Transform arrowParent;
-    // [SerializeField] private new Animation animation;
+
+    [SerializeField] private Transform fakeArrow;
+    private Vector3 _fakeArrowPosition;
 
     private Animator _animator;
+    private Animator _playerAnimator;
     
     private GameObject[] activeArrows;
     [SerializeField] private int maxActiveArrows = 10;
@@ -40,17 +43,22 @@ public class Bow : MonoBehaviour
 
     private bool _cancelling;
     
+    private static readonly int AimBow = Animator.StringToHash("AimBow");
 
+    [SerializeField] private GameObject fakeBow;
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _playerAnimator = transform.parent.parent.GetComponent<Animator>();
         activeArrows = new GameObject[maxActiveArrows];
+        _fakeArrowPosition = fakeArrow.localPosition;
     }
 
     private void OnEnable()
     {
         _ready = false;
+        fakeBow.SetActive(true);
         StartCoroutine(RaiseBow());
     }
 
@@ -68,7 +76,6 @@ public class Bow : MonoBehaviour
         {
             start = Time.time;
             arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, arrowParent);
-            
             drawBow = StartCoroutine(DrawBow());
         }
 
@@ -78,7 +85,7 @@ public class Bow : MonoBehaviour
             if (_cancelling) return;
             _cancelling = true;
             end = Time.time;
-
+            _playerAnimator.SetBool(AimBow, false);
             if (end - start < minHoldDuration)
             {
                 Destroy(arrow);
@@ -109,6 +116,8 @@ public class Bow : MonoBehaviour
                 // animation["Release"].speed = 5f;
             }
 
+            fakeArrow.localPosition = _fakeArrowPosition;
+            fakeArrow.gameObject.SetActive(false);
             _cancelling = false;
         }
         
@@ -122,17 +131,21 @@ public class Bow : MonoBehaviour
         _animator.SetTrigger(Draw);
         yield return new WaitForSeconds(minHoldDuration);
         var start1 = Time.time;
+        _playerAnimator.SetBool(AimBow, true);
+        fakeArrow.gameObject.SetActive(true);
         /*animation.Play("DrawBow", PlayMode.StopAll);
         animation["DrawBow"].speed = 0.4f;*/
         while(Time.time - start1 < 1f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
             yield return null;
         }
         // animation["DrawBow"].speed = 0.2f;
         while(Time.time - start1 < 2.5f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
             yield return null;
         }
     }
