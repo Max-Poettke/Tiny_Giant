@@ -14,6 +14,8 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using Object = System.Object;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -295,8 +297,10 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Start()
     {
+        //Initialize playerFootsteps and attach to SmallPlayer
         playerFootsteps = 
             AudioManager.audioManagerInstance.CreateInstance(FMODEvents.eventsInstance.playerFootsteps);
+        RuntimeManager.AttachInstanceToGameObject(playerFootsteps, transform, rb);
     }
 
     public override void Spawned()

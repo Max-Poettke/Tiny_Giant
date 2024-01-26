@@ -36,6 +36,11 @@ public class AudioManager : MonoBehaviour
         natureEventInstance.start();
     }
 
+    public void SetNatureArea(NatureArea area)
+    {
+        natureEventInstance.setParameterByName("NatureSoundType", (float)area);
+    }
+
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
