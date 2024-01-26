@@ -258,29 +258,6 @@ public class FirstPersonController : NetworkBehaviour
     
     #endregion
 
-    #region Audio
-
-    private StudioEventEmitter playerFootstepsEmitter;
-
-    private void UpdateSound()
-    {
-        if (isWalking)
-        {
-            PLAYBACK_STATE playbackState;
-            playerFootstepsEmitter.EventInstance.getPlaybackState(out playbackState);
-            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
-            {
-                playerFootstepsEmitter.Play();
-            }
-        }
-        else
-        {
-            playerFootstepsEmitter.Stop();
-        }
-    }
-
-    #endregion
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -295,14 +272,6 @@ public class FirstPersonController : NetworkBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
-    }
-
-    private void Start()
-    {
-        //Initialize playerFootstepsEmiiter
-        playerFootstepsEmitter =
-            AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.playerFootsteps,
-                this.gameObject);
     }
 
     public override void Spawned()
@@ -377,7 +346,7 @@ public class FirstPersonController : NetworkBehaviour
             {
                 isWalking = false;
             }
-            UpdateSound();
+            SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
 
             // All movement calculations while sprint is active
             if (enableSprint && sprintPressed && sprintRemaining > 0f && !isSprintCooldown)

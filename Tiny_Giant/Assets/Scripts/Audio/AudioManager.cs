@@ -43,6 +43,12 @@ public class AudioManager : MonoBehaviour
         natureEventInstance.setParameterByName("NatureSoundType", (float)area);
     }
 
+    public void SetGroundType(GroundType type)
+    {
+        SmallPlayerAudio.playerAudioInstance.getPlayerFootstepsEmitter().EventInstance.setParameterByName("GroundType",
+            (float)type);
+    }
+
     public EventInstance CreateInstance(EventReference eventReference)
     {
         EventInstance eventInstance = RuntimeManager.CreateInstance(eventReference);
