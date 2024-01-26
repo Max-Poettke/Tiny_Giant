@@ -19,19 +19,10 @@ public class SmallPlayerAudio : MonoBehaviour
     {
         playerAudioInstance = this;
         
-        //Initialize playerFootstepsEmitter
         playerFootstepsEmitter =
             AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.playerFootsteps,
                 this.gameObject);
     }
-
-    /*private void Start()
-    {
-        //Initialize playerFootstepsEmitter
-        playerFootstepsEmitter =
-            AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.playerFootsteps,
-                this.gameObject);
-    }*/
 
     public void UpdateSound(bool isWalking)
     {
