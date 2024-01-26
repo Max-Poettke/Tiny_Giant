@@ -13,6 +13,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using Object = System.Object;
+using FMOD.Studio;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -253,6 +254,29 @@ public class FirstPersonController : NetworkBehaviour
     
     #endregion
 
+    #region Audio
+
+    private EventInstance playerFootsteps;
+
+    private void UpdateSound()
+    {
+        if (isWalking)
+        {
+            PLAYBACK_STATE playbackState;
+            playerFootsteps.getPlaybackState(out playbackState);
+            if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                playerFootsteps.start();
+            }
+        }
+        else
+        {
+            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+        }
+    }
+
+    #endregion
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -267,6 +291,12 @@ public class FirstPersonController : NetworkBehaviour
             sprintRemaining = sprintDuration;
             sprintCooldownReset = sprintCooldown;
         }
+    }
+
+    private void Start()
+    {
+        playerFootsteps = 
+            AudioManager.audioManagerInstance.CreateInstance(FMODEvents.eventsInstance.playerFootsteps);
     }
 
     public override void Spawned()
@@ -341,6 +371,7 @@ public class FirstPersonController : NetworkBehaviour
             {
                 isWalking = false;
             }
+            UpdateSound();
 
             // All movement calculations while sprint is active
             if (enableSprint && sprintPressed && sprintRemaining > 0f && !isSprintCooldown)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c8919313-d989-49b0-ab0d-77dd3c8f7c42}">
+		<property name="assetPath">
+			<value>Wind-in-trees.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>147.93142857142857</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{de974230-9867-4744-acd4-5f180f149031}</destination>
+		</relationship>
+	</object>
+</objects>

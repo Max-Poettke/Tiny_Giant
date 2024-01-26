@@ -6312,6 +6312,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5000374115417218044, guid: 6bacecc4f3df9584198879c73a6b6c36,
+        type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6481374819524182072, guid: 6bacecc4f3df9584198879c73a6b6c36,
         type: 3}
       propertyPath: m_IsActive
@@ -6992,6 +6997,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6a4c87d02f7f841a0068ab0b5a01e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <playerFootsteps>k__BackingField:
+    Guid:
+      Data1: 1253337908
+      Data2: 1128103563
+      Data3: -281404488
+      Data4: 163728159
+    Path: event:/SoundFX/PlayerFoosteps
+  <natureSounds>k__BackingField:
+    Guid:
+      Data1: -982131154
+      Data2: 1084545697
+      Data3: -1324426078
+      Data4: -1231592836
+    Path: event:/AmbientSounds/Nature
 --- !u!1001 &1877399097
 PrefabInstance:
   m_ObjectHideFlags: 0
