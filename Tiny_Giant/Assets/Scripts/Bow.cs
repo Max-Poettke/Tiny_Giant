@@ -26,7 +26,7 @@ public class Bow : MonoBehaviour
 
     [SerializeField] private Transform arrowParent;
 
-    [SerializeField] private Transform fakeArrow;
+    public Transform fakeArrow;
     private Vector3 _fakeArrowPosition;
 
     private Animator _animator;
@@ -126,6 +126,7 @@ public class Bow : MonoBehaviour
 
     private IEnumerator DrawBow()
     {
+        fakeArrow.GetChild(0).gameObject.SetActive(false);
         _animator.ResetTrigger(Cancel);
         _animator.ResetTrigger(Release);
         _animator.SetTrigger(Draw);

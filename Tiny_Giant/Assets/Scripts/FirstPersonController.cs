@@ -506,9 +506,10 @@ public class FirstPersonController : MonoBehaviour
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()
     {
-        Vector3 origin = transform.position;
-        Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .1f;
+        var position = transform.position;
+        Vector3 origin = new Vector3(position.x, position.y + .1f, position.z);
+        Vector3 direction = Vector3.down;
+        float distance = .15f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
