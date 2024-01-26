@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6812753996991220018}
   - component: {fileID: 5653478301626782563}
   - component: {fileID: 7833709097427692638}
+  - component: {fileID: 7343061493640841821}
   m_Layer: 6
   m_Name: Small Player (1)
   m_TagString: Player
@@ -392,6 +393,37 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
+--- !u!114 &7343061493640841821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973117024127979823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1253337908
+      Data2: 1128103563
+      Data3: -281404488
+      Data4: 163728159
+    Path: event:/SoundFX/PlayerFoosteps
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 6
 --- !u!1 &2078456863844007949
 GameObject:
   m_ObjectHideFlags: 0

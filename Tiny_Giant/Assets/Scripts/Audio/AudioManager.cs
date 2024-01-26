@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager audioManagerInstance { get; private set; }
     private List<EventInstance> _eventInstances;
+    private List<StudioEventEmitter> _eventEmitters;
 
     private EventInstance natureEventInstance;
 
@@ -23,6 +24,7 @@ public class AudioManager : MonoBehaviour
         audioManagerInstance = this;
 
         _eventInstances = new List<EventInstance>();
+        _eventEmitters = new List<StudioEventEmitter>();
     }
 
     private void Start()
@@ -48,13 +50,26 @@ public class AudioManager : MonoBehaviour
         return eventInstance;
     }
 
+    public StudioEventEmitter InitializeEventEmitter(EventReference eventReference, GameObject emitterGameObject)
+    {
+        StudioEventEmitter emitter = emitterGameObject.GetComponent<StudioEventEmitter>();
+        emitter.EventReference = eventReference;
+        _eventEmitters.Add(emitter);
+        return emitter;
+    }
+
     private void CleanUp()
     {
         foreach (EventInstance eventInstance in _eventInstances)
         {
             eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             eventInstance.release();
-        } 
+        }
+
+        foreach (StudioEventEmitter emitter in _eventEmitters)
+        {
+            emitter.Stop();
+        }
     }
 
     private void OnDestroy()

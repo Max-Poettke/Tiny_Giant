@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
 using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,7 @@ using Unity.VisualScripting;
 using Object = System.Object;
 using FMOD.Studio;
 using FMODUnity;
+using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 #if UNITY_EDITOR
@@ -258,22 +260,22 @@ public class FirstPersonController : NetworkBehaviour
 
     #region Audio
 
-    private EventInstance playerFootsteps;
+    private StudioEventEmitter playerFootstepsEmitter;
 
     private void UpdateSound()
     {
         if (isWalking)
         {
             PLAYBACK_STATE playbackState;
-            playerFootsteps.getPlaybackState(out playbackState);
+            playerFootstepsEmitter.EventInstance.getPlaybackState(out playbackState);
             if (playbackState.Equals(PLAYBACK_STATE.STOPPED))
             {
-                playerFootsteps.start();
+                playerFootstepsEmitter.Play();
             }
         }
         else
         {
-            playerFootsteps.stop(STOP_MODE.ALLOWFADEOUT);
+            playerFootstepsEmitter.Stop();
         }
     }
 
@@ -297,10 +299,10 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Start()
     {
-        //Initialize playerFootsteps and attach to SmallPlayer
-        playerFootsteps = 
-            AudioManager.audioManagerInstance.CreateInstance(FMODEvents.eventsInstance.playerFootsteps);
-        RuntimeManager.AttachInstanceToGameObject(playerFootsteps, transform, rb);
+        //Initialize playerFootstepsEmiiter
+        playerFootstepsEmitter =
+            AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.playerFootsteps,
+                this.gameObject);
     }
 
     public override void Spawned()
