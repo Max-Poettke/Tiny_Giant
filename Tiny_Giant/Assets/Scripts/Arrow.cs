@@ -9,10 +9,13 @@ public class Arrow : MonoBehaviour
     // Start is called before the first frame update
     private Rigidbody rb;
     private Material material;
+    private GameObject _flame;
+    public bool lit;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         material = gameObject.GetComponent<MeshRenderer>().material;
+        _flame = GetComponentInChildren<FlameTag>(true).gameObject;
     }
 
     // Update is called once per frame
@@ -42,5 +45,12 @@ public class Arrow : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         Destroy(gameObject);
+    }
+
+    public void Light()
+    {
+        if (lit) return;
+        lit = true;
+        _flame.SetActive(true);
     }
 }
