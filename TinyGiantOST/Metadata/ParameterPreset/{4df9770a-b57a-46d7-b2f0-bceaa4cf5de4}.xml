@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{4df9770a-b57a-46d7-b2f0-bceaa4cf5de4}">
+		<property name="name">
+			<value>NatureSoundType</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bdf17864-e83c-4325-b33b-1405e12481ed}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{72756eb3-a94a-42c6-b008-5f8d20dc5adc}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{72756eb3-a94a-42c6-b008-5f8d20dc5adc}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>WindNTrees</value>
+			<value>WindCliff</value>
+			<value>Rocks</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>75</value>
+		</property>
+	</object>
+</objects>
