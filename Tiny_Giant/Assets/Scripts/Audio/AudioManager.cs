@@ -5,6 +5,7 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using UnityEngine.Assertions.Must;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AudioManager : MonoBehaviour
 {
@@ -39,16 +40,15 @@ public class AudioManager : MonoBehaviour
         natureEventInstance = CreateInstance(natureEventReference);
         natureEventInstance.start();
     }
-
-    public void SetNatureArea(NatureArea area)
-    {
-        natureEventInstance.setParameterByName("NatureSoundType", (float)area);
-    }
-
     private void InitializeMusic(EventReference musicEventReference)
     {
         musicEventInstance = CreateInstance(musicEventReference);
         musicEventInstance.start();
+    }
+
+    public void SetNatureArea(NatureArea area)
+    {
+        natureEventInstance.setParameterByName("NatureSoundType", (float)area);
     }
 
     public void SetGroundType(GroundType type)
@@ -76,7 +76,7 @@ public class AudioManager : MonoBehaviour
     {
         foreach (EventInstance eventInstance in _eventInstances)
         {
-            eventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            eventInstance.stop(STOP_MODE.IMMEDIATE);
             eventInstance.release();
         }
 

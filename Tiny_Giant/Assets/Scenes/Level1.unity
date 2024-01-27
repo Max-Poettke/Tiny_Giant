@@ -7760,6 +7760,13 @@ MonoBehaviour:
       Data3: 468316091
       Data4: 1189433387
     Path: event:/Music/Level1
+  <rockSectionDrums>k__BackingField:
+    Guid:
+      Data1: -1632619794
+      Data2: 1286550333
+      Data3: 1055479736
+      Data4: 743273392
+    Path: event:/Music/Level1-RockSectionDrums
 --- !u!1001 &1877399097
 PrefabInstance:
   m_ObjectHideFlags: 0
