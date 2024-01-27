@@ -50,6 +50,12 @@ public class FirstPersonController : NetworkBehaviour
     public bool holdToZoom = false;
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
+    
+    // Animation
+    private Animator _animator;
+    private static readonly int Walk = Animator.StringToHash("Walk");
+    private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Jump = Animator.StringToHash("Jump");
 
     // Internal Variables
     private bool isZoomed = false;
@@ -140,6 +146,7 @@ public class FirstPersonController : NetworkBehaviour
         if (isGrounded)
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
+            _animator.SetTrigger(Jump);
             isGrounded = false;
         }
 
@@ -181,6 +188,7 @@ public class FirstPersonController : NetworkBehaviour
         else if (context.canceled)
         {
             sprintPressed = false;
+            _animator.SetBool(Run, false);
         }
     }
 
@@ -255,6 +263,7 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -336,10 +345,13 @@ public class FirstPersonController : NetworkBehaviour
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
                 isWalking = true;
+                _animator.SetBool(Walk, true);
             }
             else
             {
                 isWalking = false;
+                _animator.SetBool(Walk, false);
+                _animator.SetBool(Run, false);
             }
 
             // All movement calculations while sprint is active
@@ -358,7 +370,16 @@ public class FirstPersonController : NetworkBehaviour
                 // Makes sure fov change only happens during movement
                 if (velocityChange.x != 0 || velocityChange.z != 0)
                 {
-                    isSprinting = true;
+                    if (_moveVector != Vector3.zero)
+                    {
+                        isSprinting = true;
+                        _animator.SetBool(Run, true);
+                    }
+                    else
+                    {
+                        isSprinting = false;
+                        _animator.SetBool(Run, false);
+                    }
 
                     if (isCrouched)
                     {
@@ -377,7 +398,7 @@ public class FirstPersonController : NetworkBehaviour
             else
             {
                 isSprinting = false;
-
+                _animator.SetBool(Run, false);
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
 //                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
@@ -474,9 +495,10 @@ public class FirstPersonController : NetworkBehaviour
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
-        Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .75f;
+        var position = transform.position;
+        Vector3 origin = new Vector3(position.x, position.y + .1f, position.z);
+        Vector3 direction = Vector3.down;
+        float distance = .15f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {

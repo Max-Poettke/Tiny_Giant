@@ -24,10 +24,15 @@ public class Arrow : NetworkBehaviour
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
     }
 
+    private GameObject _flame;
+    public bool lit;
+    private Bow _bow;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         material = gameObject.GetComponent<MeshRenderer>().material;
+        _flame = GetComponentInChildren<FlameTag>(true).gameObject;
+        _bow = transform.parent.parent.GetComponent<Bow>();
     }
 
     void Update()
@@ -71,5 +76,13 @@ public class Arrow : NetworkBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         Destroy(gameObject);
+    }
+
+    public void Light()
+    {
+        if (lit) return;
+        lit = true;
+        _flame.SetActive(true);
+        _bow.fakeArrow.GetChild(0).gameObject.SetActive(true);
     }
 }
