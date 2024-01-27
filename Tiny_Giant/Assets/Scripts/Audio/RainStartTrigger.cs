@@ -9,7 +9,7 @@ public class RainStartTrigger : MonoBehaviour
     {
         if (playerCollider.tag.Equals("Player"))
         {
-            AudioManager.audioManagerInstance.InitializeRain();
+            AudioManager.audioManagerInstance.StartRain();
             this.gameObject.SetActive(false);
         }
     }

@@ -38,12 +38,15 @@ public class AudioManager : MonoBehaviour
     private void InitializeNature(EventReference natureEventReference)
     {
         natureEventInstance = CreateInstance(natureEventReference);
+        if (natureEventReference.Path.EndsWith("Rain"))
+        {
+            return;
+        }
         natureEventInstance.start();
     }
 
-    public void InitializeRain()
+    public void StartRain()
     {
-        natureEventInstance = CreateInstance(FMODEvents.eventsInstance.natureSounds);
         natureEventInstance.start();
     }
     private void InitializeMusic(EventReference musicEventReference)

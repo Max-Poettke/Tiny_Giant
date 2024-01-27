@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6812753996991220018}
   - component: {fileID: 5653478301626782563}
   - component: {fileID: 7833709097427692638}
-  - component: {fileID: 3532695517813009994}
+  - component: {fileID: 4919055693419215700}
   - component: {fileID: 7343061493640841821}
   m_Layer: 6
   m_Name: Small Player (1)
@@ -394,7 +394,7 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &3532695517813009994
+--- !u!114 &4919055693419215700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
