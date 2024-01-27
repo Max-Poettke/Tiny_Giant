@@ -40,6 +40,12 @@ public class AudioManager : MonoBehaviour
         natureEventInstance = CreateInstance(natureEventReference);
         natureEventInstance.start();
     }
+
+    public void InitializeRain()
+    {
+        natureEventInstance = CreateInstance(FMODEvents.eventsInstance.natureSounds);
+        natureEventInstance.start();
+    }
     private void InitializeMusic(EventReference musicEventReference)
     {
         musicEventInstance = CreateInstance(musicEventReference);
@@ -72,6 +78,7 @@ public class AudioManager : MonoBehaviour
         return emitter;
     }
 
+    #region CleanUp
     private void CleanUp()
     {
         foreach (EventInstance eventInstance in _eventInstances)
@@ -90,4 +97,5 @@ public class AudioManager : MonoBehaviour
     {
         CleanUp();
     }
+    #endregion
 }
