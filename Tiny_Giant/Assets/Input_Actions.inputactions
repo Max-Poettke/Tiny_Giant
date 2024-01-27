@@ -820,6 +820,45 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI - SmallPlayer",
+            "id": "8f5caccf-18e7-41d4-aca4-ada29d2e0337",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "be1a7103-09d3-46e0-a394-46f17f9ddc08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6302017c-6096-401a-88cd-24886abe048f",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1cb0bc8-8847-40b1-a3e9-193be98f8734",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

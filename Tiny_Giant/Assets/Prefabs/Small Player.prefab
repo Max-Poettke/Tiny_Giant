@@ -352,6 +352,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8b7039e-bb0f-474e-8a73-af6dfb464f07
     m_ActionName: Player/Zoom[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be1a7103-09d3-46e0-a394-46f17f9ddc08
+    m_ActionName: UI - SmallPlayer/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
