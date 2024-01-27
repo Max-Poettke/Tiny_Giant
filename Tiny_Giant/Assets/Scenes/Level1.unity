@@ -7753,6 +7753,13 @@ MonoBehaviour:
       Data3: 1885734548
       Data4: -2060219277
     Path: event:/AmbientSounds/Nature
+  <music>k__BackingField:
+    Guid:
+      Data1: 1398426486
+      Data2: 1165520326
+      Data3: 468316091
+      Data4: 1189433387
+    Path: event:/Music/Level1
 --- !u!1001 &1877399097
 PrefabInstance:
   m_ObjectHideFlags: 0

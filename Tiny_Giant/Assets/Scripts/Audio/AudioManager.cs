@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     private List<StudioEventEmitter> _eventEmitters;
 
     private EventInstance natureEventInstance;
+    private EventInstance musicEventInstance;
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         InitializeNature(FMODEvents.eventsInstance.natureSounds);
+        InitializeMusic(FMODEvents.eventsInstance.music);
     }
 
     private void InitializeNature(EventReference natureEventReference)
@@ -41,6 +43,12 @@ public class AudioManager : MonoBehaviour
     public void SetNatureArea(NatureArea area)
     {
         natureEventInstance.setParameterByName("NatureSoundType", (float)area);
+    }
+
+    private void InitializeMusic(EventReference musicEventReference)
+    {
+        musicEventInstance = CreateInstance(musicEventReference);
+        musicEventInstance.start();
     }
 
     public void SetGroundType(GroundType type)
