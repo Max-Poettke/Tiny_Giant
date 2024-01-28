@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     private InputAction _pauseMenu;
 
     [SerializeField] private GameObject pauseUI;
-    [SerializeField] private bool isPaused;
+    private bool isPaused;
 
     private void Awake()
     {
