@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        _pauseMenu = _inputActions.UISmallPlayer.Escape;
+        _pauseMenu = _inputActions.UI.Escape;
         _pauseMenu.Enable();
         _pauseMenu.performed += Pause;
     }

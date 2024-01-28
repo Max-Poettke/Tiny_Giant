@@ -420,6 +420,15 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""afea0685-6e40-492f-a319-5c3931f20ff1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -840,27 +849,10 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""UI - SmallPlayer"",
-            ""id"": ""8f5caccf-18e7-41d4-aca4-ada29d2e0337"",
-            ""actions"": [
-                {
-                    ""name"": ""Escape"",
-                    ""type"": ""Button"",
-                    ""id"": ""be1a7103-09d3-46e0-a394-46f17f9ddc08"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""6302017c-6096-401a-88cd-24886abe048f"",
+                    ""id"": ""8583234b-6bf2-4d2f-9927-20ea11ef3823"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -871,7 +863,7 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e1cb0bc8-8847-40b1-a3e9-193be98f8734"",
+                    ""id"": ""ad9b32f5-cb5e-4fc0-9d7f-1d2ad0709791"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -966,9 +958,7 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
-        // UI - SmallPlayer
-        m_UISmallPlayer = asset.FindActionMap("UI - SmallPlayer", throwIfNotFound: true);
-        m_UISmallPlayer_Escape = m_UISmallPlayer.FindAction("Escape", throwIfNotFound: true);
+        m_UI_Escape = m_UI.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1126,6 +1116,7 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_Escape;
     public struct UIActions
     {
         private @Input_Actions m_Wrapper;
@@ -1140,6 +1131,7 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
+        public InputAction @Escape => m_Wrapper.m_UI_Escape;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1179,6 +1171,9 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1213,6 +1208,9 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1230,52 +1228,6 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
-
-    // UI - SmallPlayer
-    private readonly InputActionMap m_UISmallPlayer;
-    private List<IUISmallPlayerActions> m_UISmallPlayerActionsCallbackInterfaces = new List<IUISmallPlayerActions>();
-    private readonly InputAction m_UISmallPlayer_Escape;
-    public struct UISmallPlayerActions
-    {
-        private @Input_Actions m_Wrapper;
-        public UISmallPlayerActions(@Input_Actions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Escape => m_Wrapper.m_UISmallPlayer_Escape;
-        public InputActionMap Get() { return m_Wrapper.m_UISmallPlayer; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(UISmallPlayerActions set) { return set.Get(); }
-        public void AddCallbacks(IUISmallPlayerActions instance)
-        {
-            if (instance == null || m_Wrapper.m_UISmallPlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_UISmallPlayerActionsCallbackInterfaces.Add(instance);
-            @Escape.started += instance.OnEscape;
-            @Escape.performed += instance.OnEscape;
-            @Escape.canceled += instance.OnEscape;
-        }
-
-        private void UnregisterCallbacks(IUISmallPlayerActions instance)
-        {
-            @Escape.started -= instance.OnEscape;
-            @Escape.performed -= instance.OnEscape;
-            @Escape.canceled -= instance.OnEscape;
-        }
-
-        public void RemoveCallbacks(IUISmallPlayerActions instance)
-        {
-            if (m_Wrapper.m_UISmallPlayerActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IUISmallPlayerActions instance)
-        {
-            foreach (var item in m_Wrapper.m_UISmallPlayerActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_UISmallPlayerActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public UISmallPlayerActions @UISmallPlayer => new UISmallPlayerActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1342,9 +1294,6 @@ public partial class @Input_Actions: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
-    }
-    public interface IUISmallPlayerActions
-    {
         void OnEscape(InputAction.CallbackContext context);
     }
 }
