@@ -7,12 +7,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMOD;
 using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using Object = System.Object;
+using FMOD.Studio;
+using FMODUnity;
+using Debug = UnityEngine.Debug;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -364,6 +369,7 @@ public class FirstPersonController : NetworkBehaviour
                 _animator.SetBool(Walk, false);
                 _animator.SetBool(Run, false);
             }
+            SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
 
             // All movement calculations while sprint is active
             if (enableSprint && sprintPressed && sprintRemaining > 0f && !isSprintCooldown)
