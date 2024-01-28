@@ -18,21 +18,23 @@ public class Arrow : NetworkBehaviour
     //Change detector for detecting changes in the color variable
     private ChangeDetector changeDetector;
 
+    
     public override void Spawned()
     {
         //Get the change detector for the color variable
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
+        _bow = transform.parent.parent.GetComponent<Bow>();
     }
     
     private GameObject _flame;
     public bool lit;
     private Bow _bow;
-    void Start()
+    
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         material = gameObject.GetComponent<MeshRenderer>().material;
         _flame = GetComponentInChildren<FlameTag>(true).gameObject;
-        _bow = transform.parent.parent.GetComponent<Bow>();
     }
 
     void Update()

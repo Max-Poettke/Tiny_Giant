@@ -2077,7 +2077,7 @@ MonoBehaviour:
   crouchHeight: 0.75
   speedReduction: 0.5
   joint: {fileID: 3821734891620276514}
-  _allowInteract: 0
+  _bowChest: {fileID: 0}
 --- !u!114 &3911059443674006349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9557,6 +9557,16 @@ PrefabInstance:
       propertyPath: fakeArrow
       value: 
       objectReference: {fileID: 7693899539936286729}
+    - target: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: maxHoldDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: minHoldDuration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4755014949019084837, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}
       propertyPath: m_Layer

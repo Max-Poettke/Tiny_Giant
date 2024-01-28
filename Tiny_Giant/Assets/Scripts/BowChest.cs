@@ -18,7 +18,7 @@ public class BowChest : MonoBehaviour
 
     public enum ChestState
     {
-        Waiting, Opening, Open
+        Waiting, Opening, Open, Empty
     }
 
     public ChestState _state;
@@ -50,7 +50,7 @@ public class BowChest : MonoBehaviour
         {
             _bow = other.GetComponentInChildren<Bow>(true);
             controller = other.GetComponent<FirstPersonController>();
-            controller._allowInteract = true;
+            controller._bowChest = this;
         }
     }
 
@@ -58,7 +58,7 @@ public class BowChest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            controller._allowInteract = false;
+            controller._bowChest = null;
         }
     }
 
