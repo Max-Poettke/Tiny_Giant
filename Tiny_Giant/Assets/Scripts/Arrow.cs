@@ -32,7 +32,7 @@ public class Arrow : NetworkBehaviour
     
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = transform.parent.GetComponent<Rigidbody>();
         material = gameObject.GetComponent<MeshRenderer>().material;
         _flame = GetComponentInChildren<FlameTag>(true).gameObject;
     }
@@ -77,7 +77,7 @@ public class Arrow : NetworkBehaviour
             color = new Color(color.r, color.g, color.b, i);
             yield return new WaitForSeconds(0.1f);
         }
-        Destroy(gameObject);
+        Runner.Despawn(transform.parent.GetComponent<NetworkObject>());
     }
     
     
