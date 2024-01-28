@@ -4858,7 +4858,6 @@ GameObject:
   - component: {fileID: 8407093979797333268}
   - component: {fileID: 632027303973483924}
   - component: {fileID: 6256684882892924811}
-  - component: {fileID: 5750698485344094965}
   - component: {fileID: 4198090055738993557}
   - component: {fileID: -7448053061584240336}
   m_Layer: 7
@@ -4995,28 +4994,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lit: 0
---- !u!114 &5750698485344094965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846311025636673151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncScale: 1
-  SyncParent: 1
-  _interpolationTarget: {fileID: 0}
-  UsePreciseRotation: 1
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
 --- !u!114 &4198090055738993557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5035,7 +5012,6 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6256684882892924811}
-  - {fileID: 5750698485344094965}
 --- !u!96 &-7448053061584240336
 TrailRenderer:
   serializedVersion: 3

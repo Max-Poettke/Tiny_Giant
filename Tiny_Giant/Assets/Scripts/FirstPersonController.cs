@@ -194,6 +194,7 @@ public class FirstPersonController : NetworkBehaviour
         }
     }
 
+    private Vector2 _mouse;
     public void OnLook(InputAction.CallbackContext context)
     {
         #region Camera
@@ -201,25 +202,13 @@ public class FirstPersonController : NetworkBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>();
-            yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
-
-            if (!invertCamera)
-            {
-                pitch -= mouseSensitivity * mouse.y;
-            }
-            else
-            {
-                // Inverted Y
-                pitch += mouseSensitivity * mouse.y;
-            }
-
-            // Clamp pitch between lookAngle
-            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
-
-            transform.localEulerAngles = new Vector3(0, yaw, 0);
-            joint.localEulerAngles = new Vector3(pitch, 0, 0);
+            _mouse = context.ReadValue<Vector2>();
+            yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
         }
+
+        // Clamp pitch between lookAngle
+        pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+        
         #endregion
     }
 
@@ -354,8 +343,9 @@ public class FirstPersonController : NetworkBehaviour
     {
         InputSystem.Update();
         if (!HasInputAuthority) return;
+        transform.localEulerAngles = new Vector3(0, yaw, 0);
         #region Movement
-
+        
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
@@ -511,6 +501,20 @@ public class FirstPersonController : NetworkBehaviour
         #endregion
 
         CheckGround();
+    }
+
+    private void LateUpdate()
+    {
+        if (!invertCamera)
+        {
+            pitch -= mouseSensitivity * _mouse.y;
+        }
+        else
+        {
+            // Inverted Y
+            pitch += mouseSensitivity * _mouse.y;
+        }
+        joint.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object

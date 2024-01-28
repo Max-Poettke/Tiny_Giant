@@ -65,11 +65,6 @@ public class Bow : NetworkBehaviour
         StartCoroutine(RaiseBow());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
     public void OnShoot(InputAction.CallbackContext context)
     {
