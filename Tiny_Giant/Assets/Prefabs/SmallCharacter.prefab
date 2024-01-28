@@ -585,8 +585,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6054805645019924691}
   - component: {fileID: 1276841040109028758}
-  - component: {fileID: 6151614995208867990}
   - component: {fileID: 832808293623964713}
+  - component: {fileID: 2176393092797888808}
   m_Layer: 8
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -661,14 +661,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &6151614995208867990
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2027006669220441686}
-  m_Enabled: 1
 --- !u!114 &832808293623964713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +705,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &2176393092797888808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027006669220441686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &2036227225365861945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,6 +1934,8 @@ GameObject:
   - component: {fileID: 1299937685609023825}
   - component: {fileID: 4831916105401264802}
   - component: {fileID: 8770140201715422657}
+  - component: {fileID: -9139527904844318778}
+  - component: {fileID: 1007953114029228625}
   m_Layer: 8
   m_Name: SmallCharacter
   m_TagString: Player
@@ -2273,6 +2280,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f9bdf76e-aff6-4cad-a740-e78392ecdff6
     m_ActionName: Player/Interact[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: afea0685-6e40-492f-a319-5c3931f20ff1
+    m_ActionName: UI/Escape[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2334,8 +2345,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curCamera: {fileID: 1276841040109028758}
-  listener: {fileID: 6151614995208867990}
+  listener: {fileID: 0}
   firstPersonController: {fileID: 7328201868579587620}
+--- !u!114 &-9139527904844318778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279358698775597888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3d36c1629d9ab48aee935d9d5af21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1007953114029228625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279358698775597888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1849068972
+      Data2: 1314218319
+      Data3: -820739956
+      Data4: -535785684
+    Path: event:/SoundFX/PlayerFootsteps
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 6
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
