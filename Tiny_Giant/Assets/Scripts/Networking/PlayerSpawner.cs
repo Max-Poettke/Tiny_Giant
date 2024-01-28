@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
+using UnityEngine.InputSystem;
 
 public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 {
@@ -15,8 +16,7 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
         
         if (player == Runner.LocalPlayer)
         {
-            Runner.Spawn(playerPrefabPC, pcSpawnPoint.transform.position, Quaternion.identity, player);
-            //
+            var pcPlayer = Runner.Spawn(playerPrefabPC, pcSpawnPoint.transform.position, Quaternion.identity, player);
         }
         
         

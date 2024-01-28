@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ExitGames.Client.Photon.StructWrapping;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,25 +12,23 @@ public class BowChest : MonoBehaviour
     [SerializeField] private float openTime;
 
     [SerializeField] private GameObject decorativeBow;
-
-    private bool _allowInteract;
+    private FirstPersonController controller;
 
     private Bow _bow;
 
-    private enum ChestState
+    public enum ChestState
     {
         Waiting, Opening, Open
     }
 
-    private ChestState _state;
+    public ChestState _state;
     // Start is called before the first frame update
     void Start()
     {
-        _allowInteract = false;
         _state = ChestState.Waiting;
     }
 
-    private IEnumerator OpenChest()
+    public IEnumerator OpenChest()
     {
         var time = 0f;
         var startRotation = lid.rotation;
@@ -50,7 +49,8 @@ public class BowChest : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _bow = other.GetComponentInChildren<Bow>(true);
-            _allowInteract = true;
+            controller = other.GetComponent<FirstPersonController>();
+            controller._allowInteract = true;
         }
     }
 
@@ -58,30 +58,15 @@ public class BowChest : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _allowInteract = false;
+            controller._allowInteract = false;
         }
     }
 
-    private void PickUpBow()
+    public void PickUpBow()
     {
         if (!_bow) return;
         
         _bow.gameObject.SetActive(true);
         decorativeBow.SetActive(false);
-    }
-
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (!_allowInteract || _state == ChestState.Opening) return;
-
-        switch (_state)
-        {
-            case ChestState.Waiting:
-                StartCoroutine(OpenChest());
-                break;
-            case ChestState.Open:
-                PickUpBow();
-                break;
-        }
     }
 }

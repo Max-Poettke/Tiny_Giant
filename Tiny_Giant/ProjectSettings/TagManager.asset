@@ -10,6 +10,7 @@ TagManager:
   - PlaceableObject
   - Table
   - Arrow
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,6 @@ TagManager:
   - Player
   - InvisibleToSmallPlayer
   - Gate
-  - 
   - 
   - 
   - 

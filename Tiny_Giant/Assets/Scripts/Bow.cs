@@ -79,7 +79,7 @@ public class Bow : NetworkBehaviour
             start = Time.time;
             arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
             */
-            arrow = Runner.Spawn(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, Runner.LocalPlayer);
+            arrow = Runner.Spawn(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), Quaternion.identity, Runner.LocalPlayer);
             arrow.gameObject.transform.SetParent(transform);
             if(activeArrows[pointer] != null) {
                 activeArrows[pointer].GetComponent<Arrow>().Vanish();
@@ -133,7 +133,6 @@ public class Bow : NetworkBehaviour
             fakeArrow.gameObject.SetActive(false);
             _cancelling = false;
         }
-        
     }
 
 

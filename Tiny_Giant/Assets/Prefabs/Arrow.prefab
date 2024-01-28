@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6347688714158972619}
-  m_Father: {fileID: 1356914673781726405}
+  m_Father: {fileID: 4209082234273971644}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6386627846900784275
 ParticleSystem:
@@ -4874,23 +4874,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.6427876, z: 0, w: 0.7660445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6220903378324180877}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 80, z: 0}
 --- !u!33 &7063003654437154130
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Mesh: {fileID: -7630312881025386917, guid: 1c5b37fd30472d24fbd3e315d52fafaf, type: 3}
 --- !u!23 &707721750473386741
 MeshRenderer:
@@ -4898,7 +4898,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -4940,7 +4940,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -4961,7 +4961,7 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -4988,19 +4988,20 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55c19f7973bb24805b6228f5cedfdd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lit: 0
 --- !u!114 &5750698485344094965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
@@ -5010,7 +5011,7 @@ MonoBehaviour:
   SyncParent: 1
   _interpolationTarget: {fileID: 0}
   UsePreciseRotation: 1
-  UseRenderSleepThresholds: 0
+  UseRenderSleepThresholds: 1
   RenderThresholds:
     UseEnergy: 1
     Position: 0.01
@@ -5022,7 +5023,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
@@ -5042,7 +5043,7 @@ TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235522950125039242}
+  m_GameObject: {fileID: 1846311025636673151}
   m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -5148,7 +5149,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
-  lit: 0
 --- !u!1 &2597597172318973034
 GameObject:
   m_ObjectHideFlags: 0

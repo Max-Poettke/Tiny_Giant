@@ -295,7 +295,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5229fb2ff862b044b8c884fc9549bd5a, type: 2}
+  - {fileID: 2100000, guid: 9afb17ebad1e08d498bb2e2c7f1ff38b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -480,7 +480,7 @@ GameObject:
   - component: {fileID: 6553503371377336248}
   m_Layer: 0
   m_Name: BowChest
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -530,7 +530,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fa8eda4ec55ee1a4e99ca991c5828dbf, type: 2}
+  - {fileID: 2100000, guid: ac69ba98a5dbd2b4cb1b51f9b231f6b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

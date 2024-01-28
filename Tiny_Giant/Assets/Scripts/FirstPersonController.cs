@@ -257,6 +257,26 @@ public class FirstPersonController : NetworkBehaviour
 
         #endregion
     }
+
+
+    public bool _allowInteract = false;
+    private BowChest _bowChest;
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!_allowInteract || _bowChest._state == BowChest.ChestState.Opening) return;
+        if(!HasInputAuthority) return;
+        if(!_bowChest) return;
+
+        switch (_bowChest._state)
+        {
+            case BowChest.ChestState.Waiting:
+                StartCoroutine(_bowChest.OpenChest());
+                break;
+            case BowChest.ChestState.Open:
+                _bowChest.PickUpBow();
+                break;
+        }
+    }
     
     
     #endregion
@@ -280,6 +300,8 @@ public class FirstPersonController : NetworkBehaviour
 
     public override void Spawned()
     {
+
+        _bowChest = FindObjectOfType<BowChest>();
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;

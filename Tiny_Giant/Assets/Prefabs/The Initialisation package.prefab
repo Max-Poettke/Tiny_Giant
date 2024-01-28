@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228d2739f7ad1bc4ba566e4c15a228ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefabPC: {fileID: 6481374819524182072, guid: 6bacecc4f3df9584198879c73a6b6c36,
+  playerPrefabPC: {fileID: 4279358698775597888, guid: 14881ecbeb5ed1643b3787d7f041ac96,
     type: 3}
   playerPrefabVR: {fileID: 8316150055131905715, guid: 77ab927c770396b46a67c2830bb0a34f,
     type: 3}
