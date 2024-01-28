@@ -1986,7 +1986,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4279358698775597888}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 87298338d8f42c34f827b455c4983d92, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2333,9 +2333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25844baf0ddc6ea4fb9cf869a6eb44ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curCamera: {fileID: 0}
-  listener: {fileID: 0}
-  firstPersonController: {fileID: 0}
+  curCamera: {fileID: 1276841040109028758}
+  listener: {fileID: 6151614995208867990}
+  firstPersonController: {fileID: 7328201868579587620}
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9487,7 +9487,7 @@ PrefabInstance:
     - target: {fileID: 521765957328882274, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 521765957328882274, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}

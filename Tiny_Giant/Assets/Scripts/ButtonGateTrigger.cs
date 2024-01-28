@@ -33,8 +33,7 @@ public class ButtonGateTrigger : NetworkBehaviour
     {
         state = GateState.Raising;
         var time = 0f;
-        Debug.Log("Raising Gate!");
-        var endPosition = new Vector3(startPosition.x, startPosition.y + 8f, startPosition.z);
+        var endPosition = new Vector3(startPosition.x, startPosition.y + 10f, startPosition.z);
         while (time < raiseTime && state == GateState.Raising)
         {
             while (grabbed) { yield return null; }
@@ -45,13 +44,14 @@ public class ButtonGateTrigger : NetworkBehaviour
 
             yield return null;
         }
+
+        gate.transform.position = endPosition;
         yield return new WaitForSeconds(waitTime);
         StartCoroutine(LowerGate());
     }
 
     private IEnumerator LowerGate()
     {
-        Debug.Log("Lowering Gate!");
         state = GateState.Falling;
         var time = 0f;
 
@@ -68,6 +68,7 @@ public class ButtonGateTrigger : NetworkBehaviour
             yield return null;
         }
 
+        gate.transform.position = startPosition;
         state = GateState.Still;
     }
 
