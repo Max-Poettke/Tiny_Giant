@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Tiny_Giant/Assets/Prefabs/Brazier.prefab.meta
+guid: 4d5dec264533879429bfa0497eabdef8
+PrefabImporter:
+========
 guid: 28bc99f6ddbcf4149a24dfd29409a5cc
 DefaultImporter:
+>>>>>>>> Music-and-Sounds:Tiny_Giant/Assets/Plugins/FMOD/platforms/mac/lib/fmodstudioL.bundle/Contents/Info.plist.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

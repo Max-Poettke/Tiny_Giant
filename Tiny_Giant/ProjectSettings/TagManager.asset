@@ -9,6 +9,8 @@ TagManager:
   - LevelParent
   - PlaceableObject
   - Table
+  - Arrow
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -17,10 +19,10 @@ TagManager:
   - Water
   - UI
   - Ignore Player
-  - 
-  - 
-  - 
-  - 
+  - Arrow
+  - Player
+  - InvisibleToSmallPlayer
+  - Gate
   - 
   - 
   - 

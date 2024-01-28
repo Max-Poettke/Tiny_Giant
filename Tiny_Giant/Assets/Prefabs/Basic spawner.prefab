@@ -47,5 +47,5 @@ MonoBehaviour:
   _playerPrefabPC:
     RawGuidValue: 6bacecc4f3df9584198879c73a6b6c36
   _playerPrefabVR:
-    RawGuidValue: 8bde6a2167baedc4ba81c1c02707c3de
+    RawGuidValue: 77ab927c770396b46a67c2830bb0a34f
   _networkSpawnScript: {fileID: 0}

@@ -55,6 +55,12 @@ public class FirstPersonController : NetworkBehaviour
     public bool holdToZoom = false;
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
+    
+    // Animation
+    private Animator _animator;
+    private static readonly int Walk = Animator.StringToHash("Walk");
+    private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Jump = Animator.StringToHash("Jump");
 
     // Internal Variables
     private bool isZoomed = false;
@@ -123,6 +129,8 @@ public class FirstPersonController : NetworkBehaviour
     private Vector3 originalScale;
 
     #endregion
+
+    public Transform joint;
     #endregion
 
 
@@ -132,7 +140,7 @@ public class FirstPersonController : NetworkBehaviour
     
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("Trying to move");
+     //   Debug.Log("Trying to move");
         var input = context.ReadValue<Vector2>();
         _moveVector = new Vector3(input.x, 0f, input.y);
     }
@@ -145,6 +153,7 @@ public class FirstPersonController : NetworkBehaviour
         if (isGrounded)
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
+            _animator.SetTrigger(Jump);
             isGrounded = false;
         }
 
@@ -186,9 +195,11 @@ public class FirstPersonController : NetworkBehaviour
         else if (context.canceled)
         {
             sprintPressed = false;
+            _animator.SetBool(Run, false);
         }
     }
 
+    private Vector2 _mouse;
     public void OnLook(InputAction.CallbackContext context)
     {
         #region Camera
@@ -196,25 +207,13 @@ public class FirstPersonController : NetworkBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>() * Runner.DeltaTime;
-            yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
-
-            if (!invertCamera)
-            {
-                pitch -= mouseSensitivity * mouse.y;
-            }
-            else
-            {
-                // Inverted Y
-                pitch += mouseSensitivity * mouse.y;
-            }
-
-            // Clamp pitch between lookAngle
-            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
-
-            transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            _mouse = context.ReadValue<Vector2>();
+            yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
         }
+
+        // Clamp pitch between lookAngle
+        pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+        
         #endregion
     }
 
@@ -254,12 +253,32 @@ public class FirstPersonController : NetworkBehaviour
 
         #endregion
     }
+
+    
+    public BowChest _bowChest;
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (!_bowChest) return;
+        if (_bowChest._state is BowChest.ChestState.Opening or BowChest.ChestState.Empty) return;
+        if(!HasInputAuthority) return;
+
+        switch (_bowChest._state)
+        {
+            case BowChest.ChestState.Waiting:
+                StartCoroutine(_bowChest.OpenChest());
+                break;
+            case BowChest.ChestState.Open:
+                _bowChest.PickUpBow();
+                break;
+        }
+    }
     
     
     #endregion
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
 
@@ -283,8 +302,8 @@ public class FirstPersonController : NetworkBehaviour
 
         if(crosshair)
         {
-            crosshairObject.sprite = crosshairImage;
-            crosshairObject.color = crosshairColor;
+//            crosshairObject.sprite = crosshairImage;
+//            crosshairObject.color = crosshairColor;
         }
         else
         {
@@ -298,7 +317,7 @@ public class FirstPersonController : NetworkBehaviour
         if(useSprintBar)
         {
             sprintBarBG.gameObject.SetActive(true);
-            sprintBar.gameObject.SetActive(true);
+//            sprintBar.gameObject.SetActive(true);
 
             float screenWidth = Screen.width;
             float screenHeight = Screen.height;
@@ -307,7 +326,7 @@ public class FirstPersonController : NetworkBehaviour
             sprintBarHeight = screenHeight * sprintBarHeightPercent;
 
             sprintBarBG.rectTransform.sizeDelta = new Vector3(sprintBarWidth, sprintBarHeight, 0f);
-            sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
+//            sprintBar.rectTransform.sizeDelta = new Vector3(sprintBarWidth - 2, sprintBarHeight - 2, 0f);
 
             if(hideBarWhenFull)
             {
@@ -329,8 +348,9 @@ public class FirstPersonController : NetworkBehaviour
     {
         InputSystem.Update();
         if (!HasInputAuthority) return;
+        transform.localEulerAngles = new Vector3(0, yaw, 0);
         #region Movement
-
+        
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
@@ -341,10 +361,13 @@ public class FirstPersonController : NetworkBehaviour
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
             {
                 isWalking = true;
+                _animator.SetBool(Walk, true);
             }
             else
             {
                 isWalking = false;
+                _animator.SetBool(Walk, false);
+                _animator.SetBool(Run, false);
             }
             SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
 
@@ -364,7 +387,16 @@ public class FirstPersonController : NetworkBehaviour
                 // Makes sure fov change only happens during movement
                 if (velocityChange.x != 0 || velocityChange.z != 0)
                 {
-                    isSprinting = true;
+                    if (_moveVector != Vector3.zero)
+                    {
+                        isSprinting = true;
+                        _animator.SetBool(Run, true);
+                    }
+                    else
+                    {
+                        isSprinting = false;
+                        _animator.SetBool(Run, false);
+                    }
 
                     if (isCrouched)
                     {
@@ -383,10 +415,10 @@ public class FirstPersonController : NetworkBehaviour
             else
             {
                 isSprinting = false;
-
+                _animator.SetBool(Run, false);
                 if (hideBarWhenFull && sprintRemaining == sprintDuration)
                 {
-                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
+//                    sprintBarCG.alpha -= 3 * Runner.DeltaTime;
                 }
 
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
@@ -477,12 +509,27 @@ public class FirstPersonController : NetworkBehaviour
         CheckGround();
     }
 
+    private void LateUpdate()
+    {
+        if (!invertCamera)
+        {
+            pitch -= mouseSensitivity * _mouse.y;
+        }
+        else
+        {
+            // Inverted Y
+            pitch += mouseSensitivity * _mouse.y;
+        }
+        joint.localEulerAngles = new Vector3(pitch, 0, 0);
+    }
+
     // Sets isGrounded based on a raycast sent straigth down from the player object
     private void CheckGround()
     {
-        Vector3 origin = new Vector3(transform.position.x, transform.position.y - (transform.localScale.y * .5f), transform.position.z);
-        Vector3 direction = transform.TransformDirection(Vector3.down);
-        float distance = .75f;
+        var position = transform.position;
+        Vector3 origin = new Vector3(position.x, position.y + .1f, position.z);
+        Vector3 direction = Vector3.down;
+        float distance = .15f;
 
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {

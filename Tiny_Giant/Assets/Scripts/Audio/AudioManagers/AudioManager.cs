@@ -16,6 +16,21 @@ public class AudioManager : MonoBehaviour
     private EventInstance natureEventInstance;
     private EventInstance musicEventInstance;
 
+    [Header("Volume")]
+    [Range(0, 1)] 
+    public float masterVolume = 1;
+    [Range(0, 1)] 
+    public float musicVolume = 1;
+    [Range(0, 1)] 
+    public float ambienceVolume = 1;
+    [Range(0, 1)] 
+    public float soundFXVolume = 1;
+
+    private Bus masterBus;
+    private Bus musicBus;
+    private Bus ambienceBus;
+    private Bus soundFXBus;
+
     private void Awake()
     {
         if (audioManagerInstance != null)
@@ -27,6 +42,11 @@ public class AudioManager : MonoBehaviour
 
         _eventInstances = new List<EventInstance>();
         _eventEmitters = new List<StudioEventEmitter>();
+
+        masterBus = RuntimeManager.GetBus("bus:/");
+        musicBus = RuntimeManager.GetBus("bus:/Music");
+        ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
+        soundFXBus = RuntimeManager.GetBus("bus:/SoundFX");
     }
 
     private void Start()
@@ -35,9 +55,26 @@ public class AudioManager : MonoBehaviour
         InitializeMusic(FMODEvents.eventsInstance.music);
     }
 
+    private void Update()
+    {
+        masterBus.setVolume(masterVolume);
+        musicBus.setVolume(musicVolume);
+        ambienceBus.setVolume(ambienceVolume);
+        soundFXBus.setVolume(soundFXVolume);
+    }
+
     private void InitializeNature(EventReference natureEventReference)
     {
         natureEventInstance = CreateInstance(natureEventReference);
+        if (natureEventReference.ToString().EndsWith("Rain"))
+        {
+            return;
+        }
+        natureEventInstance.start();
+    }
+
+    public void StartRain()
+    {
         natureEventInstance.start();
     }
     private void InitializeMusic(EventReference musicEventReference)
@@ -72,6 +109,7 @@ public class AudioManager : MonoBehaviour
         return emitter;
     }
 
+    #region CleanUp
     private void CleanUp()
     {
         foreach (EventInstance eventInstance in _eventInstances)
@@ -90,4 +128,5 @@ public class AudioManager : MonoBehaviour
     {
         CleanUp();
     }
+    #endregion
 }

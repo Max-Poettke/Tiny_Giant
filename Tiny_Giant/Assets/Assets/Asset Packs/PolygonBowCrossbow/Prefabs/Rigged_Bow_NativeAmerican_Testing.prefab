@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 118902120728334627}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bowString
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,12 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402536012443639039}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.12980494, y: 0, z: -2.8822486e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7676171116304294370}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521765957328882274
 GameObject:
@@ -39,13 +40,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 898045858246463704}
-  m_Layer: 0
+  - component: {fileID: 4065577142094091132}
+  - component: {fileID: 5066270461795405929}
+  - component: {fileID: 4815319247661788310}
+  - component: {fileID: 5311119058727005727}
+  m_Layer: 7
   m_Name: Rigged_Bow_NativeAmerican_Testing
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &898045858246463704
 Transform:
   m_ObjectHideFlags: 0
@@ -53,15 +58,94 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521765957328882274}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7676171116304294370}
   - {fileID: 3715332557464956319}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4065577142094091132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521765957328882274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e205409525e24f14812c1f928b5764c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrows: {fileID: 1846311025636673151, guid: 29b84697c5b570d4b9e918325ce0d607, type: 3}
+  maxHoldDuration: 1.5
+  minHoldDuration: 1
+  cam: {fileID: 0}
+  initialPos: {x: 0.75, y: -1, z: 1}
+  raisedPos: {x: 0.75, y: 0.5, z: 1}
+  raiseTime: 1
+  shotPower: 20
+  arrowParent: {fileID: 7676171116304294370}
+  fakeArrow: {fileID: 0}
+  maxActiveArrows: 10
+  fakeBow: {fileID: 0}
+--- !u!111 &5066270461795405929
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521765957328882274}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c,
+    type: 3}
+  m_Animations:
+  - {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
+  - {fileID: -998496362607748373, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &4815319247661788310
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521765957328882274}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d288a0e4a2d923b46898986e979da643, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3212bafd7efca194cadfb5d8d4e3186f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5311119058727005727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521765957328882274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &1183262574192480145
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 430513624163210191}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,14 +169,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183262574192480145}
+  serializedVersion: 2
   m_LocalRotation: {x: -2.8837402e-25, y: -1.160347e-16, z: 0.048710227, w: 0.998813}
   m_LocalPosition: {x: -0.21519542, y: 0.003527902, z: -4.716584e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7872583684579272909}
   m_Father: {fileID: 643985240623342267}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.476803e-16, y: -1.3280814e-14, z: 15.737909}
 --- !u!1 &1341646013252296688
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 643985240623342267}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,14 +201,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341646013252296688}
+  serializedVersion: 2
   m_LocalRotation: {x: 3.808804e-17, y: 1.430298e-16, z: -0.61884725, w: 0.7855114}
   m_LocalPosition: {x: -0.018142853, y: 0.26151645, z: -4.0285226e-18}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 430513624163210191}
   m_Father: {fileID: 7676171116304294370}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.3571328e-14, y: 1.01735365e-14, z: -71.24194}
 --- !u!1 &1800545545725538808
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 399316234168740739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,14 +233,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800545545725538808}
+  serializedVersion: 2
   m_LocalRotation: {x: -3.808804e-17, y: 1.430298e-16, z: 0.61884725, w: 0.7855114}
   m_LocalPosition: {x: -0.018142853, y: -0.26151645, z: -4.0285226e-18}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8424905834740998469}
   m_Father: {fileID: 7676171116304294370}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3571328e-14, y: 1.01735365e-14, z: 71.996254}
 --- !u!1 &4755014949019084837
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7676171116304294370}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,16 +265,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755014949019084837}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0.007772963}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 399316234168740739}
   - {fileID: 643985240623342267}
   - {fileID: 118902120728334627}
   m_Father: {fileID: 898045858246463704}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &4873347807080814463
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8424905834740998469}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,14 +299,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4873347807080814463}
+  serializedVersion: 2
   m_LocalRotation: {x: 2.8837402e-25, y: -1.160347e-16, z: -0.048710227, w: 0.998813}
   m_LocalPosition: {x: -0.21519542, y: -0.003527902, z: -4.716584e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8055537548337447709}
   m_Father: {fileID: 399316234168740739}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6.476802e-16, y: -1.3280813e-14, z: -15.312021}
 --- !u!1 &5613766277140388392
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7872583684579272909}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_u_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,13 +331,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5613766277140388392}
+  serializedVersion: 2
   m_LocalRotation: {x: 2.1513341e-24, y: -1.260586e-16, z: 0.1749783, w: 0.9845723}
   m_LocalPosition: {x: -0.20308763, y: -0.006358696, z: -4.8057867e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 430513624163210191}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.5276056e-15, y: -1.4222393e-14, z: 20.15479}
 --- !u!1 &7172432645740659929
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3715332557464956319}
   - component: {fileID: 2031125200676404332}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SK_Bow_NativeAmerican_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,12 +363,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7172432645740659929}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.26279035, z: -0, w: 0.964853}
+  m_LocalPosition: {x: -26.008362, y: 7.3703547, z: 80.218025}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 898045858246463704}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2031125200676404332
 SkinnedMeshRenderer:
@@ -291,6 +382,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -349,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8055537548337447709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bow_l_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,10 +455,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7927959505306048897}
+  serializedVersion: 2
   m_LocalRotation: {x: -2.1513341e-24, y: -1.260586e-16, z: -0.1749783, w: 0.9845723}
   m_LocalPosition: {x: -0.20308763, y: 0.006358696, z: -4.8057867e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8424905834740998469}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.5276056e-15, y: -1.4222393e-14, z: -20.15479}
