@@ -71,11 +71,9 @@ public class ButtonGateTrigger : NetworkBehaviour
         state = GateState.Still;
     }
 
-
-
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collider.gameObject.CompareTag("Arrow") && state != GateState.Falling)
+        if (collision.gameObject.CompareTag("Arrow") && state != GateState.Falling)
         {
             StartCoroutine(RaiseGate());
         }

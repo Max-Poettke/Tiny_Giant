@@ -6807,6 +6807,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 64530828098117622, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 162244167148447934, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
       propertyPath: gate
@@ -9654,6 +9659,7 @@ GameObject:
   - component: {fileID: 4532965674251300610}
   - component: {fileID: 8091695693346458566}
   - component: {fileID: 5392067083831665455}
+  - component: {fileID: 8533389494670735467}
   m_Layer: 0
   m_Name: MountainObstacle.001_Plane.008
   m_TagString: Untagged
@@ -9661,6 +9667,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8533389494670735467
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533389494670735466}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7788048840226430457, guid: caa0f3e79ed9fe24fbc8d4dee5c36719, type: 3}
 --- !u!4 &8648592881907857857
 Transform:
   m_ObjectHideFlags: 0

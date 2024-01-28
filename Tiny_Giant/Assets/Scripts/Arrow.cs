@@ -23,7 +23,7 @@ public class Arrow : NetworkBehaviour
         //Get the change detector for the color variable
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
     }
-
+    
     private GameObject _flame;
     public bool lit;
     private Bow _bow;
@@ -55,9 +55,9 @@ public class Arrow : NetworkBehaviour
             rb.rotation = Quaternion.LookRotation(rb.velocity);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.transform.CompareTag("Player") || other.transform.CompareTag("Arrow")) return;
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Arrow")) return;
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
@@ -66,7 +66,7 @@ public class Arrow : NetworkBehaviour
         StartCoroutine(VanishC());
     }
 
-    public IEnumerator VanishC()
+    private IEnumerator VanishC()
     {
         Debug.Log("Vanishing");
         color = material.color;
@@ -77,6 +77,8 @@ public class Arrow : NetworkBehaviour
         }
         Destroy(gameObject);
     }
+    
+    
 
     public void Light()
     {
@@ -85,4 +87,6 @@ public class Arrow : NetworkBehaviour
         _flame.SetActive(true);
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(true);
     }
+    
+    
 }

@@ -71,23 +71,21 @@ public class Bow : NetworkBehaviour
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf || !_ready) return;
-
-        Debug.Log("Shoot");
+        
         if (context.performed)
         {
-            /*
             start = Time.time;
-            arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
-            */
-            arrow = Runner.Spawn(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), Quaternion.identity, Runner.LocalPlayer);
-            arrow.gameObject.transform.SetParent(transform);
-            if(activeArrows[pointer] != null) {
+           // arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
+           arrow = Runner.Spawn(arrows, arrowParent.transform.position + transform.TransformVector(0.03f, 0f, 0.3f), transform.rotation, Runner.LocalPlayer);
+           arrow.gameObject.transform.SetParent(arrowParent); 
+           if(activeArrows[pointer] != null) {
                 activeArrows[pointer].GetComponent<Arrow>().Vanish();
-            }
-            activeArrows[pointer++] = arrow.gameObject;
-            pointer %= maxActiveArrows; 
-            
-            drawBow = StartCoroutine(DrawBow());
+            } 
+           
+           activeArrows[pointer++] = arrow.gameObject; 
+           pointer %= maxActiveArrows;
+           
+           drawBow = StartCoroutine(DrawBow());
         }
 
         
@@ -99,8 +97,9 @@ public class Bow : NetworkBehaviour
             _playerAnimator.SetBool(AimBow, false);
             if (end - start < minHoldDuration)
             {
-                arrow.TryGetComponent(out Arrow a);
-                if(a) a.Vanish();
+                /*arrow.TryGetComponent(out Arrow a);
+                if(a) a.Vanish();*/
+                Runner.Despawn(arrow);
                 _animator.SetTrigger(Cancel);
                 _animator.ResetTrigger(Draw);
                 _animator.ResetTrigger(Release);

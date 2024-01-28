@@ -124,6 +124,8 @@ public class FirstPersonController : NetworkBehaviour
     private Vector3 originalScale;
 
     #endregion
+
+    public Transform joint;
     #endregion
 
 
@@ -133,7 +135,7 @@ public class FirstPersonController : NetworkBehaviour
     
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("Trying to move");
+     //   Debug.Log("Trying to move");
         var input = context.ReadValue<Vector2>();
         _moveVector = new Vector3(input.x, 0f, input.y);
     }
@@ -199,7 +201,7 @@ public class FirstPersonController : NetworkBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            var mouse = context.ReadValue<Vector2>() * Runner.DeltaTime;
+            var mouse = context.ReadValue<Vector2>();
             yaw = transform.localEulerAngles.y + mouse.x * mouseSensitivity;
 
             if (!invertCamera)
@@ -216,7 +218,7 @@ public class FirstPersonController : NetworkBehaviour
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
             transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            joint.localEulerAngles = new Vector3(pitch, 0, 0);
         }
         #endregion
     }
