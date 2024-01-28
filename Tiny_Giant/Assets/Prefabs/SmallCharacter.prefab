@@ -1928,6 +1928,7 @@ GameObject:
   - component: {fileID: 3911059443674006349}
   - component: {fileID: 1299937685609023825}
   - component: {fileID: 4831916105401264802}
+  - component: {fileID: 8770140201715422657}
   m_Layer: 8
   m_Name: SmallCharacter
   m_TagString: Player
@@ -2296,6 +2297,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 7328201868579587620}
   - {fileID: 4831916105401264802}
+  - {fileID: 8770140201715422657}
   - {fileID: 2147015285420413034}
 --- !u!114 &4831916105401264802
 MonoBehaviour:
@@ -2319,6 +2321,21 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
+--- !u!114 &8770140201715422657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279358698775597888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25844baf0ddc6ea4fb9cf869a6eb44ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curCamera: {fileID: 0}
+  listener: {fileID: 0}
+  firstPersonController: {fileID: 0}
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
