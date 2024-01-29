@@ -24,6 +24,8 @@ public class Arrow : NetworkBehaviour
         //Get the change detector for the color variable
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
         _bow = transform.parent.parent.GetComponent<Bow>();
+        trail = GetComponent<TrailRenderer>();
+        trail.enabled = false;
     }
     
     private GameObject _flame;
@@ -34,8 +36,6 @@ public class Arrow : NetworkBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        trail = GetComponent<TrailRenderer>();
-        trail.enabled = false;
         material = GetComponent<MeshRenderer>().material;
         _flame = GetComponentInChildren<FlameTag>(true).gameObject;
     }
@@ -54,7 +54,7 @@ public class Arrow : NetworkBehaviour
         }
     }
 
-    void FixedUpdate()
+    public override void FixedUpdateNetwork()
     {
         if(rb.velocity != Vector3.zero)
             rb.rotation = Quaternion.LookRotation(rb.velocity);
@@ -82,8 +82,16 @@ public class Arrow : NetworkBehaviour
         }
         Runner.Despawn(GetComponent<NetworkObject>());
     }
-    
-    
+
+    public IEnumerator ShootTrail()
+    {
+        yield return new WaitForSeconds(.05f);
+        trail.enabled = true;
+        trail.Clear();
+        
+    }
+
+
 
     public void Light()
     {

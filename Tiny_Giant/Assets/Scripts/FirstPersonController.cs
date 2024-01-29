@@ -58,6 +58,7 @@ public class FirstPersonController : NetworkBehaviour
     
     // Animation
     private Animator _animator;
+    private NetworkMecanimAnimator _netAnimator;
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Jump = Animator.StringToHash("Jump");
@@ -153,7 +154,7 @@ public class FirstPersonController : NetworkBehaviour
         if (isGrounded)
         {
             rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
-            _animator.SetTrigger(Jump);
+            _netAnimator.SetTrigger(Jump, true);
             isGrounded = false;
         }
 
@@ -279,6 +280,7 @@ public class FirstPersonController : NetworkBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _netAnimator = GetComponent<NetworkMecanimAnimator>();
         rb = GetComponent<Rigidbody>();
         crosshairObject = GetComponentInChildren<Image>();
 

@@ -123,6 +123,111 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &11569558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1229364556}
+    m_Modifications:
+    - target: {fileID: 1551472524813140680, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7630312881025386917, guid: 1c5b37fd30472d24fbd3e315d52fafaf,
+        type: 3}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.108
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.902
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 211.756
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.30804026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6733358
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6433159
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.19461456
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 41.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -169.641
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -88.658
+      objectReference: {fileID: 0}
+    - target: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982503576002844631, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_Name
+      value: Arrow Stuck in Mountain 3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3630753710987343362, guid: 5e5b0971b79506b4ba57057d49b9b564,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9afb17ebad1e08d498bb2e2c7f1ff38b, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e5b0971b79506b4ba57057d49b9b564, type: 3}
+--- !u!4 &11569559 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2461265161853013357, guid: 5e5b0971b79506b4ba57057d49b9b564,
+    type: 3}
+  m_PrefabInstance: {fileID: 11569558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &17370160 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 424712402584207579, guid: 8ed289e27f4539445b76827aa39e73fc,
@@ -5417,6 +5522,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b5f9c1a6c8c396445b83cb32f2293b9c, type: 2}
+    - target: {fileID: -5864561397875821506, guid: 45d2e18354871a94cad588fc366c4fb5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -2334176857717702298, guid: 45d2e18354871a94cad588fc366c4fb5,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6255,6 +6365,7 @@ Transform:
   - {fileID: 837993087}
   - {fileID: 870295144}
   - {fileID: 1927021227}
+  - {fileID: 11569559}
   - {fileID: 1986729989}
   - {fileID: 981252371}
   - {fileID: 1920982992}
@@ -7577,6 +7688,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1025568198}
     m_Modifications:
+    - target: {fileID: 4139146458264360446, guid: ae9aeaf94b2261540b3e06216e5b5732,
+        type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4409108255709753470, guid: ae9aeaf94b2261540b3e06216e5b5732,
         type: 3}
       propertyPath: gate
