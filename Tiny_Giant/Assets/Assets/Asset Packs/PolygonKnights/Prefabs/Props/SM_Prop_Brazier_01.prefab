@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 64895872970886088}
   - component: {fileID: 763929403585921762}
   - component: {fileID: 8678229827982671835}
+  - component: {fileID: 6763090110958092101}
+  - component: {fileID: 4464017130639401544}
   m_Layer: 0
   m_Name: SM_Prop_Brazier_01
   m_TagString: Untagged
@@ -142,6 +144,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9ff15ce09e94a4f8ca9b6cc5a2d28c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bridge: {fileID: 0}
+--- !u!114 &6763090110958092101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Arrow
+  EventReference:
+    Guid:
+      Data1: -490643802
+      Data2: 1185592108
+      Data3: -1273768295
+      Data4: 1646873946
+    Path: event:/Music/LightTorchChord
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4464017130639401544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Arrow
+  EventReference:
+    Guid:
+      Data1: 461716421
+      Data2: 1185315996
+      Data3: 935561871
+      Data4: -410095093
+    Path: event:/SoundFX/Fireplace
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2487538690926248180
 GameObject:
   m_ObjectHideFlags: 0

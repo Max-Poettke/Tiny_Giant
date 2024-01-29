@@ -2369,13 +2369,6 @@ MonoBehaviour:
       Data3: -1286728785
       Data4: 334743913
     Path: event:/AmbientSounds/Rain
-  <fire>k__BackingField:
-    Guid:
-      Data1: 461716421
-      Data2: 1185315996
-      Data3: 935561871
-      Data4: -410095093
-    Path: event:/SoundFX/Fireplace
   <music>k__BackingField:
     Guid:
       Data1: -462322336
@@ -2614,15 +2607,15 @@ MonoBehaviour:
     Path: event:/SoundFX/Fireplace
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 1
-  OverrideMinDistance: 3
-  OverrideMaxDistance: 4
+  OverrideMinDistance: 5
+  OverrideMaxDistance: 6
 --- !u!1001 &7486641601684722524
 PrefabInstance:
   m_ObjectHideFlags: 0
