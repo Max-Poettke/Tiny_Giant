@@ -116,15 +116,13 @@ public class Bow : NetworkBehaviour
                 _animator.ResetTrigger(Cancel);
                 _animator.SetTrigger(Release);
                 _playerAnimator.SetBool(ShotBow, true);
-                arrow.transform.SetParent(null);
                 var rb = arrow.GetComponent<Rigidbody>();
-                var trail = arrow.GetComponent<Arrow>().trail;
-                trail.enabled = true;
-                trail.Clear();
+                StartCoroutine(arrow.GetComponent<Arrow>().ShootTrail());
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
                 rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
+                arrow.transform.SetParent(null);
             }
 
             fakeArrow.localPosition = _fakeArrowPosition;
