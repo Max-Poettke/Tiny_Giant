@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{a9aa3332-23ec-46a1-99b3-1bee364d0981}">
 		<property name="assetPath">
-			<value>NatureSounds/Thunder-sound.mp3</value>
+			<value>AmbientSounds/Thunder-sound.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

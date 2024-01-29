@@ -2350,6 +2350,13 @@ MonoBehaviour:
       Data3: -820739956
       Data4: -535785684
     Path: event:/SoundFX/PlayerFootsteps
+  <bowSounds>k__BackingField:
+    Guid:
+      Data1: 341207353
+      Data2: 1281564741
+      Data3: 1079143302
+      Data4: 522211298
+    Path: event:/SoundFX/BowNArrow
   <natureSounds>k__BackingField:
     Guid:
       Data1: 1195409266
