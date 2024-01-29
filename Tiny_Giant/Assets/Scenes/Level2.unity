@@ -1160,6 +1160,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.9
       objectReference: {fileID: 0}
+    - target: {fileID: -3439403588449767547, guid: baccbda18bfe4ea4d99c60300c4c1e45,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4555373100093612981, guid: baccbda18bfe4ea4d99c60300c4c1e45,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2364,6 +2369,13 @@ MonoBehaviour:
       Data3: -1286728785
       Data4: 334743913
     Path: event:/AmbientSounds/Rain
+  <fire>k__BackingField:
+    Guid:
+      Data1: 461716421
+      Data2: 1185315996
+      Data3: 935561871
+      Data4: -410095093
+    Path: event:/SoundFX/Fireplace
   <music>k__BackingField:
     Guid:
       Data1: -462322336
@@ -2580,6 +2592,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea446bcffa36d94fae1d2aece0e4a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &543450652095389764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392091126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 461716421
+      Data2: 1185315996
+      Data3: 935561871
+      Data4: -410095093
+    Path: event:/SoundFX/Fireplace
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 3
+  OverrideMaxDistance: 4
 --- !u!1001 &7486641601684722524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2695,6 +2738,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 543450652095389763}
+    - targetCorrespondingSourceObject: {fileID: 5267116659047229608, guid: 4d5dec264533879429bfa0497eabdef8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 543450652095389764}
     - targetCorrespondingSourceObject: {fileID: 5002494782996489791, guid: 4d5dec264533879429bfa0497eabdef8,
         type: 3}
       insertIndex: -1

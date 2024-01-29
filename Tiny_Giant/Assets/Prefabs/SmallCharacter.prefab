@@ -2387,9 +2387,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 2
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9680,6 +9680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5066270461795405929, guid: 36f94a163b86a6d428e7ed95dc2202ab, type: 3}
+    - {fileID: 5311119058727005727, guid: 36f94a163b86a6d428e7ed95dc2202ab, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
