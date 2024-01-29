@@ -176,13 +176,13 @@
 			<value>-80</value>
 		</property>
 		<property name="attackTime">
-			<value>1692.3103</value>
+			<value>3307.69531</value>
 		</property>
 		<property name="attackShape">
-			<value>-1.00000048</value>
+			<value>-0.758939922</value>
 		</property>
 		<property name="peakValue">
-			<value>5.20000458</value>
+			<value>2.31111526</value>
 		</property>
 		<property name="decayTime">
 			<value>461.538666</value>
@@ -202,25 +202,25 @@
 			<value>-80</value>
 		</property>
 		<property name="attackTime">
-			<value>955.128174</value>
+			<value>3423.07642</value>
 		</property>
 		<property name="attackShape">
 			<value>-0.415158093</value>
 		</property>
 		<property name="peakValue">
-			<value>3.46667099</value>
+			<value>0.577781677</value>
 		</property>
 		<property name="holdTime">
 			<value>820.512817</value>
 		</property>
 		<property name="decayTime">
-			<value>641.025635</value>
+			<value>1807.6925</value>
 		</property>
 		<property name="decayShape">
 			<value>0.199403495</value>
 		</property>
 		<property name="sustainValue">
-			<value>-2.88888931</value>
+			<value>-2.31111145</value>
 		</property>
 		<property name="finalValue">
 			<value>-80</value>

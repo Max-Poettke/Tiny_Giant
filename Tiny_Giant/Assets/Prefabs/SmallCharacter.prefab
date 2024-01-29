@@ -2388,8 +2388,8 @@ MonoBehaviour:
   AllowNonRigidbodyDoppler: 0
   Params: []
   OverrideAttenuation: 1
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 2
+  OverrideMinDistance: 5
+  OverrideMaxDistance: 5
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9735,9 +9735,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideAttenuation: 1
+  OverrideMinDistance: 3
+  OverrideMaxDistance: 3
 --- !u!4 &3014614778303517646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 898045858246463704, guid: 36f94a163b86a6d428e7ed95dc2202ab,
