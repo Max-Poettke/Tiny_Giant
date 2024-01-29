@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9200113688598232237}
   - component: {fileID: 162244167148447934}
   - component: {fileID: 7433183168911570657}
-  - component: {fileID: 3087968429219325610}
+  - component: {fileID: 6844942295277197617}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Iron_Gate_01
   m_TagString: PlaceableObject
@@ -52,11 +52,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 332811995
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 7433183168911570657}
-  - {fileID: 3087968429219325610}
+  - {fileID: 6844942295277197617}
 --- !u!54 &9200113688598232237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea6e2c57bd432c45becfa162d76acd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveAbleObject: 1
   networkTransform: {fileID: 0}
   networkRigidbody: {fileID: 0}
   _InitialIsKinematicState:
@@ -151,7 +152,7 @@ MonoBehaviour:
         m_CallState: 2
   extrapolateWhileTakingAuthority: 1
   isTakingAuthority: 0
---- !u!114 &3087968429219325610
+--- !u!114 &6844942295277197617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,19 +161,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 169488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
   SyncParent: 1
-  _interpolationTarget: {fileID: 0}
-  UsePreciseRotation: 0
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &5915442439077980925
 GameObject:
   m_ObjectHideFlags: 0
