@@ -271,7 +271,6 @@ GameObject:
   - component: {fileID: 9075157464456025239}
   - component: {fileID: 8448445776153223943}
   - component: {fileID: 1853747165551967477}
-  - component: {fileID: 4099789335405569965}
   m_Layer: 6
   m_Name: Hand1
   m_TagString: Interactor
@@ -520,18 +519,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4099789335405569965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041532842936147882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c394150fd65c92c42bb8dc49403fe522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6331104456427634712
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +680,6 @@ GameObject:
   - component: {fileID: 3249330479344093565}
   - component: {fileID: 6278348171810119550}
   - component: {fileID: 9148133670322155992}
-  - component: {fileID: 8055780380958199803}
   m_Layer: 6
   m_Name: Hand2
   m_TagString: Interactor
@@ -791,19 +777,7 @@ MonoBehaviour:
   m_StartingTargetFilter: {fileID: 0}
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -954,18 +928,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8055780380958199803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7922844217495948901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c394150fd65c92c42bb8dc49403fe522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8316150055131905715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1095,9 +1057,9 @@ MonoBehaviour:
   - {fileID: 3971800223915171561}
   - {fileID: 7394542924141649330}
   - {fileID: 8422261020436007268}
-  - {fileID: 8055780380958199803}
+  - {fileID: 3249330479344093565}
   - {fileID: 3682481549506539596}
-  - {fileID: 4099789335405569965}
+  - {fileID: 9075157464456025239}
 --- !u!114 &3971800223915171561
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,21 +13,21 @@ public class PlayerSpawner : SimulationBehaviour, IPlayerJoined
 
     public void PlayerJoined(PlayerRef player)
     {
-        
+        /*
         if (player == Runner.LocalPlayer)
         {
             var pcPlayer = Runner.Spawn(playerPrefabPC, pcSpawnPoint.transform.position, Quaternion.identity, player);
         }
+        */
         
         
         
         
-        /*
         if (player == Runner.LocalPlayer)
         {
             Runner.Spawn(playerPrefabVR, vrSpawnPoint.transform.position, Quaternion.identity, player);
         }
-        */
+        
         
         
         

@@ -8,7 +8,7 @@ using Fusion;
 using System.Linq;
 using Object = System.Object;
 
-public class SnapObject : MonoBehaviour
+public class SnapObject : NetworkBehaviour
 {
     private XRDirectInteractor thisInteractor;
     public XRDirectInteractor otherInteractor;
@@ -48,7 +48,7 @@ public class SnapObject : MonoBehaviour
             obj = other.gameObject;
             objPlaceableObject = obj.GetComponentInChildren<PlaceableObject>();
             objRigidBody = obj.GetComponent<Rigidbody>();
-            other.GetComponentInParent<NetworkObject>().RequestStateAuthority();
+            obj.GetComponent<NetworkObject>().RequestStateAuthority();
         }
     }
 }
