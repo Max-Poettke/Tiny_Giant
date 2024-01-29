@@ -7,6 +7,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using FMOD;
 using Fusion;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class FirstPersonController : NetworkBehaviour
     #region Camera Movement Variables
 
     public Camera playerCamera;
+    [SerializeField] private CinemachineVirtualCamera cineCamera;
 
     public float fov = 60f;
     public bool invertCamera = false;
@@ -53,8 +55,8 @@ public class FirstPersonController : NetworkBehaviour
 
     public bool enableZoom = true;
     public bool holdToZoom = false;
-    public float zoomFOV = 30f;
-    public float zoomStepTime = 5f;
+    public float zoomFOV = 35f;
+    public float zoomStepTime = 3f;
     
     // Animation
     private Animator _animator;
@@ -85,8 +87,8 @@ public class FirstPersonController : NetworkBehaviour
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
-    public float sprintFOV = 80f;
-    public float sprintFOVStepTime = 10f;
+    public float sprintFOV = 70f;
+    public float sprintFOVStepTime = 3f;
 
     // Sprint Bar
     public bool useSprintBar = true;
@@ -345,14 +347,15 @@ public class FirstPersonController : NetworkBehaviour
     }
 
     float camRotation;
-
+    private float curFreq;
+    private float curAmp;
     public override void FixedUpdateNetwork()
     {
         InputSystem.Update();
         if (!HasInputAuthority) return;
         transform.localEulerAngles = new Vector3(0, yaw, 0);
         #region Movement
-        
+        var noise = cineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
@@ -364,12 +367,29 @@ public class FirstPersonController : NetworkBehaviour
             {
                 isWalking = true;
                 _animator.SetBool(Walk, true);
+                var mapVel = Mathf.Clamp(rb.velocity.magnitude, 0f, 5f);
+                var norVel = Mathf.InverseLerp(0f, 5f, mapVel);
+                var targetFrequency = Mathf.Lerp(.75f, 2f, norVel);
+                curFreq = Mathf.Lerp(curFreq, targetFrequency, Time.deltaTime * 15f);
+
+                
+                var targetAmplitude = Mathf.Lerp(0.75f, 1f, norVel);
+                curAmp = Mathf.Lerp(curAmp, targetAmplitude, Time.deltaTime * 15f);
+
+                noise.m_FrequencyGain = curFreq;
+                noise.m_AmplitudeGain = curAmp;
+                
             }
             else
             {
                 isWalking = false;
                 _animator.SetBool(Walk, false);
                 _animator.SetBool(Run, false);
+                curFreq = Mathf.Lerp(curFreq, 0f, Time.deltaTime * 10f);
+                curAmp = Mathf.Lerp(curAmp, 0f, Time.deltaTime * 10f);
+                
+                noise.m_FrequencyGain = curFreq;
+                noise.m_AmplitudeGain = curAmp;
             }
             SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
 
@@ -447,11 +467,15 @@ public class FirstPersonController : NetworkBehaviour
         // Lerps camera.fieldOfView to allow for a smooth transistion
         if (isZoomed)
         {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, zoomFOV, zoomStepTime * Runner.DeltaTime);
+            var curFOV = cineCamera.m_Lens.FieldOfView;
+            curFOV = Mathf.Lerp(curFOV, zoomFOV, zoomStepTime * Time.deltaTime);
+            cineCamera.m_Lens.FieldOfView = curFOV;
         }
         else if (!isZoomed && !isSprinting)
         {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, fov, zoomStepTime * Runner.DeltaTime);
+            var curFOV = cineCamera.m_Lens.FieldOfView;
+            curFOV = Mathf.Lerp(curFOV, fov, zoomStepTime * Time.deltaTime);
+            cineCamera.m_Lens.FieldOfView = curFOV;
         }
 
         #endregion
@@ -463,9 +487,9 @@ public class FirstPersonController : NetworkBehaviour
             if (isSprinting)
             {
                 isZoomed = false;
-                playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, sprintFOV,
-                    sprintFOVStepTime * Runner.DeltaTime);
-
+                var curFOV = cineCamera.m_Lens.FieldOfView;
+                curFOV = Mathf.Lerp(curFOV, sprintFOV, sprintFOVStepTime * Time.deltaTime);
+                cineCamera.m_Lens.FieldOfView = curFOV;
                 // Drain sprint remaining while sprinting
                 if (!unlimitedSprint)
                 {
@@ -516,12 +540,14 @@ public class FirstPersonController : NetworkBehaviour
         if (!invertCamera)
         {
             pitch -= mouseSensitivity * _mouse.y;
+            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
         }
         else
         {
             // Inverted Y
             pitch += mouseSensitivity * _mouse.y;
         }
+        
         joint.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 
@@ -564,4 +590,5 @@ public class FirstPersonController : NetworkBehaviour
             isCrouched = true;
         }
     }
+    
 }

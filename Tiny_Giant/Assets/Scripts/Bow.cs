@@ -53,7 +53,7 @@ public class Bow : NetworkBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
-        _playerAnimator = transform.parent.parent.GetComponent<Animator>();
+        _playerAnimator = transform.root.GetComponent<Animator>();
         activeArrows = new GameObject[maxActiveArrows];
         _fakeArrowPosition = fakeArrow.localPosition;
     }

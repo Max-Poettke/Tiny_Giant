@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4498106734561031163}
   - component: {fileID: 9200113688598232237}
   - component: {fileID: 162244167148447934}
-  - component: {fileID: 3087968429219325610}
+  - component: {fileID: 6844942295277197617}
   - component: {fileID: 13585880624009823}
   - component: {fileID: 6925647741512993219}
   m_Layer: 0
@@ -53,10 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 332811995
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 3087968429219325610}
+  - {fileID: 6844942295277197617}
   - {fileID: 13585880624009823}
 --- !u!54 &9200113688598232237
 Rigidbody:
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAbleObject: 0
+  moveAbleObject: 1
   networkTransform: {fileID: 0}
   networkRigidbody: {fileID: 3087968429219325610}
   _InitialIsKinematicState:
