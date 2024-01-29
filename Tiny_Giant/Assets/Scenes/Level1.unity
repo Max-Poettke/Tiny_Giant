@@ -7682,6 +7682,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1025568198}
     m_Modifications:
+    - target: {fileID: 4139146458264360446, guid: ae9aeaf94b2261540b3e06216e5b5732,
+        type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4409108255709753470, guid: ae9aeaf94b2261540b3e06216e5b5732,
         type: 3}
       propertyPath: gate

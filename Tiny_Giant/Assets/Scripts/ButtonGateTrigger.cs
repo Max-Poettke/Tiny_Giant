@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using Fusion;
 
@@ -13,7 +14,7 @@ public class ButtonGateTrigger : NetworkBehaviour
     [SerializeField] private float waitTime = 1f;
 
     [SerializeField] public bool grabbed;
-    
+    private CinemachineImpulseSource _impulseSource;
     private enum GateState
     {
         Still, Raising, Falling
@@ -27,6 +28,7 @@ public class ButtonGateTrigger : NetworkBehaviour
     {
         startPosition = gate.transform.position;
         state = GateState.Still;
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private IEnumerator RaiseGate()
@@ -76,6 +78,7 @@ public class ButtonGateTrigger : NetworkBehaviour
     {
         if (collision.gameObject.CompareTag("Arrow") && state != GateState.Falling)
         {
+            _impulseSource.GenerateImpulse();
             StartCoroutine(RaiseGate());
         }
     }
