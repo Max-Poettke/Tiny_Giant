@@ -2345,7 +2345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curCamera: {fileID: 1276841040109028758}
-  listener: {fileID: 0}
   firstPersonController: {fileID: 7328201868579587620}
 --- !u!114 &-9139527904844318778
 MonoBehaviour:
@@ -9622,7 +9621,7 @@ PrefabInstance:
         type: 3}
       propertyPath: arrows
       value: 
-      objectReference: {fileID: 135653676727269683, guid: 3a45689d33ee12c40a574443db6d09d6,
+      objectReference: {fileID: 1846311025636673151, guid: 29b84697c5b570d4b9e918325ce0d607,
         type: 3}
     - target: {fileID: 4065577142094091132, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}

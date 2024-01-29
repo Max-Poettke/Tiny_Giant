@@ -29,11 +29,14 @@ public class Arrow : NetworkBehaviour
     private GameObject _flame;
     public bool lit;
     private Bow _bow;
+    public TrailRenderer trail;
     
     private void Awake()
     {
-        rb = transform.parent.GetComponent<Rigidbody>();
-        material = gameObject.GetComponent<MeshRenderer>().material;
+        rb = GetComponent<Rigidbody>();
+        trail = GetComponent<TrailRenderer>();
+        trail.enabled = false;
+        material = GetComponent<MeshRenderer>().material;
         _flame = GetComponentInChildren<FlameTag>(true).gameObject;
     }
 
@@ -77,7 +80,7 @@ public class Arrow : NetworkBehaviour
             color = new Color(color.r, color.g, color.b, i);
             yield return new WaitForSeconds(0.1f);
         }
-        Runner.Despawn(transform.parent.GetComponent<NetworkObject>());
+        Runner.Despawn(GetComponent<NetworkObject>());
     }
     
     

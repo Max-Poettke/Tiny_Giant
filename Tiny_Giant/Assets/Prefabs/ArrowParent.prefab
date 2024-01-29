@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 579092417038086973}
   - component: {fileID: 4593819867382473854}
   - component: {fileID: 5761948996622366797}
+  - component: {fileID: 8105298553189194511}
   - component: {fileID: 3338849630698516140}
   m_Layer: 7
   m_Name: ArrowParent
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 135653676727269683}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001973033, y: 0.012782216, z: -0.24717501}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -81,6 +82,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &8105298553189194511
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135653676727269683}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.036679473, y: 0.062275793, z: 1.52}
+  m_Center: {x: 0.0036794972, y: 0.00050829165, z: -0.27}
 --- !u!114 &3338849630698516140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncScale: 0
+  SyncScale: 1
   SyncParent: 1
   _interpolationTarget: {fileID: 4201017407466345785}
   UsePreciseRotation: 1
@@ -5094,7 +5116,7 @@ Transform:
   m_GameObject: {fileID: 8054437351130729469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.001973033, y: -0.012782216, z: 0.24717501}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

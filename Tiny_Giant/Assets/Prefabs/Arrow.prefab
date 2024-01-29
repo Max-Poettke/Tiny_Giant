@@ -4860,6 +4860,7 @@ GameObject:
   - component: {fileID: 6256684882892924811}
   - component: {fileID: 4198090055738993557}
   - component: {fileID: -7448053061584240336}
+  - component: {fileID: 4448316285944928492}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: Arrow
@@ -5012,6 +5013,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6256684882892924811}
+  - {fileID: 4448316285944928492}
 --- !u!96 &-7448053061584240336
 TrailRenderer:
   serializedVersion: 3
@@ -5125,6 +5127,22 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4448316285944928492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846311025636673151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0
 --- !u!1 &2597597172318973034
 GameObject:
   m_ObjectHideFlags: 0

@@ -116,13 +116,15 @@ public class Bow : NetworkBehaviour
                 _animator.ResetTrigger(Cancel);
                 _animator.SetTrigger(Release);
                 _playerAnimator.SetBool(ShotBow, true);
+                arrow.transform.SetParent(null);
                 var rb = arrow.GetComponent<Rigidbody>();
-                arrow.GetComponent<TrailRenderer>().enabled = true;
+                var trail = arrow.GetComponent<Arrow>().trail;
+                trail.enabled = true;
+                trail.Clear();
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
-                rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse); 
-                arrow.transform.SetParent(null);
+                rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
             }
 
             fakeArrow.localPosition = _fakeArrowPosition;
@@ -144,15 +146,15 @@ public class Bow : NetworkBehaviour
         
         while(Time.time - start1 < 1f)
         {
-            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
+            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
             yield return null;
         }
         
         while(Time.time - start1 < 2.5f)
         {
-            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * Time.deltaTime);
+            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
             yield return null;
         }
     }

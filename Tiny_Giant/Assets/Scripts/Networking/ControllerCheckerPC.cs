@@ -9,7 +9,6 @@ using Unity.XR.CoreUtils;
 public class ControllerCheckerPC : NetworkBehaviour
 {
     public Camera curCamera;
-    public AudioListener listener;
     public FirstPersonController firstPersonController;
 
     void Start()
@@ -20,7 +19,6 @@ public class ControllerCheckerPC : NetworkBehaviour
             //Deactivate PC Control
             if(!firstPersonController.Equals(null)) firstPersonController.enabled = false;
             curCamera.enabled = false;
-            listener.enabled = false;
         }
     }
 }
