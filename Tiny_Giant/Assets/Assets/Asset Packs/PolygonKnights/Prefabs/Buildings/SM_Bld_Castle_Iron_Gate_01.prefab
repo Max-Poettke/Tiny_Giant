@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4498106734561031163}
   - component: {fileID: 9200113688598232237}
   - component: {fileID: 162244167148447934}
-  - component: {fileID: 7433183168911570657}
   - component: {fileID: 3087968429219325610}
+  - component: {fileID: 13585880624009823}
+  - component: {fileID: 6925647741512993219}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Iron_Gate_01
   m_TagString: PlaceableObject
@@ -55,8 +56,8 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 7433183168911570657}
   - {fileID: 3087968429219325610}
+  - {fileID: 13585880624009823}
 --- !u!54 &9200113688598232237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,60 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 0}
---- !u!114 &7433183168911570657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dea6e2c57bd432c45becfa162d76acd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkTransform: {fileID: 0}
-  networkRigidbody: {fileID: 0}
-  _InitialIsKinematicState:
-    _value: 0
-  _CurrentGrabber: {fileID: 0}
-  expectedIsKinematic: 1
-  applyVelocityOnRelease: 1
-  onDidUngrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 162244167148447934}
-        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
-        m_MethodName: StartTheGate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onWillGrab:
-    m_PersistentCalls:
-      m_Calls: []
-  onDidGrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 162244167148447934}
-        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
-        m_MethodName: StopTheGate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  extrapolateWhileTakingAuthority: 1
-  isTakingAuthority: 0
 --- !u!114 &3087968429219325610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +120,82 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
+--- !u!114 &13585880624009823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54692676f3bd8be4b98f7a9f3a28eb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAbleObject: 0
+  networkTransform: {fileID: 0}
+  networkRigidbody: {fileID: 3087968429219325610}
+  _InitialIsKinematicState:
+    _value: 0
+  _CurrentGrabber: {fileID: 0}
+  _LocalPositionOffset: {x: 0, y: 0, z: 0}
+  _LocalRotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  onDidUngrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 162244167148447934}
+        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
+        m_MethodName: StartTheGate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDidGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 162244167148447934}
+        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
+        m_MethodName: StopTheGate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  extrapolateWhileTakingAuthority: 1
+  isTakingAuthority: 0
+  grabbable: {fileID: 0}
+--- !u!114 &6925647741512993219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e76a86270d12f47a2b7d25cf72cf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPositionOffset: {x: 0, y: 0, z: 0}
+  localRotationOffset: {x: 0, y: 0, z: 0, w: 0}
+  currentGrabber: {fileID: 0}
+  expectedIsKinematic: 1
+  allowedClosedHandGrabing: 0
+  networkGrabbable: {fileID: 0}
+  rb: {fileID: 0}
+  applyVelocityOnRelease: 0
+  onWillGrab:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5915442439077980925
 GameObject:
   m_ObjectHideFlags: 0

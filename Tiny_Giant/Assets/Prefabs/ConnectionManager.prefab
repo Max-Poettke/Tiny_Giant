@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4106537706290879903}
   - component: {fileID: 8193159141905711768}
   - component: {fileID: 9103103037855838100}
+  - component: {fileID: 1677292544654358210}
   m_Layer: 0
   m_Name: ConnectionManager
   m_TagString: Untagged
@@ -74,3 +75,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   actualSessionProperties: []
+--- !u!114 &1677292544654358210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7649107895112841588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5a1ff9dee264bfd829a39e6542dcbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _physicsAuthority: 0
+  _physicsTiming: 3
+  ForwardOnly: 0
+  DeltaTimeMultiplier: 1
+  SetUnityFixedTimestep: 0

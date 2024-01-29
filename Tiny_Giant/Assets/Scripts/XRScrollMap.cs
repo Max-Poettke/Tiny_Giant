@@ -4,12 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fusion;
 using UnityEngine.XR.Interaction.Toolkit;
+using Fusion.XR.Shared.Rig;
 
 public class XRScrollMap : MonoBehaviour
 {
-    public XRController controllerLeft;
-    public NetworkObject networkObject;
-    public NetworkObject levelParent;
+    public HardwareHand hardwareHand;
     public List<Material> mapObjectMaterials = new List<Material>();
     public GameObject leftFrontBottom;
     public GameObject rightBackTop;
@@ -24,8 +23,6 @@ public class XRScrollMap : MonoBehaviour
 
     private void Start()
     {
-        //levelParent = GameObject.FindGameObjectWithTag("LevelParent").GetComponent<NetworkObject>();
-        //levelParent.RequestStateAuthority();
         leftFrontBottom = GameObject.Find("LeftFrontBottom");
         rightBackTop = GameObject.Find("RightBackTop");
         table = GameObject.FindGameObjectWithTag("Table");
@@ -33,11 +30,10 @@ public class XRScrollMap : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!networkObject.HasInputAuthority) return;
         GetControllerInput();
         if (isGripping)
         {
-            controllerPositionChange = controllerLeft.transform.position - controllerPositionOld;
+            controllerPositionChange = hardwareHand.transform.position - controllerPositionOld;
             controllerPositionChange.y = 0f;
             //controllerPositionChange *= 0.5f;
 
@@ -52,21 +48,21 @@ public class XRScrollMap : MonoBehaviour
             
             transform.position -= controllerPositionChange;
             table.transform.position -= controllerPositionChange;
-            controllerPositionOld = controllerLeft.transform.position;
+            controllerPositionOld = hardwareHand.transform.position;
         }
     }
 
     private void GetControllerInput()
     {
         //Check if left controller is trying to grip and move the world
-        if (!controllerLeft.inputDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.trigger, out triggerValue)) return;
+        triggerValue = hardwareHand.triggerAction.action.ReadValue<float>();
         if (triggerValue > 0.1f)
         {
             isGripping = true;
         } else 
         {
             isGripping = false;
-            controllerPositionOld = controllerLeft.transform.position;
+            controllerPositionOld = hardwareHand.transform.position;
         }
     }
 }
