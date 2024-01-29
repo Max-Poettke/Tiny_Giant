@@ -60,7 +60,7 @@ namespace Fusion.XR.Shared.Desktop
                 Debug.LogError("No connexion handler provided to RigSelection: risk of connection before choosing the appropriate hardware rig !");
             }
             vrRig.gameObject.SetActive(false);
-            desktopRig.gameObject.SetActive(false);
+            if (desktopRig) desktopRig.gameObject.SetActive(false);
 
 #if !UNITY_EDITOR && UNITY_ANDROID
             if (forceVROnAndroid)
