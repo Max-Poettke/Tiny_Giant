@@ -2900,6 +2900,13 @@ MonoBehaviour:
       Data3: 468316091
       Data4: 1189433387
     Path: event:/Music/Level1
+  <fireArrowMusic>k__BackingField:
+    Guid:
+      Data1: 1809046962
+      Data2: 1142369656
+      Data3: -1605680749
+      Data4: 2085808375
+    Path: event:/Music/FireArrow
 --- !u!64 &565300172
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13803,8 +13810,8 @@ SceneRoots:
   - {fileID: 418774497}
   - {fileID: 1069438526}
   - {fileID: 1754713745}
-  - {fileID: 1462168612}
   - {fileID: 1225719261}
+  - {fileID: 1462168612}
   - {fileID: 415214701}
   - {fileID: 1491974464}
   - {fileID: 1076084449}
