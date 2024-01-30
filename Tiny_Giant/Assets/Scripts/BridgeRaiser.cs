@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class BridgeRaiser : MonoBehaviour
@@ -9,12 +10,14 @@ public class BridgeRaiser : MonoBehaviour
     private bool _midAnimation;
     [SerializeField] private Vector3 raisedPos;
     [SerializeField] private Vector3 loweredPos;
+    private CinemachineImpulseSource _rumble;
 
-    private bool _raised;
+    private bool _raised = true;
     // Start is called before the first frame update
     void Start()
     {
         torchCount = 2;
+        _rumble = GetComponent<CinemachineImpulseSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,7 @@ public class BridgeRaiser : MonoBehaviour
         var time = 0f;
         const float raiseTime = 4.5f;
         var position = transform.localPosition;
+        StartCoroutine(Rumble(raiseTime));
         while (time < raiseTime)
         {
             transform.localPosition = Vector3.Slerp(position, raisedPos, time / raiseTime);
@@ -50,6 +54,7 @@ public class BridgeRaiser : MonoBehaviour
         var time = 0f;
         const float lowerTime = 5f;
         var position = transform.localPosition;
+        StartCoroutine(Rumble(lowerTime));
         while (time < lowerTime)
         {
             transform.localPosition = Vector3.Slerp(position, loweredPos, time / lowerTime);
@@ -58,5 +63,16 @@ public class BridgeRaiser : MonoBehaviour
         }
 
         _midAnimation = false;
+    }
+
+    private IEnumerator Rumble(float rumbleTime)
+    {
+        var time = 0f;
+        while (time < rumbleTime)
+        {
+            _rumble.GenerateImpulse();
+            yield return new WaitForSeconds(1f);
+            time += 1f;
+        }
     }
 }

@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
     private void InitializeNature(EventReference natureEventReference)
     {
         natureEventInstance = CreateInstance(natureEventReference);
-        if (natureEventReference.Path.EndsWith("Rain"))
+        if (natureEventReference.ToString().EndsWith("Rain"))
         {
             return;
         }
