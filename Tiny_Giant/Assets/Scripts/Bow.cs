@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Fusion;
 
-public class Bow : NetworkBehaviour
+public class Bow : MonoBehaviour
 {
-    public GameObject arrows;
+    public NetworkObject arrows;
     public float maxHoldDuration = 2.5f;
     public float minHoldDuration = 0.2f;
     private NetworkObject arrow;
@@ -24,13 +24,10 @@ public class Bow : NetworkBehaviour
 
     [SerializeField] private float shotPower = 2f;
 
-    [SerializeField] private Transform arrowParent;
-
-    public Transform fakeArrow;
-    private Vector3 _fakeArrowPosition;
+    [SerializeField] public Transform arrowParent;
 
     private Animator _animator;
-    private Animator _playerAnimator;
+    public Animator _playerAnimator;
     
     private GameObject[] activeArrows;
     [SerializeField] private int maxActiveArrows = 10;
@@ -45,38 +42,37 @@ public class Bow : NetworkBehaviour
     
     private static readonly int AimBow = Animator.StringToHash("AimBow");
 
-    [SerializeField] private GameObject fakeBow;
+    
 
     private static readonly int ShotBow = Animator.StringToHash("ShotBow");
+
+    public NetworkBow networkBow;
 
     // Start is called before the first frame update
     void Start()
     {
         _animator = GetComponent<Animator>();
-        _playerAnimator = transform.root.GetComponent<Animator>();
         activeArrows = new GameObject[maxActiveArrows];
-        _fakeArrowPosition = fakeArrow.localPosition;
     }
 
     private void OnEnable()
     {
         _ready = false;
-        fakeBow.SetActive(true);
         StartCoroutine(RaiseBow());
     }
-
-
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf || !_ready) return;
         
         if (context.performed)
         {
-            _playerAnimator.SetBool(ShotBow, false); 
+            if(!_playerAnimator) return;
+            _playerAnimator.SetBool(ShotBow, false);
             start = Time.time;
            // arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
-           arrow = Runner.Spawn(arrows, arrowParent.transform.position + transform.TransformVector(0.03f, 0f, 0.3f), transform.rotation, Runner.LocalPlayer,
-               (runner, no) => no.transform.parent = arrowParent);
+           if(networkBow){
+                arrow = networkBow.SpawnArrow(arrows);
+           }
            
            if(activeArrows[pointer] != null) {
                 activeArrows[pointer].GetComponent<Arrow>().Vanish();
@@ -94,12 +90,13 @@ public class Bow : NetworkBehaviour
             if (_cancelling) return;
             _cancelling = true;
             end = Time.time;
+            if(!_playerAnimator) return;
             _playerAnimator.SetBool(AimBow, false);
             if (end - start < minHoldDuration)
             {
                 /*arrow.TryGetComponent(out Arrow a);
                 if(a) a.Vanish();*/
-                Runner.Despawn(arrow);
+                if(networkBow) networkBow.DestroyArrow(arrow);
                 _animator.SetTrigger(Cancel);
                 _animator.ResetTrigger(Draw);
                 _animator.ResetTrigger(Release);
@@ -121,12 +118,12 @@ public class Bow : NetworkBehaviour
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
-                rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
                 arrow.transform.SetParent(null);
+                rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
+                
             }
 
-            fakeArrow.localPosition = _fakeArrowPosition;
-            fakeArrow.gameObject.SetActive(false);
+            networkBow.DeactivateFakeArrow();
             _cancelling = false;
         }
     }
@@ -134,25 +131,25 @@ public class Bow : NetworkBehaviour
 
     private IEnumerator DrawBow()
     {
-        fakeArrow.GetChild(0).gameObject.SetActive(false);
+        networkBow.DeactivateFakeFlame();
         _animator.ResetTrigger(Cancel);
         _animator.ResetTrigger(Release);
         _animator.SetTrigger(Draw);
         var start1 = Time.time;
         _playerAnimator.SetBool(AimBow, true);
-        fakeArrow.gameObject.SetActive(true);
+        networkBow.ActivateFakeArrow();
         
         while(Time.time - start1 < 1f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
+            networkBow.fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
             yield return null;
         }
         
         while(Time.time - start1 < 2.5f)
         {
             arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
+            networkBow.fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
             yield return null;
         }
     }

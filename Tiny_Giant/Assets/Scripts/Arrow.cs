@@ -98,7 +98,7 @@ public class Arrow : NetworkBehaviour
         if (lit) return;
         lit = true;
         _flame.SetActive(true);
-        _bow.fakeArrow.GetChild(0).gameObject.SetActive(true);
+        _bow.networkBow.fakeArrow.GetChild(0).gameObject.SetActive(true);
     }
     
     

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4498106734561031163}
   - component: {fileID: 9200113688598232237}
   - component: {fileID: 162244167148447934}
-  - component: {fileID: 6844942295277197617}
   - component: {fileID: 13585880624009823}
   - component: {fileID: 6925647741512993219}
+  - component: {fileID: 3087968429219325610}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Iron_Gate_01
   m_TagString: PlaceableObject
@@ -56,8 +56,8 @@ MonoBehaviour:
   Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 6844942295277197617}
   - {fileID: 13585880624009823}
+  - {fileID: 3087968429219325610}
 --- !u!54 &9200113688598232237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,28 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 0}
---- !u!114 &3087968429219325610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SyncScale: 0
-  SyncParent: 1
-  _interpolationTarget: {fileID: 0}
-  UsePreciseRotation: 0
-  UseRenderSleepThresholds: 1
-  RenderThresholds:
-    UseEnergy: 1
-    Position: 0.01
-    Rotation: 0.01
-    Scale: 0.01
 --- !u!114 &13585880624009823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAbleObject: 0
-  moveAbleObject: 1
   networkTransform: {fileID: 0}
   networkRigidbody: {fileID: 3087968429219325610}
   _InitialIsKinematicState:
@@ -197,6 +174,28 @@ MonoBehaviour:
   onWillGrab:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3087968429219325610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a591d221a634417e9827eb58e17de84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _interpolationTarget: {fileID: 0}
+  UsePreciseRotation: 0
+  UseRenderSleepThresholds: 1
+  RenderThresholds:
+    UseEnergy: 1
+    Position: 0.01
+    Rotation: 0.01
+    Scale: 0.01
 --- !u!1 &5915442439077980925
 GameObject:
   m_ObjectHideFlags: 0

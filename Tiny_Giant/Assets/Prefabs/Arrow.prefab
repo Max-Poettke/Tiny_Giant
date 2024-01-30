@@ -4861,7 +4861,7 @@ GameObject:
   - component: {fileID: 4198090055738993557}
   - component: {fileID: -7448053061584240336}
   - component: {fileID: 4448316285944928492}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Arrow
   m_Icon: {fileID: 0}
@@ -4995,6 +4995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lit: 0
+  trail: {fileID: 0}
 --- !u!114 &4198090055738993557
 MonoBehaviour:
   m_ObjectHideFlags: 0
