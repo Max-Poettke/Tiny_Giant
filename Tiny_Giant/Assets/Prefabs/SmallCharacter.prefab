@@ -665,8 +665,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027006669220441686}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.022004884, y: 0.9636255, z: -0.08387799, w: -0.25279677}
-  m_LocalPosition: {x: -4.082971, y: -0.43245113, z: 203.7894}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.07, y: 0.87, z: 0.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -706,7 +706,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 60.00003
+  field of view: 60
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -1285,7 +1285,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8319796519834532839
 MonoBehaviour:
@@ -2615,6 +2615,7 @@ GameObject:
   - component: {fileID: 5051602018116235403}
   - component: {fileID: 4617698545362669063}
   - component: {fileID: 1537433442610595113}
+  - component: {fileID: 484299184366243268}
   m_Layer: 0
   m_Name: CineCamera
   m_TagString: Untagged
@@ -2700,6 +2701,31 @@ MonoBehaviour:
     m_FrequencyGain: 1
     m_Duration: 1
     m_NoiseOffsets: {x: -706.6185, y: -19.33136, z: 365.99872}
+--- !u!114 &484299184366243268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826680679315031548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82e62c82b3be64042ac529dee964cc2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowImage: 1
+  m_Image: {fileID: 2800000, guid: 741fc20134c84d140af05ba786d3ceab, type: 3}
+  m_Aspect: 2
+  m_Alpha: 0
+  m_Center: {x: 0, y: 0}
+  m_Rotation: {x: 0, y: 0, z: 0}
+  m_Scale: {x: 1, y: 1}
+  m_SyncScale: 1
+  m_MuteCamera: 0
+  m_SplitView: 0
+  m_RenderMode: 0
+  m_SortingOrder: 2
+  m_PlaneDistance: 100
 --- !u!1 &4959974069060487781
 GameObject:
   m_ObjectHideFlags: 0

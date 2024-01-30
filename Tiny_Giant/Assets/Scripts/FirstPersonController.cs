@@ -356,6 +356,7 @@ public class FirstPersonController : NetworkBehaviour
         transform.localEulerAngles = new Vector3(0, yaw, 0);
         #region Movement
         var noise = cineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
