@@ -90,6 +90,7 @@ public class AudioManager : MonoBehaviour
         if (!lit || IsPlaying(fireArrowMusicEventInstance)) return;
         
         fireArrowMusicEventInstance = CreateInstance(FMODEvents.eventsInstance.fireArrowMusic);
+        musicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
         fireArrowMusicEventInstance.start();
     }
 
@@ -103,6 +104,7 @@ public class AudioManager : MonoBehaviour
     {
         fireArrowMusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
         fireArrowMusicEventInstance.release();
+        musicEventInstance.start();
     }
     #endregion
 
