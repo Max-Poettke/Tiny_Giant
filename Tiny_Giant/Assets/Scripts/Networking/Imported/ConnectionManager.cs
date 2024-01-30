@@ -16,6 +16,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
      **/
     public class ConnectionManager : MonoBehaviour, INetworkRunnerCallbacks
     {
+        public bool spawnVR;
         [System.Flags]
         public enum ConnectionCriterias
         {
@@ -178,20 +179,19 @@ namespace Fusion.Addons.ConnectionManagerAddon
         #region Player spawn
         public void OnPlayerJoinedSharedMode(NetworkRunner runner, PlayerRef player)
         {
-            if (player == runner.LocalPlayer && userPrefabVR != null)
-            {
-                // Spawn the user prefab for the local user
-                NetworkObject networkPlayerObject = runner.Spawn(userPrefabVR, position: spawnPointVR.position, rotation: transform.rotation, player, (runner, obj) => {
-                });
+            if(spawnVR){
+                if (player == runner.LocalPlayer && userPrefabVR != null)
+                {
+                    // Spawn the user prefab for the local user
+                    NetworkObject networkPlayerObject = runner.Spawn(userPrefabVR, position: spawnPointVR.position, rotation: transform.rotation, player);
+                }
+            } else {
+                if (player == runner.LocalPlayer && userPrefabPC != null)
+                {
+                    // Spawn the user prefab for the local user
+                    NetworkObject networkPlayerObject = runner.Spawn(userPrefabPC, position: spawnPointPC.position, rotation: transform.rotation, player);
+                }
             }
-            /*
-            if (player == runner.LocalPlayer && userPrefabPC != null)
-            {
-                // Spawn the user prefab for the local user
-                NetworkObject networkPlayerObject = runner.Spawn(userPrefabPC, position: spawnPointPC.position, rotation: transform.rotation, player, (runner, obj) => {
-                });
-            }
-            */
         }
     /*
         public void OnPlayerJoinedHostMode(NetworkRunner runner, PlayerRef player)

@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 496004}
   - component: {fileID: 4498106734561031163}
   - component: {fileID: 9200113688598232237}
-  - component: {fileID: 162244167148447934}
   - component: {fileID: 3087968429219325610}
-  - component: {fileID: 13585880624009823}
-  - component: {fileID: 6925647741512993219}
+  - component: {fileID: 7667586439101246720}
+  - component: {fileID: 7677685356977718972}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Iron_Gate_01
   m_TagString: PlaceableObject
@@ -35,8 +34,7 @@ Transform:
   m_LocalScale: {x: 4.5, y: 4.5, z: 4.5}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8878976828677859035}
-  - {fileID: 5097508363664025014}
+  - {fileID: 4800535080771698054}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4498106734561031163
@@ -53,11 +51,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SortKey: 332811995
   ObjectInterest: 1
-  Flags: 262145
+  Flags: 524289
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 3087968429219325610}
-  - {fileID: 13585880624009823}
+  - {fileID: 8819529554202146046}
 --- !u!54 &9200113688598232237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -85,19 +83,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &162244167148447934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375cb86437bb20d42b078dcb0d561a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gate: {fileID: 0}
 --- !u!114 &3087968429219325610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncScale: 0
-  SyncParent: 1
+  SyncParent: 0
   _interpolationTarget: {fileID: 0}
   UsePreciseRotation: 0
   UseRenderSleepThresholds: 1
@@ -120,7 +105,28 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!114 &13585880624009823
+--- !u!65 &7667586439101246720
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169488}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5080283, y: 2.9063325, z: 0.16139215}
+  m_Center: {x: -0.013974507, y: 1.4475033, z: 0.0044137305}
+--- !u!114 &7677685356977718972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,73 +135,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 169488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54692676f3bd8be4b98f7a9f3a28eb27, type: 3}
+  m_Script: {fileID: 11500000, guid: 375cb86437bb20d42b078dcb0d561a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAbleObject: 0
-  networkTransform: {fileID: 0}
-  networkRigidbody: {fileID: 3087968429219325610}
-  _InitialIsKinematicState:
-    _value: 0
-  _CurrentGrabber: {fileID: 0}
-  _LocalPositionOffset: {x: 0, y: 0, z: 0}
-  _LocalRotationOffset: {x: 0, y: 0, z: 0, w: 0}
-  onDidUngrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 162244167148447934}
-        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
-        m_MethodName: StartTheGate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onDidGrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 162244167148447934}
-        m_TargetAssemblyTypeName: StopGate, Assembly-CSharp
-        m_MethodName: StopTheGate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  extrapolateWhileTakingAuthority: 1
-  isTakingAuthority: 0
-  grabbable: {fileID: 0}
---- !u!114 &6925647741512993219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e76a86270d12f47a2b7d25cf72cf82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localPositionOffset: {x: 0, y: 0, z: 0}
-  localRotationOffset: {x: 0, y: 0, z: 0, w: 0}
-  currentGrabber: {fileID: 0}
-  expectedIsKinematic: 1
-  allowedClosedHandGrabing: 0
-  networkGrabbable: {fileID: 0}
-  rb: {fileID: 0}
-  applyVelocityOnRelease: 0
-  onWillGrab:
-    m_PersistentCalls:
-      m_Calls: []
+  gate: {fileID: 0}
 --- !u!1 &5915442439077980925
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,12 +165,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5915442439077980925}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 496004}
+  m_Father: {fileID: 4800535080771698054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8418492618225565568
 MeshFilter:
@@ -279,7 +222,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7409684331133551669
+--- !u!1 &7908806966942446854
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,48 +230,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5097508363664025014}
-  - component: {fileID: 4934821569394618578}
+  - component: {fileID: 4800535080771698054}
+  - component: {fileID: 8819529554202146046}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: ToMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5097508363664025014
+--- !u!4 &4800535080771698054
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7409684331133551669}
+  m_GameObject: {fileID: 7908806966942446854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8878976828677859035}
   m_Father: {fileID: 496004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4934821569394618578
-BoxCollider:
+--- !u!114 &8819529554202146046
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7409684331133551669}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 7908806966942446854}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.5080283, y: 2.9063325, z: 0.16139215}
-  m_Center: {x: -0.013974507, y: 1.4475033, z: 0.0044137305}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 0

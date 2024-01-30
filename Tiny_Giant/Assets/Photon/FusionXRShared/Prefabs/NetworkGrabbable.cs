@@ -160,7 +160,7 @@ namespace Fusion.XR.Shared.Grabbing
                 }
             }
 
-            if (isTakingAuthority && extrapolateWhileTakingAuthority)
+            if (isTakingAuthority && extrapolateWhileTakingAuthority && moveAbleObject)
             {
                 // If we are currently taking the authority on the object due to a grab, the network info are still not set
                 //  but we will extrapolate anyway (if the option extrapolateWhileTakingAuthority is true) to avoid having the grabbed object staying still until we receive the authority

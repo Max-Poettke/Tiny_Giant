@@ -13,14 +13,16 @@ public class ButtonGateTrigger : NetworkBehaviour
     [SerializeField] private float lowerTime;
     [SerializeField] private float waitTime = 1f;
 
-    [SerializeField] public bool grabbed;
+    [Networked]
+    [SerializeField] public bool grabbed { get; set; } = false;
     private CinemachineImpulseSource _impulseSource;
     private enum GateState
     {
         Still, Raising, Falling
     }
 
-    private GateState state;
+    [Networked]
+    private GateState state{ get; set;}
 
     private Vector3 startPosition;
     
@@ -38,7 +40,7 @@ public class ButtonGateTrigger : NetworkBehaviour
         var endPosition = new Vector3(startPosition.x, startPosition.y + 10f, startPosition.z);
         while (time < raiseTime && state == GateState.Raising)
         {
-            while (grabbed) { yield return null; }
+            if(grabbed) continue;
             
             gate.transform.position = Vector3.Lerp(startPosition, endPosition, time / raiseTime);
 
@@ -61,7 +63,7 @@ public class ButtonGateTrigger : NetworkBehaviour
         var endPosition = startPosition;
         while (time < lowerTime && state == GateState.Falling)
         {
-            while (grabbed) { yield return null; }
+            if(grabbed) continue;
 
             gate.transform.position = Vector3.Lerp(position, endPosition, time / lowerTime);
 
@@ -79,6 +81,18 @@ public class ButtonGateTrigger : NetworkBehaviour
         if (collision.gameObject.CompareTag("Arrow") && state != GateState.Falling)
         {
             _impulseSource.GenerateImpulse();
+            StartCoroutine(RaiseGate());
+        }
+    }
+
+
+    private void Update()
+    {
+        TestFunction();
+    }
+    private void TestFunction(){
+        //constantly move the gate up and down
+        if(state == GateState.Still){
             StartCoroutine(RaiseGate());
         }
     }
