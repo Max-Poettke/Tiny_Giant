@@ -2024,6 +2024,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4404318052240948354}
   - component: {fileID: 6078566408672136041}
+  - component: {fileID: 8221115887283098215}
   - component: {fileID: 3161897613772617138}
   - component: {fileID: 1907815465346539819}
   - component: {fileID: 7328201868579587620}
@@ -2085,6 +2086,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &8221115887283098215
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279358698775597888}
+  m_Material: {fileID: 13400000, guid: 8f515e662d27e73408273d4ae379df7f, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.43
+  m_Height: 1.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!136 &3161897613772617138
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2164,6 +2188,9 @@ MonoBehaviour:
   zoomStepTime: 5
   playerCanMove: 1
   walkSpeed: 5
+  airSpeed: 0.8
+  groundDrag: 5
+  airDrag: 1
   maxVelocityChange: 10
   enableSprint: 1
   unlimitedSprint: 1
@@ -2179,7 +2206,8 @@ MonoBehaviour:
   sprintBarWidthPercent: 0.3
   sprintBarHeightPercent: 0.02
   enableJump: 1
-  jumpPower: 5
+  jumpPower: 6
+  isGrounded: 0
   enableCrouch: 1
   holdToCrouch: 1
   crouchHeight: 0.75

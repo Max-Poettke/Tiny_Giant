@@ -75,7 +75,11 @@ public class FirstPersonController : NetworkBehaviour
 
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
+    public float airSpeed = 0.6f;
+    public float groundDrag = 5f;
+    public float airDrag = 1f;
     public float maxVelocityChange = 10f;
+    private Vector3 _slopeVector;
 
     // Internal Variables
     private bool isWalking = false;
@@ -116,7 +120,7 @@ public class FirstPersonController : NetworkBehaviour
     public float jumpPower = 5f;
 
     // Internal Variables
-    private bool isGrounded = false;
+    [SerializeField] private bool isGrounded = false;
 
     #endregion
 
@@ -133,9 +137,9 @@ public class FirstPersonController : NetworkBehaviour
 
     #endregion
 
+    
     public Transform joint;
     #endregion
-
 
     #region InputSystem Shenanigans
 
@@ -155,7 +159,10 @@ public class FirstPersonController : NetworkBehaviour
         // Adds force to the player rigidbody to jump
         if (isGrounded)
         {
-            rb.AddForce(0f, jumpPower, 0f, ForceMode.Impulse);
+            var velocity = rb.velocity;
+            velocity = new Vector3(velocity.x, 0f, velocity.z);
+            rb.velocity = velocity;
+            rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             _netAnimator.SetTrigger(Jump, true);
             isGrounded = false;
         }
@@ -360,8 +367,7 @@ public class FirstPersonController : NetworkBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            var targetVelocity = _moveVector;
-
+            var targetVelocity = Slope() ? _slopeVector : _moveVector;
             // Checks if player is walking and isGrounded
             // Will allow head bob
             if (targetVelocity.x != 0 || targetVelocity.z != 0 && isGrounded)
@@ -392,20 +398,28 @@ public class FirstPersonController : NetworkBehaviour
                 noise.m_FrequencyGain = curFreq;
                 noise.m_AmplitudeGain = curAmp;
             }
+
+            var steep = SteepSlope();
+            if (!isGrounded || steep) isWalking = false;
             SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
 
+            if (steep)
+            {
+                isGrounded = false;
+                isWalking = false;
+            }
             // All movement calculations while sprint is active
             if (enableSprint && sprintPressed && sprintRemaining > 0f && !isSprintCooldown)
             {
                 targetVelocity = transform.TransformDirection(targetVelocity) * sprintSpeed;
-
+                if (!isGrounded || steep) targetVelocity *= airSpeed;
                 // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
                 Vector3 velocityChange = (targetVelocity - velocity);
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
                 velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
                 velocityChange.y = 0;
-
+                
                 // Player is only moving when velocity change != 0
                 // Makes sure fov change only happens during movement
                 if (velocityChange.x != 0 || velocityChange.z != 0)
@@ -431,8 +445,9 @@ public class FirstPersonController : NetworkBehaviour
                         sprintBarCG.alpha += 5 * Runner.DeltaTime;
                     }
                 }
-
+                
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
+
             }
             // All movement calculations while walking
             else
@@ -445,6 +460,7 @@ public class FirstPersonController : NetworkBehaviour
                 }
 
                 targetVelocity = transform.TransformDirection(targetVelocity) * walkSpeed;
+                if (!isGrounded || steep) targetVelocity *= airSpeed;
 
                 // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
@@ -452,7 +468,7 @@ public class FirstPersonController : NetworkBehaviour
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
                 velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
                 velocityChange.y = 0;
-
+                
                 rb.AddForce(velocityChange, ForceMode.VelocityChange);
             }
         }
@@ -533,7 +549,9 @@ public class FirstPersonController : NetworkBehaviour
 
         #endregion
 
+        _slopeVector = Vector3.ProjectOnPlane(_moveVector, slopeHit.normal);
         CheckGround();
+        SetDrag();
     }
 
     private void LateUpdate()
@@ -559,7 +577,8 @@ public class FirstPersonController : NetworkBehaviour
         Vector3 origin = new Vector3(position.x, position.y + .1f, position.z);
         Vector3 direction = Vector3.down;
         float distance = .15f;
-
+        
+        
         if (Physics.Raycast(origin, direction, out RaycastHit hit, distance))
         {
             Debug.DrawRay(origin, direction * distance, Color.red);
@@ -569,7 +588,52 @@ public class FirstPersonController : NetworkBehaviour
         {
             isGrounded = false;
         }
+        
     }
+
+    private void SetDrag()
+    {
+        rb.drag = isGrounded ? groundDrag : airDrag;
+    }
+
+    private RaycastHit slopeHit;
+    private bool Slope()
+    {
+        var position = transform.position;
+        var origin = new Vector3(position.x, position.y + .1f, position.z);
+        var direction = Vector3.down;
+        var distance = .15f;
+
+        if (Physics.Raycast(origin, direction, out slopeHit, distance))
+        {
+            if (slopeHit.normal != Vector3.up)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool SteepSlope()
+    {
+        var position = transform.position;
+        var origin = new Vector3(position.x, position.y + .1f, position.z);
+        var direction = Vector3.down;
+        var distance = .15f;
+
+        if (Physics.Raycast(origin, direction, out slopeHit, distance))
+        {
+            var slopeAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            if (slopeAngle > 45f)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void Crouch()
     {
         // Stands player up to full height
