@@ -7712,7 +7712,7 @@ PrefabInstance:
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: PlayEvent
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
@@ -9260,7 +9260,7 @@ PrefabInstance:
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: PlayEvent
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
