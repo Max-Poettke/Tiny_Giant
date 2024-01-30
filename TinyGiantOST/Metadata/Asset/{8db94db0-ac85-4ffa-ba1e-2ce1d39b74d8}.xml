@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{8db94db0-ac85-4ffa-ba1e-2ce1d39b74d8}">
+		<property name="assetPath">
+			<value>SoundFX/BowNArrow/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{de974230-9867-4744-acd4-5f180f149031}</destination>
+		</relationship>
+	</object>
+</objects>

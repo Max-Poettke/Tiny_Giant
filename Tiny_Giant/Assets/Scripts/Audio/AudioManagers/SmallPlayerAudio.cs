@@ -9,6 +9,7 @@ public class SmallPlayerAudio : MonoBehaviour
 {
     public static SmallPlayerAudio playerAudioInstance { get; private set; }
     private StudioEventEmitter playerFootstepsEmitter;
+    private StudioEventEmitter bowSoundsEmitter;
 
     public StudioEventEmitter getPlayerFootstepsEmitter()
     {
@@ -22,6 +23,9 @@ public class SmallPlayerAudio : MonoBehaviour
         playerFootstepsEmitter =
             AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.playerFootsteps,
                 this.gameObject);
+
+        bowSoundsEmitter = AudioManager.audioManagerInstance.InitializeEventEmitter(FMODEvents.eventsInstance.bowSounds,
+            this.gameObject.transform.Find("Joint/Rigged_Bow_NativeAmerican_Testing").gameObject);
     }
 
     public void UpdateSound(bool isWalking)
@@ -39,5 +43,16 @@ public class SmallPlayerAudio : MonoBehaviour
         {
             playerFootstepsEmitter.Stop();
         }
+    }
+
+    public void StretchBow()
+    {
+        bowSoundsEmitter.Play();
+    }
+
+    public void ReleaseBow()
+    {
+        bowSoundsEmitter.Play();
+        bowSoundsEmitter.SetParameter("Bow",1);
     }
 }

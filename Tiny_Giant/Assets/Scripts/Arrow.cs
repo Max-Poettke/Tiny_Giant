@@ -116,6 +116,7 @@ public class Arrow : NetworkBehaviour
         lit = true;
         _flame.SetActive(true);
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(true);
+        AudioManager.audioManagerInstance.PlayFireArrowMusic(lit);
     }
     
     

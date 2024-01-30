@@ -86,6 +86,7 @@ public class Bow : NetworkBehaviour
            pointer %= maxActiveArrows;
            
            drawBow = StartCoroutine(DrawBow());
+           SmallPlayerAudio.playerAudioInstance.StretchBow();
         }
 
         
@@ -123,6 +124,9 @@ public class Bow : NetworkBehaviour
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
                 rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
                 arrow.transform.SetParent(null);
+                
+                SmallPlayerAudio.playerAudioInstance.ReleaseBow();
+                AudioManager.audioManagerInstance.StopFireArrowMusic();
             }
 
             fakeArrow.localPosition = _fakeArrowPosition;

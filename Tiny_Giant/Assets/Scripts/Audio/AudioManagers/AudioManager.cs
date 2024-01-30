@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     private EventInstance natureEventInstance;
     private EventInstance musicEventInstance;
+    private EventInstance fireArrowMusicEventInstance;
 
     [Header("Volume")]
     [Range(0, 1)] 
@@ -66,7 +67,7 @@ public class AudioManager : MonoBehaviour
     private void InitializeNature(EventReference natureEventReference)
     {
         natureEventInstance = CreateInstance(natureEventReference);
-        if (natureEventReference.ToString().EndsWith("Rain"))
+        if (natureEventReference.Path.EndsWith("Rain"))
         {
             return;
         }
@@ -82,6 +83,21 @@ public class AudioManager : MonoBehaviour
         musicEventInstance = CreateInstance(musicEventReference);
         musicEventInstance.start();
     }
+
+    #region ArrowOnFireMusic
+    public void PlayFireArrowMusic(bool lit)
+    {
+        if (!lit) return;
+        fireArrowMusicEventInstance = CreateInstance(FMODEvents.eventsInstance.fireArrowMusic);
+        fireArrowMusicEventInstance.start();
+    }
+
+    public void StopFireArrowMusic()
+    {
+        fireArrowMusicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
+        fireArrowMusicEventInstance.release();
+    }
+    #endregion
 
     public void SetNatureArea(NatureArea area)
     {

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{16bfbe1e-af0f-4ced-9b64-d85ca28a64b5}">
 		<property name="assetPath">
-			<value>Footsteps/Footsteps-dirt-gravel-4.mp3</value>
+			<value>SoundFX/Footsteps/Footsteps-dirt-gravel-4.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

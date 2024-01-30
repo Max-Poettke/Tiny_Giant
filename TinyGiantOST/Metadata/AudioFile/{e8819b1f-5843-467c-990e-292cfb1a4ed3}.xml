@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{e8819b1f-5843-467c-990e-292cfb1a4ed3}">
 		<property name="assetPath">
-			<value>NatureSounds/Rolling-thunder-low-muffled.mp3</value>
+			<value>AmbientSounds/Rolling-thunder-low-muffled.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
