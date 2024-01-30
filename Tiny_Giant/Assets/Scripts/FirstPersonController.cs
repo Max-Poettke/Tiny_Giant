@@ -146,6 +146,7 @@ public class FirstPersonController : NetworkBehaviour
      //   Debug.Log("Trying to move");
         var input = context.ReadValue<Vector2>();
         _moveVector = new Vector3(input.x, 0f, input.y);
+        
     }
 
     public void OnJump()
@@ -211,12 +212,22 @@ public class FirstPersonController : NetworkBehaviour
         if(cameraCanMove)
         {
             _mouse = context.ReadValue<Vector2>();
-            yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
+            yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 25f;
+            
+            if (!invertCamera)
+            {
+                pitch -= mouseSensitivity * _mouse.y;
+                pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+                
+            }
+            else
+            {
+                // Inverted Y
+                pitch += mouseSensitivity * _mouse.y;
+            }
+            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+            joint.localEulerAngles = new Vector3(pitch, 0, 0);
         }
-
-        // Clamp pitch between lookAngle
-        pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
-        
         #endregion
     }
 
@@ -533,22 +544,6 @@ public class FirstPersonController : NetworkBehaviour
         #endregion
 
         CheckGround();
-    }
-
-    private void LateUpdate()
-    {
-        if (!invertCamera)
-        {
-            pitch -= mouseSensitivity * _mouse.y;
-            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
-        }
-        else
-        {
-            // Inverted Y
-            pitch += mouseSensitivity * _mouse.y;
-        }
-        
-        joint.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
