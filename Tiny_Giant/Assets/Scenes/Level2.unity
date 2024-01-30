@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.000055046083, g: 0.00014094963, b: 0.0042733354,
+  m_IndirectSpecularColor: {r: 0.000064787346, g: 0.00014024801, b: 0.0042892084,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -7712,12 +7712,12 @@ PrefabInstance:
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: PlayEvent
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: StopEvent
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8678229827982671835, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
@@ -9260,12 +9260,12 @@ PrefabInstance:
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: PlayEvent
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6763090110958092101, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}
       propertyPath: StopEvent
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8678229827982671835, guid: 20a79b55466cdb84da379ae63fc30867,
         type: 3}

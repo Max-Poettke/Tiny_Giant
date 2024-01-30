@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{4d7d8b84-8ac1-4662-9271-98ac7627c3a9}">
+	<object class="AudioFile" id="{1ca06df1-8c5f-47ca-a4e6-9ad6298f121a}">
 		<property name="assetPath">
 			<value>SoundFX/BowNArrow/Bow-release.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>24</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.91200000000000003</value>
+			<value>0.28799999999999998</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{de974230-9867-4744-acd4-5f180f149031}</destination>
