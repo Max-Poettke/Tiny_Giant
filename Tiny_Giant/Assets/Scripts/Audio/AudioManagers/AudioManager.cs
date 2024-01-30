@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour
     private void InitializeNature(EventReference natureEventReference)
     {
         natureEventInstance = CreateInstance(natureEventReference);
-        if (natureEventReference.ToString().EndsWith("Rain"))
+        if (natureEventReference.Path.EndsWith("Rain"))
         {
             return;
         }
@@ -92,6 +92,7 @@ public class AudioManager : MonoBehaviour
         fireArrowMusicEventInstance = CreateInstance(FMODEvents.eventsInstance.fireArrowMusic);
         musicEventInstance.stop(STOP_MODE.ALLOWFADEOUT);
         fireArrowMusicEventInstance.start();
+        
     }
 
     public bool IsPlaying(FMOD.Studio.EventInstance instance)
