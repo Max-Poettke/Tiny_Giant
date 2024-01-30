@@ -11,6 +11,7 @@ public class Arrow : NetworkBehaviour
     // Start is called before the first frame update
     private Rigidbody rb;
     private Material material;
+    private bool rainOn;
 
     //Networked variable for syncing the color change of the arrow
     [Networked]
@@ -24,6 +25,7 @@ public class Arrow : NetworkBehaviour
         //Get the change detector for the color variable
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
         _bow = transform.parent.parent.GetComponent<Bow>();
+        rainOn = transform.root.GetComponent<RainIndicator>().isRaining;
         trail = GetComponent<TrailRenderer>();
         trail.enabled = false;
     }
@@ -51,6 +53,12 @@ public class Arrow : NetworkBehaviour
                     material.color = color;
                     break;
             }
+        }
+        Debug.DrawRay(transform.position + transform.TransformDirection(Vector3.forward * 0.5f), Vector3.up * 25f, Color.magenta);
+        if (!rainOn || !lit) return;
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.forward * 0.5f), Vector3.up * 25f))
+        {
+            StartCoroutine(SizzleOut());
         }
     }
 
@@ -89,6 +97,15 @@ public class Arrow : NetworkBehaviour
         trail.enabled = true;
         trail.Clear();
         
+    }
+
+    private IEnumerator SizzleOut()
+    {
+        lit = false;
+        yield return new WaitForSeconds(1f);
+        if (lit) yield break; // flame was lit again
+        _flame.SetActive(false);
+        _bow.fakeArrow.GetChild(0).gameObject.SetActive(false);
     }
 
 

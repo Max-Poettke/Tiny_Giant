@@ -6,18 +6,17 @@ using UnityEngine;
 public class LightableObject : MonoBehaviour
 {
     private ParticleSystem _flame;
+    private Light _light;
     [SerializeField] private BridgeRaiser bridge;
-    private bool _lit;
+    public bool raining;
+    public bool _lit = true;
+    private bool _covered;
+    private bool _changed;
     // Start is called before the first frame update
     void Start()
     {
         _flame = GetComponentInChildren<ParticleSystem>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _light = _flame.GetComponentInChildren<Light>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,10 +29,29 @@ public class LightableObject : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (!_lit) return;
+        Debug.DrawRay(transform.position + (Vector3.up * 2f), Vector3.up * 25f, Color.red);
+        if (raining && !Physics.Raycast(transform.position + (Vector3.up * 2f), Vector3.up * 25f))
+        {
+            Extinguish();
+        }
+    }
+
     private void Light()
     {
         bridge.torchCount++;
         _lit = true;
         _flame.Play();
+        _light.enabled = true;
+    }
+
+    private void Extinguish()
+    {
+        bridge.torchCount--;
+        _lit = false;
+        _flame.Stop();
+        _light.enabled = false;
     }
 }

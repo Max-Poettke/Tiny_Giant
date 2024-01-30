@@ -2034,6 +2034,7 @@ GameObject:
   - component: {fileID: -9139527904844318778}
   - component: {fileID: 1007953114029228625}
   - component: {fileID: 2161265147905024308}
+  - component: {fileID: 6453521261005602531}
   m_Layer: 8
   m_Name: SmallCharacter
   m_TagString: Player
@@ -2507,6 +2508,19 @@ MonoBehaviour:
   SyncSettings: 79
   StateHashes: 000000002b1a167c794069556bd5a32d398fdc04e37804fd463ce34259290d64fc6deadbcf190a136a5dedac6c8c6e8dc9c8893220e23b685928a8ce28a981077af3fe2e0f80260115111cebe88c1c90db3f39a70a1437fe8e37e111
   TriggerHashes: 0000000028a98107
+--- !u!114 &6453521261005602531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279358698775597888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774199d15a9408e44a8f69658f26c5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRaining: 0
 --- !u!1 &4398488875675493556
 GameObject:
   m_ObjectHideFlags: 0
