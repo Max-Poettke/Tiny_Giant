@@ -87,9 +87,16 @@ public class AudioManager : MonoBehaviour
     #region ArrowOnFireMusic
     public void PlayFireArrowMusic(bool lit)
     {
-        if (!lit) return;
+        if (!lit || IsPlaying(fireArrowMusicEventInstance)) return;
+        
         fireArrowMusicEventInstance = CreateInstance(FMODEvents.eventsInstance.fireArrowMusic);
         fireArrowMusicEventInstance.start();
+    }
+
+    public bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        instance.getPlaybackState(out var state);
+        return state == PLAYBACK_STATE.PLAYING;
     }
 
     public void StopFireArrowMusic()

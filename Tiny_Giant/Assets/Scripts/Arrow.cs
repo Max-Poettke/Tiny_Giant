@@ -56,7 +56,7 @@ public class Arrow : NetworkBehaviour
         }
         Debug.DrawRay(transform.position + transform.TransformDirection(Vector3.forward * 0.5f), Vector3.up * 25f, Color.magenta);
         if (!rainOn || !lit) return;
-        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.forward * 0.5f), Vector3.up * 25f))
+        if (!Physics.Raycast(transform.position + transform.TransformDirection(Vector3.forward * 0.5f), Vector3.up, Mathf.Infinity))
         {
             StartCoroutine(SizzleOut());
         }
@@ -94,6 +94,7 @@ public class Arrow : NetworkBehaviour
     public IEnumerator ShootTrail()
     {
         yield return new WaitForSeconds(.05f);
+        AudioManager.audioManagerInstance.StopFireArrowMusic();
         trail.enabled = true;
         trail.Clear();
         
@@ -104,6 +105,8 @@ public class Arrow : NetworkBehaviour
         lit = false;
         yield return new WaitForSeconds(1f);
         if (lit) yield break; // flame was lit again
+        
+        AudioManager.audioManagerInstance.StopFireArrowMusic();
         _flame.SetActive(false);
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(false);
     }

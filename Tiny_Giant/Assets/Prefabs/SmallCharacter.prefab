@@ -9903,6 +9903,46 @@ PrefabInstance:
       propertyPath: minHoldDuration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: EventReference.Path
+      value: event:/SoundFX/BowNArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: OverrideMinDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: EventReference.Guid.Data1
+      value: 341207353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: EventReference.Guid.Data2
+      value: 1281564741
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: EventReference.Guid.Data3
+      value: 1079143302
+      objectReference: {fileID: 0}
+    - target: {fileID: 4502724968469034288, guid: 36f94a163b86a6d428e7ed95dc2202ab,
+        type: 3}
+      propertyPath: EventReference.Guid.Data4
+      value: 522211298
+      objectReference: {fileID: 0}
     - target: {fileID: 4755014949019084837, guid: 36f94a163b86a6d428e7ed95dc2202ab,
         type: 3}
       propertyPath: m_Layer
@@ -9943,8 +9983,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5066270461795405929, guid: 36f94a163b86a6d428e7ed95dc2202ab, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

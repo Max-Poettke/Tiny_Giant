@@ -122,7 +122,7 @@ public class Bow : NetworkBehaviour
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
-                rb.AddForce((cam.forward - cam.right / 35) * shotPower * holdMultiplier, ForceMode.Impulse);
+                rb.AddForce((cam.forward) * shotPower * holdMultiplier, ForceMode.Impulse);
                 arrow.transform.SetParent(null);
                 
                 SmallPlayerAudio.playerAudioInstance.ReleaseBow();

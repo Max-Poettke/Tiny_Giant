@@ -41,9 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 898045858246463704}
   - component: {fileID: 4065577142094091132}
-  - component: {fileID: 5066270461795405929}
   - component: {fileID: 4815319247661788310}
-  - component: {fileID: 5311119058727005727}
+  - component: {fileID: 4502724968469034288}
   m_Layer: 7
   m_Name: Rigged_Bow_NativeAmerican_Testing
   m_TagString: Player
@@ -92,24 +91,6 @@ MonoBehaviour:
   fakeArrow: {fileID: 0}
   maxActiveArrows: 10
   fakeBow: {fileID: 0}
---- !u!111 &5066270461795405929
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521765957328882274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c,
-    type: 3}
-  m_Animations:
-  - {fileID: 1827226128182048838, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
-  - {fileID: -998496362607748373, guid: 75360f219102a894bbb5aae5447ec81c, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &4815319247661788310
 Animator:
   serializedVersion: 5
@@ -131,7 +112,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5311119058727005727
+--- !u!114 &4502724968469034288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,12 +121,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 521765957328882274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!1 &1183262574192480145
 GameObject:
   m_ObjectHideFlags: 0

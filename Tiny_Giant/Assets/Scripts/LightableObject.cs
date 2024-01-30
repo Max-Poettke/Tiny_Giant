@@ -8,6 +8,7 @@ public class LightableObject : MonoBehaviour
     private ParticleSystem _flame;
     private Light _light;
     [SerializeField] private BridgeRaiser bridge;
+    [SerializeField] private FMODUnity.StudioEventEmitter lightChord;
     public bool raining;
     public bool _lit = true;
     private bool _covered;
@@ -44,6 +45,7 @@ public class LightableObject : MonoBehaviour
         bridge.torchCount++;
         _lit = true;
         _flame.Play();
+        lightChord.Play();
         _light.enabled = true;
     }
 
