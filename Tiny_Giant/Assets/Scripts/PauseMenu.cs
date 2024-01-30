@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 {
     private Input_Actions _inputActions;
     private InputAction _pauseMenu;
+    private PlayerInput _playerInput;
 
     [SerializeField] private GameObject pauseUI;
     private bool isPaused;
@@ -37,6 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause(InputAction.CallbackContext context)
     {
+        if (!_playerInput) _playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
         isPaused = !isPaused;
         if (isPaused)
         {
@@ -50,15 +52,17 @@ public class PauseMenu : MonoBehaviour
 
     void ActivatePauseMenu()
     {
-        Time.timeScale = 0;
         pauseUI.SetActive(true);
+        Cursor.visible = true;
+        _playerInput.actions.Disable();
         Cursor.lockState = CursorLockMode.None;
     }
 
     public void DeactivatePauseMenu()
     {
-        Time.timeScale = 1;
         pauseUI.SetActive(false);
+        Cursor.visible = false;
+        _playerInput.actions.Enable();
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
