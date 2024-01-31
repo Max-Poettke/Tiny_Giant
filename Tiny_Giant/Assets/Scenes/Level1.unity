@@ -1172,7 +1172,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120986840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1561,7 +1561,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203376719}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3310,6 +3310,13 @@ MonoBehaviour:
       Data3: -820739956
       Data4: -535785684
     Path: event:/SoundFX/PlayerFootsteps
+  <bowSounds>k__BackingField:
+    Guid:
+      Data1: 341207353
+      Data2: 1281564741
+      Data3: 1079143302
+      Data4: 522211298
+    Path: event:/SoundFX/BowNArrow
   <natureSounds>k__BackingField:
     Guid:
       Data1: -1930803096
@@ -3324,6 +3331,13 @@ MonoBehaviour:
       Data3: 468316091
       Data4: 1189433387
     Path: event:/Music/Level1
+  <fireArrowMusic>k__BackingField:
+    Guid:
+      Data1: 1809046962
+      Data2: 1142369656
+      Data3: -1605680749
+      Data4: 2085808375
+    Path: event:/Music/FireArrow
 --- !u!64 &565300172
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3619,7 +3633,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629515001}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8217,6 +8231,11 @@ PrefabInstance:
       propertyPath: _gate
       value: 
       objectReference: {fileID: 1896350222}
+    - target: {fileID: 4409108255709753470, guid: ae9aeaf94b2261540b3e06216e5b5732,
+        type: 3}
+      propertyPath: _impulseSource
+      value: 
+      objectReference: {fileID: 1497666288}
     - target: {fileID: 5552710434353381003, guid: ae9aeaf94b2261540b3e06216e5b5732,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8318,6 +8337,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d03d48c2e39453b47995459887cf6994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1497666288 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4139146458264360446, guid: ae9aeaf94b2261540b3e06216e5b5732,
+    type: 3}
+  m_PrefabInstance: {fileID: 1497666284}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1514809735
@@ -10410,7 +10441,7 @@ PrefabInstance:
     - target: {fileID: 7887921743303483011, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
       propertyPath: timeDown
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7887921743303483011, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
@@ -13489,10 +13520,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2580174580456075741, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580174580456075741, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5241029610215224409, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: spawnVR
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5769260023554061287, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -13507,7 +13548,7 @@ PrefabInstance:
     - target: {fileID: 6340038197315439266, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

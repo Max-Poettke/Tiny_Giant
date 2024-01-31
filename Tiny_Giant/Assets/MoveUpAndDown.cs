@@ -50,7 +50,7 @@ public class MoveUpAndDown : NetworkBehaviour
         float timer = 0;
         while(!isGrabbed){
             timer += Runner.DeltaTime;
-            transform.position = Vector3.Lerp(transform.position, startPosition, timer / timeUp);
+            transform.position = Vector3.Lerp(transform.position, startPosition, timer / timeDown);
             if(transform.position.y <= startPosition.y + 0.1f){
                 break;
             }

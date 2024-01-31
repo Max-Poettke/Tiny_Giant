@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using Fusion;
+using Fusion.Addons.Physics;
 
 public class Bow : NetworkBehaviour
 {
@@ -124,7 +125,7 @@ public class Bow : NetworkBehaviour
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);
                 rb.AddForce((cam.forward) * shotPower * holdMultiplier, ForceMode.Impulse);
                 arrow.transform.SetParent(null);
-                
+
                 SmallPlayerAudio.playerAudioInstance.ReleaseBow();
                 AudioManager.audioManagerInstance.StopFireArrowMusic();
             }
@@ -148,15 +149,15 @@ public class Bow : NetworkBehaviour
         
         while(Time.time - start1 < 1f)
         {
-            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (8f * Time.deltaTime));
+            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (Time.deltaTime));
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (Time.deltaTime));
             yield return null;
         }
         
         while(Time.time - start1 < 2.5f)
         {
-            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
-            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (3f * Time.deltaTime));
+            arrow.transform.Translate(new Vector3(0, 0, -0.18f) * (Time.deltaTime));
+            fakeArrow.Translate(new Vector3(0, 0, -0.18f) * (Time.deltaTime));
             yield return null;
         }
     }

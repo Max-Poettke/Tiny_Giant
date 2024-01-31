@@ -26,7 +26,6 @@ public class RockSpawner : NetworkBehaviour
     private IEnumerator SpawnRocks() {
         yield return new WaitForSeconds(5f);
         while (true) {
-            Debug.Log("Spawning rock");
             yield return new WaitForSeconds(rockDelay);
             int randomInt = Random.Range(0, 1);
             var randomOffsetx = Random.Range(-distanceBetweenBounds, distanceBetweenBounds) / 2;

@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 6256684882892924811}
   - component: {fileID: 4198090055738993557}
   - component: {fileID: -7448053061584240336}
-  - component: {fileID: 4448316285944928492}
+  - component: {fileID: 4939097152501109682}
   m_Layer: 7
   m_Name: Arrow
   m_TagString: Arrow
@@ -5014,7 +5014,7 @@ MonoBehaviour:
   NestedObjects: []
   NetworkedBehaviours:
   - {fileID: 6256684882892924811}
-  - {fileID: 4448316285944928492}
+  - {fileID: 4939097152501109682}
 --- !u!96 &-7448053061584240336
 TrailRenderer:
   serializedVersion: 3
@@ -5128,7 +5128,7 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &4448316285944928492
+--- !u!114 &4939097152501109682
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5143,7 +5143,7 @@ MonoBehaviour:
   SyncScale: 0
   SyncParent: 1
   _autoAOIOverride: 1
-  DisableSharedModeInterpolation: 0
+  DisableSharedModeInterpolation: 1
 --- !u!1 &2597597172318973034
 GameObject:
   m_ObjectHideFlags: 0

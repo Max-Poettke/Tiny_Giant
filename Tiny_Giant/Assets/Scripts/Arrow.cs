@@ -70,7 +70,7 @@ public class Arrow : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Arrow")) return;
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Arrow") || collision.gameObject.CompareTag("Rock")) return;
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
@@ -97,7 +97,7 @@ public class Arrow : NetworkBehaviour
         AudioManager.audioManagerInstance.StopFireArrowMusic();
         trail.enabled = true;
         trail.Clear();
-        
+
     }
 
     private IEnumerator SizzleOut()
