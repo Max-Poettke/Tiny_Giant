@@ -184,7 +184,6 @@ namespace Fusion.Addons.ConnectionManagerAddon
                 {
                     // Spawn the user prefab for the local user
                     NetworkObject networkPlayerObject = runner.Spawn(userPrefabVR, position: spawnPointVR.position, rotation: transform.rotation, player);
-                    runner.MakeDontDestroyOnLoad(runner.transform.root.gameObject);
                 }
             } else {
                 if (player == runner.LocalPlayer && userPrefabPC != null)
@@ -193,6 +192,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
                     NetworkObject networkPlayerObject = runner.Spawn(userPrefabPC, position: spawnPointPC.position, rotation: transform.rotation, player);
                 }
             }
+            runner.MakeDontDestroyOnLoad(runner.transform.root.gameObject);
         }
     /*
         public void OnPlayerJoinedHostMode(NetworkRunner runner, PlayerRef player)

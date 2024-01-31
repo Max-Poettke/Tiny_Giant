@@ -5,6 +5,7 @@ using Fusion;
 
 public class Rock : NetworkBehaviour
 {
+    public ParticleSystem explosion;
     private void Update() {
         if (transform.position.y < -10) {
             Runner.Despawn(gameObject.GetComponent<NetworkObject>());
@@ -14,5 +15,9 @@ public class Rock : NetworkBehaviour
         if (other.CompareTag("Interactor")) {
             Runner.Despawn(gameObject.GetComponent<NetworkObject>());
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        explosion.Play();  
     }
 }
