@@ -62,11 +62,16 @@ public class Bow : NetworkBehaviour
     private void OnEnable()
     {
         _ready = false;
-        fakeBow.SetActive(true);
+        RPC_EnableFakeBow();
         StartCoroutine(RaiseBow());
     }
-
-
+    
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    public void RPC_EnableFakeBow()
+    {
+        fakeBow.SetActive(true);
+    }
+    
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf || !_ready) return;

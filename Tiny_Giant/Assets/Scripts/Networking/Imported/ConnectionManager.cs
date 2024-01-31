@@ -254,6 +254,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
         }
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
+            SceneManager.LoadScene(0);
             Debug.Log("Shutdown: " + shutdownReason);
         }
         public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) {
