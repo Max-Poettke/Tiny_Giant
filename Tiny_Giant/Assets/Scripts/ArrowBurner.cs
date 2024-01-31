@@ -21,7 +21,7 @@ public class ArrowBurner : MonoBehaviour
     {
         if (other.CompareTag("Arrow"))
         {
-            other.GetComponent<Arrow>().Light();
+            other.GetComponent<Arrow>().RPC_Light();
         }
     }
 }

@@ -83,7 +83,7 @@ public class Bow : NetworkBehaviour
                (runner, no) => no.transform.parent = arrowParent);
            
            if(activeArrows[pointer] != null) {
-                activeArrows[pointer].GetComponent<Arrow>().Vanish();
+                activeArrows[pointer].GetComponent<Arrow>().RPC_Vanish();
             } 
            
            activeArrows[pointer++] = arrow.gameObject; 
@@ -116,7 +116,7 @@ public class Bow : NetworkBehaviour
             }
             else
             {
-                if(activeArrows[pointer] != null) activeArrows[pointer].GetComponent<Arrow>().Vanish();
+                if(activeArrows[pointer] != null) activeArrows[pointer].GetComponent<Arrow>().RPC_Vanish();
                 activeArrows[pointer++] = arrow.gameObject;
                 pointer %= maxActiveArrows; 
                 

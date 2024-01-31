@@ -289,10 +289,10 @@ public class FirstPersonController : NetworkBehaviour
         switch (_bowChest._state)
         {
             case BowChest.ChestState.Waiting:
-                StartCoroutine(_bowChest.OpenChest());
+                _bowChest.RPC_OpenChest();
                 break;
             case BowChest.ChestState.Open:
-                _bowChest.PickUpBow();
+                _bowChest.RPC_PickUpBow();
                 break;
         }
     }

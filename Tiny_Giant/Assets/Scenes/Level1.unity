@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6370176, g: 0.68212944, b: 0.9073374, a: 1}
+  m_IndirectSpecularColor: {r: 0.63739324, g: 0.68244255, b: 0.9083734, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3948,7 +3948,7 @@ PrefabInstance:
     - target: {fileID: 3151888425818026480, guid: 1b302a52268e3f24a9c868ef1c31a96e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 203.46
+      value: 243.4
       objectReference: {fileID: 0}
     - target: {fileID: 3151888425818026480, guid: 1b302a52268e3f24a9c868ef1c31a96e,
         type: 3}
@@ -3989,6 +3989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CliffAreaChangeTrigger (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019907144074035984, guid: 1b302a52268e3f24a9c868ef1c31a96e,
+        type: 3}
+      propertyPath: area
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4528,6 +4533,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225719261}
     m_Modifications:
+    - target: {fileID: -8705244965459040542, guid: 1fde43d3627d4444a813ebca0be420e9,
+        type: 3}
+      propertyPath: area
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 104107799556705621, guid: 1fde43d3627d4444a813ebca0be420e9,
         type: 3}
       propertyPath: m_Size.x
@@ -5681,7 +5691,7 @@ PrefabInstance:
     - target: {fileID: 6089391019727181586, guid: 710b6a1ce9ff79a438250e59a91b7e3b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 207.82
+      value: 246.7
       objectReference: {fileID: 0}
     - target: {fileID: 6089391019727181586, guid: 710b6a1ce9ff79a438250e59a91b7e3b,
         type: 3}
@@ -6921,6 +6931,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 433960, guid: 7b2a3b8555d398f47ba16348aaa3b3f9,
     type: 3}
   m_PrefabInstance: {fileID: 524161592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1214670814 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8440020048503530590, guid: a91141723fa5fc4438ee20b3b4721329,
+    type: 3}
+  m_PrefabInstance: {fileID: 2461993300819673485}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1217443099 stripped
 Transform:
@@ -9463,6 +9479,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1225719261}
     m_Modifications:
+    - target: {fileID: -8705244965459040542, guid: 1fde43d3627d4444a813ebca0be420e9,
+        type: 3}
+      propertyPath: area
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 104107799556705621, guid: 1fde43d3627d4444a813ebca0be420e9,
         type: 3}
       propertyPath: m_Size.x
@@ -10378,6 +10399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CliffAreaChangeTrigger (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019907144074035984, guid: 1b302a52268e3f24a9c868ef1c31a96e,
+        type: 3}
+      propertyPath: area
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13430,7 +13456,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2461993300819673485}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1214670814}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 089fb0d99764c3f4bba7a0bc569682ce, type: 3}
@@ -13442,6 +13468,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2461993300819673485}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2407794553291887164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214670814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 678468923
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 2407794553291887158}
 --- !u!1001 &2461993300819673485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13513,7 +13557,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8440020048503530590, guid: a91141723fa5fc4438ee20b3b4721329,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2407794553291887164}
   m_SourcePrefab: {fileID: 100100000, guid: a91141723fa5fc4438ee20b3b4721329, type: 3}
 --- !u!114 &2528645462762501324 stripped
 MonoBehaviour:
@@ -13717,6 +13765,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1829939280025817067, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829939280025817067, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829939280025817067, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 81.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2580174580456075741, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: mode
@@ -13730,7 +13793,7 @@ PrefabInstance:
     - target: {fileID: 5241029610215224409, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: spawnVR
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5769260023554061285, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -13900,7 +13963,7 @@ PrefabInstance:
     - target: {fileID: 6340038197315439266, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7672364999005557931, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -13975,7 +14038,7 @@ PrefabInstance:
     - target: {fileID: 7672365000727995971, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7691147683419929755, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}

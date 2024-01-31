@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ExitGames.Client.Photon.StructWrapping;
+using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BowChest : MonoBehaviour
+public class BowChest : NetworkBehaviour
 {
     [SerializeField] private Transform lid;
 
@@ -28,6 +29,11 @@ public class BowChest : MonoBehaviour
         _state = ChestState.Waiting;
     }
 
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_OpenChest()
+    {
+        StartCoroutine(OpenChest());
+    }
     public IEnumerator OpenChest()
     {
         var time = 0f;
@@ -62,10 +68,10 @@ public class BowChest : MonoBehaviour
         }
     }
 
-    public void PickUpBow()
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_PickUpBow()
     {
         if (!_bow) return;
-        
         _bow.gameObject.SetActive(true);
         decorativeBow.SetActive(false);
     }

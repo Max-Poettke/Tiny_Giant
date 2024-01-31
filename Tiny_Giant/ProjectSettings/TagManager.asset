@@ -26,7 +26,7 @@ TagManager:
   - InvisibleToSmallPlayer
   - Gate
   - ShouldNotHandCollide
-  - 
+  - InvisibleToBigPlayer
   - 
   - 
   - 

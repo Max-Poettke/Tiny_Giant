@@ -75,7 +75,8 @@ public class Arrow : NetworkBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    public void Vanish()
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_Vanish()
     {
         StartCoroutine(VanishC());
     }
@@ -96,11 +97,18 @@ public class Arrow : NetworkBehaviour
     {
         yield return new WaitForSeconds(.05f);
         AudioManager.audioManagerInstance.StopFireArrowMusic();
-        trail.enabled = true;
-        trail.Clear();
-
+        RPC_ToggleTrail();
     }
-
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_ToggleTrail()
+    {
+        if (!trail.enabled)
+        {
+            trail.enabled = true;
+            trail.Clear();
+        }
+    }
+    
     private IEnumerator SizzleOut()
     {
         lit = false;
@@ -111,10 +119,9 @@ public class Arrow : NetworkBehaviour
         _flame.SetActive(false);
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(false);
     }
-
-
-
-    public void Light()
+    
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_Light()
     {
         if (lit) return;
         lit = true;
