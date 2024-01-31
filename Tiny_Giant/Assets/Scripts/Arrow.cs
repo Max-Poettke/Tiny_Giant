@@ -75,7 +75,7 @@ public class Arrow : NetworkBehaviour
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_Vanish()
     {
         StartCoroutine(VanishC());
@@ -99,7 +99,7 @@ public class Arrow : NetworkBehaviour
         AudioManager.audioManagerInstance.StopFireArrowMusic();
         RPC_ToggleTrail();
     }
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_ToggleTrail()
     {
         if (!trail.enabled)
@@ -120,7 +120,7 @@ public class Arrow : NetworkBehaviour
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(false);
     }
     
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_Light()
     {
         if (lit) return;
@@ -130,7 +130,7 @@ public class Arrow : NetworkBehaviour
         if (transform.parent != null) AudioManager.audioManagerInstance.PlayFireArrowMusic(lit);
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_LightFakeArrow()
     {
         fakeArrow.GetChild(0).gameObject.SetActive(true);

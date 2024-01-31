@@ -29,7 +29,7 @@ public class BowChest : NetworkBehaviour
         _state = ChestState.Waiting;
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_OpenChest()
     {
         StartCoroutine(OpenChest());
@@ -68,7 +68,7 @@ public class BowChest : NetworkBehaviour
         }
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_PickUpBow()
     {
         if (!_bow) return;

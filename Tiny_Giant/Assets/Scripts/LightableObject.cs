@@ -41,7 +41,7 @@ public class LightableObject : NetworkBehaviour
         }
     }
 
-    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_Light()
     {
         bridge.torchCount++;
