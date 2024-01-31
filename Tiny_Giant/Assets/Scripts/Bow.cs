@@ -73,6 +73,9 @@ public class Bow : NetworkBehaviour
         
         if (context.performed)
         {
+            var fpcontroller = transform.root.GetComponent<FirstPersonController>();
+            fpcontroller.enableJump = false;
+            fpcontroller.enableSprint = false;
             _playerAnimator.SetBool(ShotBow, false); 
             start = Time.time;
            // arrow = Instantiate(arrows, transform.position + transform.TransformVector(0f, 0f, 0.3f), transform.rotation, transform.parent);
@@ -93,10 +96,14 @@ public class Bow : NetworkBehaviour
         
         if (context.canceled)
         {
+            var fpcontroller = transform.root.GetComponent<FirstPersonController>();
+            fpcontroller.enableJump = true;
+            fpcontroller.enableSprint = true;
             if (_cancelling) return;
             _cancelling = true;
             end = Time.time;
             _playerAnimator.SetBool(AimBow, false);
+            AudioManager.audioManagerInstance.StopFireArrowMusic();
             if (end - start < minHoldDuration)
             {
                 /*arrow.TryGetComponent(out Arrow a);
@@ -127,7 +134,6 @@ public class Bow : NetworkBehaviour
                 arrow.transform.SetParent(null);
 
                 SmallPlayerAudio.playerAudioInstance.ReleaseBow();
-                AudioManager.audioManagerInstance.StopFireArrowMusic();
             }
 
             fakeArrow.localPosition = _fakeArrowPosition;

@@ -10,17 +10,22 @@ public class RainStartTrigger : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera rainCam2;
     [SerializeField] private LightableObject showBrazier;
     [SerializeField] private ParticleSystem rain;
+    private FirstPersonController _firstPersonController;
     private void OnTriggerEnter(Collider playerCollider)
     {
         if (playerCollider.tag.Equals("Player"))
         {
             playerCollider.GetComponent<RainIndicator>().isRaining = true;
+            _firstPersonController = playerCollider.GetComponent<FirstPersonController>();
             StartCoroutine(RainEntrance());
         }
     }
 
     private IEnumerator RainEntrance()
     {
+        _firstPersonController.ResetVelocity();
+        _firstPersonController.playerCanMove = false;
+        _firstPersonController.cameraCanMove = false;
         rain.Play();
         AudioManager.audioManagerInstance.StartRain();
         rainCam1.enabled = true;
@@ -33,6 +38,8 @@ public class RainStartTrigger : MonoBehaviour
         yield return new WaitForSecondsRealtime(6.5f);
         rainCam1.enabled = false;
         rainCam2.enabled = false;
+        _firstPersonController.playerCanMove = true;
+        _firstPersonController.cameraCanMove = true;
         gameObject.SetActive(false);
     }
 }

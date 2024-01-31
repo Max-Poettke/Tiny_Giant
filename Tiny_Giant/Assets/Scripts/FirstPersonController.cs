@@ -656,5 +656,13 @@ public class FirstPersonController : NetworkBehaviour
             isCrouched = true;
         }
     }
+
+    public void ResetVelocity()
+    {
+        rb.velocity = Vector3.zero;
+        _moveVector = Vector3.zero;
+        _animator.SetBool(Walk, false);
+        _animator.SetBool(Run, false);
+    }
     
 }

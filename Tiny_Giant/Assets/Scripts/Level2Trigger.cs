@@ -24,7 +24,6 @@ public class Level2Trigger : NetworkBehaviour
                 _loading = true;
                 StartCoroutine(endGame ? GoToMainMenu() : LoadLoadingScreen());
                 _player.GetComponent<FirstPersonController>().playerCanMove = false;
-                Runner.MakeDontDestroyOnLoad(other.gameObject);
             }
         }
     }
