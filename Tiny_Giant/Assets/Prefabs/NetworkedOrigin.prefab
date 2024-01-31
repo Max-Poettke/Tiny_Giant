@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1327005354708401485}
   m_Layer: 6
   m_Name: RightHand
-  m_TagString: Untagged
+  m_TagString: Interactor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6543190607826250393}
   m_Layer: 6
   m_Name: LeftHand
-  m_TagString: Untagged
+  m_TagString: Interactor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
