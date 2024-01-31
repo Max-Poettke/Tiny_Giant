@@ -39,7 +39,7 @@ public class Level2Trigger : NetworkBehaviour
         }
         _cine.m_Alpha = 1f;
         Runner.LoadScene(SceneRef.FromIndex(3), LoadSceneMode.Additive);
-        yield return new WaitForSeconds(1f);
+       yield return new WaitForSeconds(1f);
         Runner.UnloadScene(SceneRef.FromIndex(2));
     }
 

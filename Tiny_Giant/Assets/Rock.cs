@@ -20,5 +20,9 @@ public class Rock : NetworkBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<FirstPersonController>().OnDie();
+        }
     }
 }

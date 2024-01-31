@@ -17,6 +17,7 @@ using Unity.VisualScripting;
 using Object = System.Object;
 using FMOD.Studio;
 using FMODUnity;
+using Fusion.Addons.Physics;
 using Debug = UnityEngine.Debug;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
@@ -67,6 +68,7 @@ public class FirstPersonController : NetworkBehaviour
 
     // Internal Variables
     private bool isZoomed = false;
+    private bool dying;
 
     #endregion
     #endregion
@@ -663,6 +665,42 @@ public class FirstPersonController : NetworkBehaviour
         _moveVector = Vector3.zero;
         _animator.SetBool(Walk, false);
         _animator.SetBool(Run, false);
+        SmallPlayerAudio.playerAudioInstance.UpdateSound(isWalking);
     }
-    
+
+    public void OnDie()
+    {
+        if (dying) return;
+        dying = true;
+        playerCanMove = false;
+        cameraCanMove = false;
+        ResetVelocity();
+        StartCoroutine(Death());
+    }
+
+    private IEnumerator Death()
+    {
+        var time = 0f;
+        var cine = cineCamera.GetComponent<CinemachineStoryboard>();
+        var fadeTime = 1.5f;
+        while (time < fadeTime)
+        {
+            cine.m_Alpha = Mathf.Lerp(0f, 1f, time / fadeTime);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        cine.m_Alpha = 1f;
+        GetComponent<NetworkRigidbody3D>().Teleport(new Vector3(0f, 3f, 0f));
+        time = 0f;
+        while (time < fadeTime)
+        {
+            cine.m_Alpha = Mathf.Lerp(1f, 0f, time / fadeTime);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        cine.m_Alpha = 0f;
+        playerCanMove = true;
+        cameraCanMove = true;
+        dying = false;
+    }
 }
