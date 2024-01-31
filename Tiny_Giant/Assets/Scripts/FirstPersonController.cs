@@ -219,6 +219,18 @@ public class FirstPersonController : NetworkBehaviour
         {
             _mouse = context.ReadValue<Vector2>();
             yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
+            if (!invertCamera)
+            {
+                pitch -= mouseSensitivity * _mouse.y;
+                pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+            }
+            else
+            {
+                // Inverted Y
+                pitch += mouseSensitivity * _mouse.y;
+            }
+        
+            joint.localEulerAngles = new Vector3(pitch, 0, 0);
         }
 
         // Clamp pitch between lookAngle
@@ -556,18 +568,7 @@ public class FirstPersonController : NetworkBehaviour
 
     private void LateUpdate()
     {
-        if (!invertCamera)
-        {
-            pitch -= mouseSensitivity * _mouse.y;
-            pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
-        }
-        else
-        {
-            // Inverted Y
-            pitch += mouseSensitivity * _mouse.y;
-        }
         
-        joint.localEulerAngles = new Vector3(pitch, 0, 0);
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
