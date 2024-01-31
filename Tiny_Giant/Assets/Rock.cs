@@ -5,7 +5,7 @@ using Fusion;
 
 public class Rock : NetworkBehaviour
 {
-    public ParticleSystem explosion;
+    public GameObject explosion;
     private void Update() {
         if (transform.position.y < -10) {
             Runner.Despawn(gameObject.GetComponent<NetworkObject>());
@@ -17,7 +17,8 @@ public class Rock : NetworkBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-        explosion.Play();  
+    private void OnCollisionEnter(Collision other)
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
     }
 }

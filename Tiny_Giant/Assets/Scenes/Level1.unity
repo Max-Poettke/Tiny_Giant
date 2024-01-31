@@ -10441,12 +10441,12 @@ PrefabInstance:
     - target: {fileID: 7887921743303483011, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
       propertyPath: timeDown
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7887921743303483011, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
       propertyPath: timeWait
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8819529554202146046, guid: 0a5ef1aaf47f03547983772b8f1f3a80,
         type: 3}
