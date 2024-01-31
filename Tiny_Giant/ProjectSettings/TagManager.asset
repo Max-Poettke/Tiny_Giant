@@ -12,6 +12,7 @@ TagManager:
   - Arrow
   - Interactable
   - Rock
+  - VR Player
   layers:
   - Default
   - TransparentFX

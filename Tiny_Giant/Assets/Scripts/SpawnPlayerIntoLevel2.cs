@@ -8,10 +8,11 @@ using UnityEngine;
 public class SpawnPlayerIntoLevel2 : NetworkBehaviour
 {
    private GameObject _player;
+   private GameObject _vrPlayer;
    private CinemachineStoryboard _cine;
    private float fadeTime = 1f;
 
-   private void Start()
+   public override void Spawned()
    {
       _player = GameObject.FindWithTag("Player");
       if (!_player) return;
@@ -19,6 +20,10 @@ public class SpawnPlayerIntoLevel2 : NetworkBehaviour
       _player.GetComponentInChildren<NetworkRigidbody3D>().Teleport(transform.position);
       StartCoroutine(FadeBack());
 
+      _vrPlayer = GameObject.FindWithTag("VRPlayer");
+      _vrPlayer.GetComponent<XRScrollMap>().enabled = false;
+      if (!_vrPlayer) return;
+      _vrPlayer.transform.position = new Vector3(15f, -60f, 0f);
    }
 
    private IEnumerator FadeBack()

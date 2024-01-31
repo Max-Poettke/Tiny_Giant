@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.63739324, g: 0.68244255, b: 0.9083734, a: 1}
+  m_IndirectSpecularColor: {r: 0.6370176, g: 0.68212944, b: 0.9073374, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13730,7 +13730,7 @@ PrefabInstance:
     - target: {fileID: 5241029610215224409, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: spawnVR
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5769260023554061287, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -13745,7 +13745,7 @@ PrefabInstance:
     - target: {fileID: 6340038197315439266, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7672364999070935743, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -13757,10 +13757,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7672365000727995969, guid: f2abfb042831b9c49b9922ca887f2cf4,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4055
+      objectReference: {fileID: 0}
     - target: {fileID: 7672365000727995971, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7691147683419929755, guid: f2abfb042831b9c49b9922ca887f2cf4,
         type: 3}
@@ -14150,6 +14155,11 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2091587229}
+    - target: {fileID: 3893601971842637152, guid: a1e0a9b8d37f3d249ac73406d096d1eb,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4918683210062283654, guid: a1e0a9b8d37f3d249ac73406d096d1eb,
         type: 3}
       propertyPath: m_Layer
@@ -14251,7 +14261,8 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4918683210062283654, guid: a1e0a9b8d37f3d249ac73406d096d1eb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1e0a9b8d37f3d249ac73406d096d1eb, type: 3}
