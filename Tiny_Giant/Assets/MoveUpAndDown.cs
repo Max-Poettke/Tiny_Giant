@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using ExitGames.Client.Photon.StructWrapping;
 using Fusion.XR.Shared.Rig;
 
-public class MoveUpAndDown : NetworkBehaviour
+public class MoveUpAndDown : NetworkBehaviour, IPlayerJoined
 {
     public float distanceY;
     private Vector3 startPosition;
@@ -17,7 +17,11 @@ public class MoveUpAndDown : NetworkBehaviour
     public float timeWait;
     [Networked]
     public bool isGrabbed { get; set; }
+
+    private bool grabbed;
     public bool inMotion = false;
+
+    private ChangeDetector changeDetector;
     
     private void Start() {
         startPosition = transform.position;
@@ -25,15 +29,29 @@ public class MoveUpAndDown : NetworkBehaviour
     }
 
     public void StartMove(){
-        if(!inMotion && !isGrabbed){
+        if(!inMotion && !grabbed){
             StartCoroutine(MoveUp());
             inMotion = true;
         }
     }
 
+    public override void Render()
+    {
+        base.Render();
+        foreach (var change in changeDetector.DetectChanges(this))
+    {
+        switch (change)
+        {
+            case nameof(isGrabbed):
+                grabbed = isGrabbed;
+                break;
+        }
+    }
+    }
+
     private IEnumerator MoveUp(){
         float timer = 0;
-        while(!isGrabbed){
+        while(!grabbed){
             timer += Runner.DeltaTime;
             Debug.Log(timer);
             transform.position = Vector3.Lerp(transform.position, endPosition, timer / timeUp);
@@ -48,7 +66,7 @@ public class MoveUpAndDown : NetworkBehaviour
 
     private IEnumerator MoveDown(){
         float timer = 0;
-        while(!isGrabbed){
+        while(!grabbed){
             timer += Runner.DeltaTime;
             transform.position = Vector3.Lerp(transform.position, startPosition, timer / timeDown);
             if(transform.position.y <= startPosition.y + 0.1f){
@@ -83,5 +101,10 @@ public class MoveUpAndDown : NetworkBehaviour
             if(HasStateAuthority) isGrabbed = false;
             hasGrabbed = false;
         }
+    }
+
+    void IPlayerJoined.PlayerJoined(PlayerRef player)
+    {
+        if(changeDetector.Equals(null))changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
     }
 }
