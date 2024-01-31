@@ -31,7 +31,8 @@ public class Arrow : NetworkBehaviour
     }
     
     private GameObject _flame;
-    public bool lit;
+    [Networked]
+    public bool lit { get; set; }
     private Bow _bow;
     public TrailRenderer trail;
     
