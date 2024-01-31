@@ -2214,6 +2214,7 @@ MonoBehaviour:
   speedReduction: 0.5
   joint: {fileID: 3821734891620276514}
   _bowChest: {fileID: 0}
+  deathPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &3911059443674006349
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,20 +19,20 @@ public class Arrow : NetworkBehaviour
     //Change detector for detecting changes in the color variable
     private ChangeDetector changeDetector;
 
-    
+    private Transform fakeArrow;
     public override void Spawned()
     {
         //Get the change detector for the color variable
         changeDetector = GetChangeDetector(ChangeDetector.Source.SimulationState);
         _bow = transform.parent.parent.GetComponent<Bow>();
+        fakeArrow = _bow.fakeArrow;
         rainOn = transform.root.GetComponent<RainIndicator>().isRaining;
         trail = GetComponent<TrailRenderer>();
         trail.enabled = false;
     }
     
     private GameObject _flame;
-    [Networked]
-    public bool lit { get; set; }
+    public bool lit;
     private Bow _bow;
     public TrailRenderer trail;
     
@@ -126,9 +126,14 @@ public class Arrow : NetworkBehaviour
         if (lit) return;
         lit = true;
         _flame.SetActive(true);
-        _bow.fakeArrow.GetChild(0).gameObject.SetActive(true);
+        RPC_LightFakeArrow();
         if (transform.parent != null) AudioManager.audioManagerInstance.PlayFireArrowMusic(lit);
     }
-    
+
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_LightFakeArrow()
+    {
+        fakeArrow.GetChild(0).gameObject.SetActive(true);
+    }
     
 }

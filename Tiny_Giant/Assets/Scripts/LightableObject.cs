@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Fusion;
 using UnityEngine;
 
-public class LightableObject : MonoBehaviour
+public class LightableObject : NetworkBehaviour
 {
     private ParticleSystem _flame;
     private Light _light;
@@ -26,7 +27,7 @@ public class LightableObject : MonoBehaviour
         
         if (other.GetComponent<Arrow>().lit)
         {
-            Light();
+            RPC_Light();
         }
     }
 
@@ -40,7 +41,8 @@ public class LightableObject : MonoBehaviour
         }
     }
 
-    private void Light()
+    [Rpc(sources: RpcSources.StateAuthority, targets: RpcTargets.All)]
+    public void RPC_Light()
     {
         bridge.torchCount++;
         _lit = true;
