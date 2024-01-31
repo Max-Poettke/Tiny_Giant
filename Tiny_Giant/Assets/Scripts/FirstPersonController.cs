@@ -320,6 +320,7 @@ public class FirstPersonController : NetworkBehaviour
 
     public override void Spawned()
     {
+        deathPoint = new Vector3(0f, 3f, 0f);
         if(lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -678,6 +679,7 @@ public class FirstPersonController : NetworkBehaviour
         StartCoroutine(Death());
     }
 
+    public Vector3 deathPoint;
     private IEnumerator Death()
     {
         var time = 0f;

@@ -17,6 +17,7 @@ public class RainStartTrigger : MonoBehaviour
         {
             playerCollider.GetComponent<RainIndicator>().isRaining = true;
             _firstPersonController = playerCollider.GetComponent<FirstPersonController>();
+            _firstPersonController.deathPoint = new Vector3(-36f, 4f, -44f);
             StartCoroutine(RainEntrance());
         }
     }
