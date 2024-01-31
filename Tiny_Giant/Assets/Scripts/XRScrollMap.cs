@@ -26,6 +26,11 @@ public class XRScrollMap : MonoBehaviour
         leftFrontBottom = GameObject.Find("LeftFrontBottom");
         rightBackTop = GameObject.Find("RightBackTop");
         table = GameObject.FindGameObjectWithTag("Table");
+        if(!leftFrontBottom || !rightBackTop || !table)
+        {
+            Debug.LogError("XRScrollMap: Could not find LeftFrontBottom, RightBackTop, or Table GameObjects. Make sure they are in the scene and tagged correctly.");
+            this.enabled = false;
+        }
     }
 
     void FixedUpdate()

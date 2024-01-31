@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 4498106734561031163}
   - component: {fileID: 9200113688598232237}
   - component: {fileID: 3087968429219325610}
-  - component: {fileID: 7667586439101246720}
-  - component: {fileID: 7677685356977718972}
   m_Layer: 0
   m_Name: SM_Bld_Castle_Iron_Gate_01
   m_TagString: PlaceableObject
@@ -56,6 +54,7 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 3087968429219325610}
   - {fileID: 8819529554202146046}
+  - {fileID: 7887921743303483011}
 --- !u!54 &9200113688598232237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105,40 +104,6 @@ MonoBehaviour:
     Position: 0.01
     Rotation: 0.01
     Scale: 0.01
---- !u!65 &7667586439101246720
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.5080283, y: 2.9063325, z: 0.16139215}
-  m_Center: {x: -0.013974507, y: 1.4475033, z: 0.0044137305}
---- !u!114 &7677685356977718972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375cb86437bb20d42b078dcb0d561a23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gate: {fileID: 0}
 --- !u!1 &5915442439077980925
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4800535080771698054}
   - component: {fileID: 8819529554202146046}
+  - component: {fileID: 7887921743303483011}
   m_Layer: 0
   m_Name: ToMove
   m_TagString: Untagged
@@ -271,3 +237,21 @@ MonoBehaviour:
   SyncParent: 0
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 0
+--- !u!114 &7887921743303483011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7908806966942446854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d055afd9e19ee0a44a156a0c2772b97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceY: 9
+  timeUp: 2.5
+  timeDown: 1
+  timeWait: 0.5
+  _isGrabbed: 0
+  inMotion: 0

@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 0}
-  raiseTime: 1.3
+  raiseTime: 1
   lowerTime: 2
   waitTime: 1
-  grabbed: 0
+  _grabbed: 0
 --- !u!114 &4139146458264360446
 MonoBehaviour:
   m_ObjectHideFlags: 0
