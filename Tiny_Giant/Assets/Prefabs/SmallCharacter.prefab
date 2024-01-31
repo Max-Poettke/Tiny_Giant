@@ -747,7 +747,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2658,6 +2658,7 @@ GameObject:
   - component: {fileID: 4617698545362669063}
   - component: {fileID: 1537433442610595113}
   - component: {fileID: 484299184366243268}
+  - component: {fileID: 7057624174096123702}
   m_Layer: 0
   m_Name: CineCamera
   m_TagString: Untagged
@@ -2768,6 +2769,18 @@ MonoBehaviour:
   m_RenderMode: 0
   m_SortingOrder: 2
   m_PlaneDistance: 100
+--- !u!114 &7057624174096123702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826680679315031548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729aad4491e915a41bda2b8325cf757a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4959974069060487781
 GameObject:
   m_ObjectHideFlags: 0

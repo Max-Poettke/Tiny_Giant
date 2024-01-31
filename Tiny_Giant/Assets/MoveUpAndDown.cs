@@ -28,11 +28,10 @@ public class MoveUpAndDown : NetworkBehaviour
     private void Start() {
         startPosition = transform.position;
         endPosition = new Vector3(transform.position.x, transform.position.y + distanceY, transform.position.z);
-        StartCoroutine(GetChangeDetector());
     }
 
-    private IEnumerator GetChangeDetector(){
-        yield return new WaitForSeconds(5f);
+    public override void Spawned(){
+        base.Spawned();
         changeDetector = GetChangeDetector(ChangeDetector.Source.SnapshotFrom);
         StartCoroutine(UpdateChanges());
     }
@@ -58,7 +57,13 @@ public class MoveUpAndDown : NetworkBehaviour
 
     private IEnumerator MoveUp(){
         float timer = 0;
-        while(!grabbed){
+        if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
+        while(timer < timeUp)
+        {
+            while (grabbed)
+            {
+                yield return null; 
+            }
             timer += Runner.DeltaTime;
             transform.position = Vector3.Lerp(transform.position, endPosition, timer / timeUp);
             if(transform.position.y >= endPosition.y - 0.1f){
@@ -72,7 +77,12 @@ public class MoveUpAndDown : NetworkBehaviour
 
     private IEnumerator MoveDown(){
         float timer = 0;
-        while(!grabbed){
+        if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
+        while(timer < timeDown){
+            while (grabbed)
+            {
+                yield return null; 
+            }
             timer += Runner.DeltaTime;
             transform.position = Vector3.Lerp(transform.position, startPosition, timer / timeDown);
             if(transform.position.y <= startPosition.y + 0.1f){
@@ -93,9 +103,11 @@ public class MoveUpAndDown : NetworkBehaviour
     private bool hasGrabbed = false;
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.CompareTag("Interactor")){
+            if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
             var hand = other.transform.parent.GetComponent<HardwareHand>();
-            isGrabbed = other.GetComponent<GrabbingState>().isGripping;
-            if(isGrabbed && !hasGrabbed){
+            grabbed = other.GetComponent<GrabbingState>().isGripping;
+            isGrabbed = grabbed;
+            if(grabbed && !grabbed){
                 hasGrabbed = true;
                 hand.SendHapticImpulse(0.3f, 0.1f);
             }
@@ -104,6 +116,8 @@ public class MoveUpAndDown : NetworkBehaviour
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.CompareTag("Interactor")){
+            if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
+            grabbed = false;
             isGrabbed = false;
             hasGrabbed = false;
         }
