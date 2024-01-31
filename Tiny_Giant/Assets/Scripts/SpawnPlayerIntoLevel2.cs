@@ -20,9 +20,9 @@ public class SpawnPlayerIntoLevel2 : NetworkBehaviour
       _player.GetComponentInChildren<NetworkRigidbody3D>().Teleport(transform.position);
       StartCoroutine(FadeBack());
 
-      _vrPlayer = GameObject.FindWithTag("VRPlayer");
-      _vrPlayer.GetComponent<XRScrollMap>().enabled = false;
+      _vrPlayer = GameObject.FindWithTag("VR Player");
       if (!_vrPlayer) return;
+      _vrPlayer.GetComponent<XRScrollMap>().enabled = false;
       _vrPlayer.transform.position = new Vector3(15f, -60f, 0f);
    }
 
