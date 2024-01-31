@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8d088451-a684-47f5-9393-6ec9fa664bb9}">
+		<property name="assetPath">
+			<value>AmbientSounds/Pebbles-rocks-and-boulders-falling.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.1428571428571423</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{de974230-9867-4744-acd4-5f180f149031}</destination>
+		</relationship>
+	</object>
+</objects>

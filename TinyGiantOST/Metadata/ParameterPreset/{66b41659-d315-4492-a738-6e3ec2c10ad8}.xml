@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{66b41659-d315-4492-a738-6e3ec2c10ad8}">
+		<property name="name">
+			<value>BridgeMove</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bdf17864-e83c-4325-b33b-1405e12481ed}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{724cd898-31c0-4a09-b94e-76b30c2585dc}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{724cd898-31c0-4a09-b94e-76b30c2585dc}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>Fall</value>
+			<value>Rise</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

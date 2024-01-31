@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using FMODUnity;
 using UnityEngine;
 
 public class BridgeRaiser : MonoBehaviour
@@ -11,6 +12,7 @@ public class BridgeRaiser : MonoBehaviour
     [SerializeField] private Vector3 raisedPos;
     [SerializeField] private Vector3 loweredPos;
     private CinemachineImpulseSource _rumble;
+    private StudioEventEmitter movingBridgeEmitter;
 
     private bool _raised = true;
     // Start is called before the first frame update
@@ -18,6 +20,7 @@ public class BridgeRaiser : MonoBehaviour
     {
         torchCount = 2;
         _rumble = GetComponent<CinemachineImpulseSource>();
+        movingBridgeEmitter = this.gameObject.transform.Find("FMODEventEmitter").GetComponent<StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -36,6 +39,7 @@ public class BridgeRaiser : MonoBehaviour
         const float raiseTime = 4.5f;
         var position = transform.localPosition;
         StartCoroutine(Rumble(raiseTime));
+        PlayBridgeRise();
         while (time < raiseTime)
         {
             transform.localPosition = Vector3.Slerp(position, raisedPos, time / raiseTime);
@@ -55,6 +59,7 @@ public class BridgeRaiser : MonoBehaviour
         const float lowerTime = 5f;
         var position = transform.localPosition;
         StartCoroutine(Rumble(lowerTime));
+        PlayBridgeFall();
         while (time < lowerTime)
         {
             transform.localPosition = Vector3.Slerp(position, loweredPos, time / lowerTime);
@@ -74,5 +79,17 @@ public class BridgeRaiser : MonoBehaviour
             yield return new WaitForSeconds(1f);
             time += 1f;
         }
+    }
+
+    private void PlayBridgeFall()
+    {
+        movingBridgeEmitter.Play();
+    }
+
+    private void PlayBridgeRise()
+    {
+        movingBridgeEmitter.Play();
+        movingBridgeEmitter.SetParameter("BridgeMove", 1);
+        
     }
 }
