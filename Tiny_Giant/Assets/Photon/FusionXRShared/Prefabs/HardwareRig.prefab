@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 4208948367510053356}
   - component: {fileID: 4208948367642590992}
   - component: {fileID: 8665340302229376672}
+  - component: {fileID: 787174199529767930}
   - component: {fileID: 5981727937443802534}
   m_Layer: 0
   m_Name: LeftHand
@@ -370,7 +371,8 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 0}
+    m_Reference: {fileID: 6772562097508503508, guid: 8ee01ccc2260c484e81befbe464d63af,
+      type: 3}
   grabThreshold: 0.5
   updateGrabWithAction: 1
   networkTransform: {fileID: 0}
@@ -465,6 +467,21 @@ MonoBehaviour:
   shouldSynchDevicePosition: 1
   updateOnAfterInputSystemUpdate: 1
   side: 0
+--- !u!114 &787174199529767930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208948367510053347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564e40c810f2c8a49b7e7a94c4a448c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbedObject: {fileID: 0}
+  networkGrabber: {fileID: 0}
+  hoveredGrabbables: []
 --- !u!114 &5981727937443802534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +723,7 @@ GameObject:
   - component: {fileID: 4208948368886931614}
   - component: {fileID: 4208948367642590991}
   - component: {fileID: 9148628991676448252}
+  - component: {fileID: 6330801478844800172}
   - component: {fileID: 3076989906817775717}
   m_Layer: 0
   m_Name: RightHand
@@ -907,6 +925,21 @@ MonoBehaviour:
   shouldSynchDevicePosition: 1
   updateOnAfterInputSystemUpdate: 1
   side: 1
+--- !u!114 &6330801478844800172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208948368886931613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564e40c810f2c8a49b7e7a94c4a448c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbedObject: {fileID: 0}
+  networkGrabber: {fileID: 0}
+  hoveredGrabbables: []
 --- !u!114 &3076989906817775717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,6 +966,7 @@ GameObject:
   - component: {fileID: 4208948369037581450}
   - component: {fileID: 4208948369037581451}
   - component: {fileID: 4208948369037581448}
+  - component: {fileID: 7085621418315691022}
   - component: {fileID: 4208948369037581461}
   m_Layer: 0
   m_Name: HardwareRig
@@ -994,6 +1028,40 @@ MonoBehaviour:
   onTeleport:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7085621418315691022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4208948369037581449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366ae6422adff3d49a5a4ce07036b03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hardwareHand: {fileID: 4208948367510053357}
+  mapObjectMaterials:
+  - {fileID: 2100000, guid: 23780f3c9773441419d538a1540b9b3d, type: 2}
+  - {fileID: 2100000, guid: c3dde5721542bc7449f59590d1df4b08, type: 2}
+  - {fileID: 2100000, guid: ad56cc76e44f5c74fba1f9b273b5b988, type: 2}
+  - {fileID: 2100000, guid: 9bf3dd01aef1e4b4abe14ec8d522b06e, type: 2}
+  - {fileID: 2100000, guid: 3c8ffdb1c95178d489aa364e74aebd84, type: 2}
+  - {fileID: 2100000, guid: 80b7b58bc1ee7cd4481c130cefb46f91, type: 2}
+  - {fileID: 2100000, guid: f5843f09e923b0b47ac74e82bef365fb, type: 2}
+  - {fileID: 2100000, guid: dbaf553da9b2c794b9271bc40ca4bdd0, type: 2}
+  - {fileID: 2100000, guid: 0ed83a820da57674b91b9c4d7a91de6d, type: 2}
+  - {fileID: 2100000, guid: 9afb17ebad1e08d498bb2e2c7f1ff38b, type: 2}
+  - {fileID: 2100000, guid: ac69ba98a5dbd2b4cb1b51f9b231f6b5, type: 2}
+  - {fileID: 2100000, guid: d96735592ccbdc84f9758601f54476a1, type: 2}
+  - {fileID: 2100000, guid: fac9278a22b671d41aacd6b9614fe8c1, type: 2}
+  - {fileID: 2100000, guid: 9990016b2aa882040be3814686accec8, type: 2}
+  - {fileID: 2100000, guid: ca1043e67fa3cc04c9006c0e6339b646, type: 2}
+  leftFrontBottom: {fileID: 0}
+  rightBackTop: {fileID: 0}
+  table: {fileID: 0}
+  controllerPositionChange: {x: 0, y: 0, z: 0}
+  isGripping: 0
 --- !u!114 &4208948369037581461
 MonoBehaviour:
   m_ObjectHideFlags: 0

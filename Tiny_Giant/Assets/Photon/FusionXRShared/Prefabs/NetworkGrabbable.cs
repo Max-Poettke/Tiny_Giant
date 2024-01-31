@@ -17,6 +17,7 @@ namespace Fusion.XR.Shared.Grabbing
     [DefaultExecutionOrder(NetworkGrabbable.EXECUTION_ORDER)]
     public class NetworkGrabbable : NetworkBehaviour
     {
+        public bool moveAbleObject = true;
         public const int EXECUTION_ORDER = NetworkGrabber.EXECUTION_ORDER + 10;
         [HideInInspector]
         public NetworkTransform networkTransform;
@@ -138,7 +139,7 @@ namespace Fusion.XR.Shared.Grabbing
             // We only update the object position if we have the state authority
             if (!Object.HasStateAuthority) return;
 
-            if (!IsGrabbed) return;
+            if (!IsGrabbed || !moveAbleObject) return;
             // Follow grabber, adding position/rotation offsets
             grabbable.Follow(followedTransform: CurrentGrabber.transform, LocalPositionOffset, LocalRotationOffset);
         }
@@ -159,7 +160,7 @@ namespace Fusion.XR.Shared.Grabbing
                 }
             }
 
-            if (isTakingAuthority && extrapolateWhileTakingAuthority)
+            if (isTakingAuthority && extrapolateWhileTakingAuthority && moveAbleObject)
             {
                 // If we are currently taking the authority on the object due to a grab, the network info are still not set
                 //  but we will extrapolate anyway (if the option extrapolateWhileTakingAuthority is true) to avoid having the grabbed object staying still until we receive the authority
@@ -168,7 +169,7 @@ namespace Fusion.XR.Shared.Grabbing
             }
 
             // No need to extrapolate if the object is not grabbed
-            if (!IsGrabbed) return;
+            if (!IsGrabbed || !moveAbleObject) return;
 
             // Extrapolation: Make visual representation follow grabber, adding position/rotation offsets
             // We extrapolate for all users: we know that the grabbed object should follow accuratly the grabber, even if the network position might be a bit out of sync
@@ -180,7 +181,7 @@ namespace Fusion.XR.Shared.Grabbing
             // No need to extrapolate if the object is not really grabbed
             if (grabbable.currentGrabber == null) return;
             NetworkGrabber networkGrabber = grabbable.currentGrabber.networkGrabber;
-
+            if(!moveAbleObject) return;
             // Extrapolation: Make visual representation follow grabber, adding position/rotation offsets
             // We use grabberWhileTakingAuthority instead of CurrentGrabber as we are currently waiting for the authority transfer: the network vars are not already set, so we use the temporary versions
             grabbable.Follow(followedTransform: networkGrabber.hand.transform, grabbable.localPositionOffset, grabbable.localRotationOffset);

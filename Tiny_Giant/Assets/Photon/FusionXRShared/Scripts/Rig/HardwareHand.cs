@@ -62,6 +62,7 @@ namespace Fusion.XR.Shared.Rig
 
         protected virtual void Update()
         {
+            InputSystem.Update();
             // update hand pose
             handCommand.thumbTouchedCommand = thumbAction.action.ReadValue<float>();
             handCommand.indexTouchedCommand = indexAction.action.ReadValue<float>();
@@ -71,7 +72,10 @@ namespace Fusion.XR.Shared.Rig
             handCommand.pinchCommand = 0;
 
             // update hand interaction
-            if(updateGrabWithAction) isGrabbing = grabAction.action.ReadValue<float>() > grabThreshold;
+            if(updateGrabWithAction) {
+                isGrabbing = grabAction.action.ReadValue<float>() > grabThreshold;
+            }
+
             
             // If a local hand representation is available, we forward the input to it
             //  Note that the hand local representation is also used to store the finger colliders, and so need to be animated even if not having an actively displayed renderer
