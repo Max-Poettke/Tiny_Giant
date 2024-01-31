@@ -55,4 +55,10 @@ public class SmallPlayerAudio : MonoBehaviour
         bowSoundsEmitter.Play();
         bowSoundsEmitter.SetParameter("Bow",1);
     }
+
+    private void OnDestroy()
+    {
+        playerFootstepsEmitter.Stop();
+        bowSoundsEmitter.Stop();
+    }
 }

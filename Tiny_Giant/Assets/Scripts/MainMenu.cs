@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
     [SerializeField] private GameObject volumeSettings;
+
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void OnPlay()
     {
         SceneManager.LoadScene(1);

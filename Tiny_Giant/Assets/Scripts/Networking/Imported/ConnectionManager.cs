@@ -192,6 +192,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
                 // Spawn the user prefab for the local user
                 NetworkObject networkPlayerObject = runner.Spawn(userPrefabPC, position: spawnPointPC.position, rotation: transform.rotation, player, (runner, obj) => {
                 });
+                runner.MakeDontDestroyOnLoad(runner.transform.root.gameObject);
             }
             
         }
@@ -254,6 +255,8 @@ namespace Fusion.Addons.ConnectionManagerAddon
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
             Debug.Log("Shutdown: " + shutdownReason);
+            SceneManager.LoadScene(0);
+            Destroy(transform.root.gameObject);
         }
         public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) {
             Debug.Log("OnDisconnectedFromServer: "+ reason);
