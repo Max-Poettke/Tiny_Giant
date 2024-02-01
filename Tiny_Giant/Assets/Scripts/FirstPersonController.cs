@@ -4,27 +4,14 @@
 //
 // "Enable/Disable Headbob, Changed look rotations - should result in reduced camera jitters" || version 1.0.1
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
-using FMOD;
 using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using Object = System.Object;
-using FMOD.Studio;
-using FMODUnity;
 using Fusion.Addons.Physics;
 using Debug = UnityEngine.Debug;
-using STOP_MODE = FMOD.Studio.STOP_MODE;
-
-#if UNITY_EDITOR
-    using UnityEditor;
-    using System.Net;
-#endif
 
 public class FirstPersonController : NetworkBehaviour
 {
@@ -212,6 +199,7 @@ public class FirstPersonController : NetworkBehaviour
     }
 
     private Vector2 _mouse;
+    public bool _gamepad;
     public void OnLook(InputAction.CallbackContext context)
     {
         #region Camera
@@ -220,18 +208,18 @@ public class FirstPersonController : NetworkBehaviour
         if(cameraCanMove)
         {
             _mouse = context.ReadValue<Vector2>();
+            if (_gamepad) return;
             yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * _mouse.y;
-                pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+                    pitch -= mouseSensitivity * _mouse.y;
+                    pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle); 
             }
             else
-            {
+            { 
                 // Inverted Y
                 pitch += mouseSensitivity * _mouse.y;
             }
-        
             joint.localEulerAngles = new Vector3(pitch, 0, 0);
         }
 
@@ -317,9 +305,23 @@ public class FirstPersonController : NetworkBehaviour
             sprintCooldownReset = sprintCooldown;
         }
     }
-
     public override void Spawned()
     {
+        InputSystem.onActionChange += (obj, change) =>
+        {
+            if (change == InputActionChange.ActionPerformed)
+            {
+                var inputAction = (InputAction) obj;
+                var lastControl = inputAction.activeControl;
+                var lastDevice = lastControl.device;
+                if (lastDevice.name != "Keyboard" && lastDevice.name != "Mouse")
+                {
+                    _gamepad = true;
+                    return;
+                }
+                _gamepad = false;
+            }
+        };
         deathPoint = new Vector3(0f, 3f, 0f);
         if(lockCursor)
         {
@@ -335,7 +337,6 @@ public class FirstPersonController : NetworkBehaviour
         {
             crosshairObject.gameObject.SetActive(false);
         }
-
         #region Sprint Bar
 
         sprintBarCG = GetComponentInChildren<CanvasGroup>();
@@ -373,8 +374,8 @@ public class FirstPersonController : NetworkBehaviour
     private float curAmp;
     public override void FixedUpdateNetwork()
     {
-        InputSystem.Update();
         if (!HasInputAuthority) return;
+        InputSystem.Update();
         transform.localEulerAngles = new Vector3(0, yaw, 0);
         #region Movement
         var noise = cineCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -494,6 +495,21 @@ public class FirstPersonController : NetworkBehaviour
     public override void Render()
     {
         if (!HasInputAuthority) return;
+        if (_gamepad && cameraCanMove)
+        {
+            yaw = transform.localEulerAngles.y + _mouse.x * mouseSensitivity * 10f;
+            if (!invertCamera)
+            {
+                pitch -= mouseSensitivity * _mouse.y;
+                pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
+            }
+            else
+            {
+                // Inverted Y
+                pitch += mouseSensitivity * _mouse.y;
+            }
+            joint.localEulerAngles = new Vector3(pitch, 0, 0);
+        }
         #region CameraZoom
 
         // Lerps camera.fieldOfView to allow for a smooth transistion
@@ -567,11 +583,6 @@ public class FirstPersonController : NetworkBehaviour
         _slopeVector = Vector3.ProjectOnPlane(_moveVector, slopeHit.normal);
         CheckGround();
         SetDrag();
-    }
-
-    private void LateUpdate()
-    {
-        
     }
 
     // Sets isGrounded based on a raycast sent straigth down from the player object
