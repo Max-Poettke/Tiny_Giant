@@ -51,6 +51,12 @@ public class LightableObject : NetworkBehaviour
         _light.enabled = true;
     }
 
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    public void RPC_ToggleRaining()
+    {
+        raining = true;
+    }
+
     private void Extinguish()
     {
         bridge.torchCount--;

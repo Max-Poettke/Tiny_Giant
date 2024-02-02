@@ -134,7 +134,8 @@ public class Bow : NetworkBehaviour
                 _animator.SetTrigger(Release);
                 _playerAnimator.SetBool(ShotBow, true);
                 var rb = arrow.GetComponent<Rigidbody>();
-                StartCoroutine(arrow.GetComponent<Arrow>().ShootTrail());
+                arrow.GetComponent<Arrow>().RPC_ToggleTrail();
+                AudioManager.audioManagerInstance.StopFireArrowMusic();
                 rb.isKinematic = false;
                 rb.useGravity = true;
                 var holdMultiplier = Mathf.Min(end - start, maxHoldDuration);

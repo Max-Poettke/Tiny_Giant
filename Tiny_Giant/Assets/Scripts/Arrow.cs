@@ -92,13 +92,7 @@ public class Arrow : NetworkBehaviour
         }
         Runner.Despawn(GetComponent<NetworkObject>());
     }
-
-    public IEnumerator ShootTrail()
-    {
-        yield return new WaitForSeconds(.05f);
-        AudioManager.audioManagerInstance.StopFireArrowMusic();
-        RPC_ToggleTrail();
-    }
+    
     [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
     public void RPC_ToggleTrail()
     {
@@ -114,7 +108,6 @@ public class Arrow : NetworkBehaviour
         lit = false;
         yield return new WaitForSeconds(1f);
         if (lit) yield break; // flame was lit again
-        
         AudioManager.audioManagerInstance.StopFireArrowMusic();
         _flame.SetActive(false);
         _bow.fakeArrow.GetChild(0).gameObject.SetActive(false);
@@ -126,8 +119,11 @@ public class Arrow : NetworkBehaviour
         if (lit) return;
         lit = true;
         _flame.SetActive(true);
-        RPC_LightFakeArrow();
-        if (transform.parent != null) AudioManager.audioManagerInstance.PlayFireArrowMusic(lit);
+        if (transform.parent != null)
+        {
+            AudioManager.audioManagerInstance.PlayFireArrowMusic(lit);
+            RPC_LightFakeArrow();
+        }
     }
 
     [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]

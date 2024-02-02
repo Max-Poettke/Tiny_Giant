@@ -32,7 +32,7 @@ public class RainStartTrigger : MonoBehaviour
         rainCam1.enabled = true;
         yield return new WaitForSecondsRealtime(5f);
         
-        showBrazier.raining = true;
+        showBrazier.RPC_ToggleRaining();
         yield return new WaitForSecondsRealtime(.8f);
         
         rainCam2.enabled = true;
