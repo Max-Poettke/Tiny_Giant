@@ -22,24 +22,20 @@ public class VolumeSlider : MonoBehaviour
 
     private void Awake()
     {
-        volumeSlider = this.GetComponent<Slider>();
-    }
-
-    private void Update()
-    {
+        volumeSlider = GetComponent<Slider>();
         switch (_volumeType)
         {
             case VolumeType.MASTER:
-                volumeSlider.value = AudioManager.audioManagerInstance.masterVolume;
+                volumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
                 break;
             case VolumeType.MUSIC:
-                volumeSlider.value = AudioManager.audioManagerInstance.musicVolume;
+                volumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
                 break;
             case VolumeType.AMBIENCE:
-                volumeSlider.value = AudioManager.audioManagerInstance.ambienceVolume;
+                volumeSlider.value = PlayerPrefs.GetFloat("AmbienceVolume", 1f);
                 break;
             case VolumeType.SOUNDFX:
-                volumeSlider.value = AudioManager.audioManagerInstance.soundFXVolume;
+                volumeSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
                 break;
             default:
                 Debug.LogWarning("Volume Type not supported: " + _volumeType);
@@ -47,21 +43,25 @@ public class VolumeSlider : MonoBehaviour
         }
     }
 
-    public void OnSliderValueChanged()
+    public void OnSliderValueChanged(float value)
     {
         switch (_volumeType)
         {
             case VolumeType.MASTER:
-                AudioManager.audioManagerInstance.masterVolume = volumeSlider.value;
+                AudioManager.audioManagerInstance.masterBus.setVolume(value);
+                PlayerPrefs.SetFloat("MasterVolume", value);
                 break;
             case VolumeType.MUSIC:
-                AudioManager.audioManagerInstance.musicVolume = volumeSlider.value;
+                AudioManager.audioManagerInstance.musicBus.setVolume(value);
+                PlayerPrefs.SetFloat("MusicVolume", value);
                 break;
             case VolumeType.AMBIENCE:
-                AudioManager.audioManagerInstance.ambienceVolume = volumeSlider.value;
+                AudioManager.audioManagerInstance.ambienceBus.setVolume(value);
+                PlayerPrefs.SetFloat("AmbienceVolume", value);
                 break;
             case VolumeType.SOUNDFX:
-                AudioManager.audioManagerInstance.soundFXVolume = volumeSlider.value;
+                AudioManager.audioManagerInstance.soundFXBus.setVolume(value);
+                PlayerPrefs.SetFloat("SFXVolume", value);
                 break;
             default:
                 Debug.LogWarning("Volume Type not supported: " + _volumeType);

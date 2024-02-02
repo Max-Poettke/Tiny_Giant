@@ -175,7 +175,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
                 roomName = runner.SessionInfo.Name;
             }
         }
-
+        
         #region Player spawn
         public void OnPlayerJoinedSharedMode(NetworkRunner runner, PlayerRef player)
         {
@@ -255,6 +255,7 @@ namespace Fusion.Addons.ConnectionManagerAddon
         public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
         {
             SceneManager.LoadScene(0);
+            Destroy(runner.transform.root.gameObject);
             Debug.Log("Shutdown: " + shutdownReason);
         }
         public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason) {

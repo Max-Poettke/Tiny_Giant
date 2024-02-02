@@ -71,13 +71,15 @@ public class Bow : NetworkBehaviour
     {
         fakeBow.SetActive(true);
     }
-    
+
+    private bool _firstShot;
     public void OnShoot(InputAction.CallbackContext context)
     {
         if (!gameObject.activeSelf || !_ready) return;
         
         if (context.performed)
         {
+            _firstShot = true;
             var fpcontroller = transform.root.GetComponent<FirstPersonController>();
             fpcontroller.enableJump = false;
             fpcontroller.enableSprint = false;
@@ -101,6 +103,7 @@ public class Bow : NetworkBehaviour
         
         if (context.canceled)
         {
+            if (!_firstShot) return;
             var fpcontroller = transform.root.GetComponent<FirstPersonController>();
             fpcontroller.enableJump = true;
             fpcontroller.enableSprint = true;

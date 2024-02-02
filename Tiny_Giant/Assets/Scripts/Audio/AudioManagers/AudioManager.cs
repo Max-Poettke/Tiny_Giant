@@ -17,8 +17,8 @@ public class AudioManager : MonoBehaviour
     private EventInstance musicEventInstance;
     private EventInstance fireArrowMusicEventInstance;
 
-    [Header("Volume")]
-    [Range(0, 1)] 
+    /*
+    [Header("Volume")] [Range(0, 1)] [SerializeField]
     public float masterVolume = 1;
     [Range(0, 1)] 
     public float musicVolume = 1;
@@ -26,11 +26,12 @@ public class AudioManager : MonoBehaviour
     public float ambienceVolume = 1;
     [Range(0, 1)] 
     public float soundFXVolume = 1;
+    */
 
-    private Bus masterBus;
-    private Bus musicBus;
-    private Bus ambienceBus;
-    private Bus soundFXBus;
+    public Bus masterBus;
+    public Bus musicBus;
+    public Bus ambienceBus;
+    public Bus soundFXBus;
 
     private void Awake()
     {
@@ -48,6 +49,10 @@ public class AudioManager : MonoBehaviour
         musicBus = RuntimeManager.GetBus("bus:/Music");
         ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
         soundFXBus = RuntimeManager.GetBus("bus:/SoundFX");
+        masterBus.setVolume(PlayerPrefs.GetFloat("MasterVolume", 1f));
+        musicBus.setVolume(PlayerPrefs.GetFloat("MusicVolume", 1f));
+        ambienceBus.setVolume(PlayerPrefs.GetFloat("AmbienceVolume", 1f));
+        soundFXBus.setVolume(PlayerPrefs.GetFloat("SFXVolume", 1f));
     }
 
     private void Start()
@@ -55,13 +60,29 @@ public class AudioManager : MonoBehaviour
         InitializeNature(FMODEvents.eventsInstance.natureSounds);
         InitializeMusic(FMODEvents.eventsInstance.music);
     }
-
-    private void Update()
+    
+    public void OnMasterVolumeChanged(float value)
     {
-        masterBus.setVolume(masterVolume);
-        musicBus.setVolume(musicVolume);
-        ambienceBus.setVolume(ambienceVolume);
-        soundFXBus.setVolume(soundFXVolume);
+        masterBus.setVolume(value);
+        PlayerPrefs.SetFloat("MasterVolume", value);
+    }
+    
+    public void OnMusicVolumeChanged(float value)
+    {
+        musicBus.setVolume(value);
+        PlayerPrefs.SetFloat("MusicVolume", value);
+    }
+    
+    public void OnAmbienceVolumeChanged(float value)
+    {
+        ambienceBus.setVolume(value);
+        PlayerPrefs.SetFloat("AmbienceVolume", value);
+    }
+    
+    public void OnSFXVolumeChanged(float value)
+    {
+        soundFXBus.setVolume(value);
+        PlayerPrefs.SetFloat("SFXVolume", value);
     }
 
     private void InitializeNature(EventReference natureEventReference)

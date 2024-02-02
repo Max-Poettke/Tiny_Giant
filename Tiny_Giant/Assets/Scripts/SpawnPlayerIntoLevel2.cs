@@ -18,7 +18,8 @@ public class SpawnPlayerIntoLevel2 : NetworkBehaviour
       if (!_player) return;
       _cine = _player.GetComponentInChildren<CinemachineStoryboard>();
       _player.GetComponent<NetworkRigidbody3D>().Teleport(transform.position);
-      _player.GetComponentInChildren<Bow>().RPC_EnableFakeBow();
+      var bow = _player.GetComponentInChildren<Bow>();
+      if (bow) bow.RPC_EnableFakeBow();
       StartCoroutine(FadeBack());
 
       _vrPlayer = GameObject.FindWithTag("VR Player");

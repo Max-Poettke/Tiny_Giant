@@ -2,24 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using Fusion;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : NetworkBehaviour
 {
     private Input_Actions _inputActions;
     private InputAction _pauseMenu;
     private PlayerInput _playerInput;
 
     [SerializeField] private GameObject pauseUI;
+    private SlidePauseMenu _pauseSlide;
     private bool isPaused;
 
     private void Awake()
     {
         _inputActions = new Input_Actions();
     }
-    void Start()
+    private void Start()
     {
+        _pauseSlide = pauseUI.GetComponent<SlidePauseMenu>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -36,9 +41,10 @@ public class PauseMenu : MonoBehaviour
         _pauseMenu.Disable();
     }
 
-    void Pause(InputAction.CallbackContext context)
+    private void Pause(InputAction.CallbackContext context)
     {
         if (!_playerInput) _playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
+        if (_pauseSlide.moving) return;
         isPaused = !isPaused;
         if (isPaused)
         {
@@ -50,19 +56,41 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void ActivatePauseMenu()
+    public void Pause()
+    {
+        if (!_playerInput) _playerInput = GameObject.FindWithTag("Player").GetComponent<PlayerInput>();
+        if (_pauseSlide.moving) return;
+        isPaused = !isPaused;
+        if (isPaused)
+        {
+            ActivatePauseMenu();
+        }
+        else
+        {
+            DeactivatePauseMenu();
+        }
+    }
+
+    public void QuitToMainMenu()
+    {
+        Runner.Shutdown();
+    }
+
+    private void ActivatePauseMenu()
     {
         pauseUI.SetActive(true);
         Cursor.visible = true;
         _playerInput.actions.Disable();
+        _playerInput.SwitchCurrentActionMap("UI");
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void DeactivatePauseMenu()
+    private void DeactivatePauseMenu()
     {
-        pauseUI.SetActive(false);
+        StartCoroutine(_pauseSlide.SlideDown());
         Cursor.visible = false;
         _playerInput.actions.Enable();
+        _playerInput.SwitchCurrentActionMap("Player");
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

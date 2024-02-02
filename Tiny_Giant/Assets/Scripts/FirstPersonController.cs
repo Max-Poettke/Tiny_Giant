@@ -64,7 +64,7 @@ public class FirstPersonController : NetworkBehaviour
 
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
-    public float airSpeed = 0.6f;
+    public float airSpeed = 0.8f;
     public float groundDrag = 5f;
     public float airDrag = 1f;
     public float maxVelocityChange = 10f;
@@ -156,14 +156,14 @@ public class FirstPersonController : NetworkBehaviour
             isGrounded = false;
         }
 
-        // When crouched and using toggle system, will uncrouch for a jump
+        /*// When crouched and using toggle system, will uncrouch for a jump
         if(isCrouched && !holdToCrouch)
         {
             Crouch();
-        }
+        }*/
     }
 
-    public void OnCrouch(InputAction.CallbackContext context)
+    /*public void OnCrouch(InputAction.CallbackContext context)
     {
         if (isSprinting) return;
         if (!enableCrouch) return;
@@ -183,7 +183,7 @@ public class FirstPersonController : NetworkBehaviour
             isCrouched = true;
             Crouch();
         }
-    }
+    }*/
 
     public void OnSprint(InputAction.CallbackContext context)
     {
@@ -451,10 +451,6 @@ public class FirstPersonController : NetworkBehaviour
                         _animator.SetBool(Run, false);
                     }
 
-                    if (isCrouched)
-                    {
-                        Crouch();
-                    }
 
                     if (hideBarWhenFull && !unlimitedSprint)
                     {
@@ -649,7 +645,7 @@ public class FirstPersonController : NetworkBehaviour
         return false;
     }
 
-    private void Crouch()
+    /*private void Crouch()
     {
         // Stands player up to full height
         // Brings walkSpeed back up to original speed
@@ -669,7 +665,7 @@ public class FirstPersonController : NetworkBehaviour
 
             isCrouched = true;
         }
-    }
+    }*/
 
     public void ResetVelocity()
     {
