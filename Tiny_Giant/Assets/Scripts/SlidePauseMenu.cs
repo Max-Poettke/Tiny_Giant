@@ -17,7 +17,7 @@ public class SlidePauseMenu : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(SlideUp());
-        resumeButton.Select();
+        if (GameObject.FindWithTag("Player").GetComponent<FirstPersonController>()._gamepad) resumeButton.Select();
     }
 
     private Vector2 _velocity = Vector2.zero;
