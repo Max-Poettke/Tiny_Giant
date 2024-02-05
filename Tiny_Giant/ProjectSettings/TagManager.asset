@@ -13,6 +13,7 @@ TagManager:
   - Interactable
   - Rock
   - VR Player
+  - NetworkInteractor
   layers:
   - Default
   - TransparentFX

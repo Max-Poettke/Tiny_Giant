@@ -12,7 +12,7 @@ public class Rock : NetworkBehaviour
         }
     }
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Interactor")) {
+        if (other.CompareTag("Interactor") || other.CompareTag("NetworkInteractor")) {
             Runner.Despawn(gameObject.GetComponent<NetworkObject>());
         }
     }

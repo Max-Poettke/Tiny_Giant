@@ -75,6 +75,11 @@ public class MoveUpAndDown : NetworkBehaviour
         StartCoroutine(MoveDown());
     }
 
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    private void RPC_UpdateGrippingChanges(){
+        grabbed = isGrabbed;
+    }
+
     private IEnumerator MoveDown(){
         float timer = 0;
         if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
@@ -96,19 +101,19 @@ public class MoveUpAndDown : NetworkBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.CompareTag("Interactor")){
             var hand = other.transform.parent.GetComponent<HardwareHand>();
+            if(!hand) return;
             hand.SendHapticImpulse(0.3f, 0.1f);
         }
     }
-
-    private bool hasGrabbed = false;
+    
     private void OnTriggerStay(Collider other) {
         if (other.gameObject.CompareTag("Interactor")){
             if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
             var hand = other.transform.parent.GetComponent<HardwareHand>();
             grabbed = other.GetComponent<GrabbingState>().isGripping;
-            isGrabbed = grabbed;
-            if(grabbed && !grabbed){
-                hasGrabbed = true;
+            RPC_UpdateGrippingChanges();
+            if(grabbed){
+                if(!hand) return;
                 hand.SendHapticImpulse(0.3f, 0.1f);
             }
         }
@@ -119,7 +124,6 @@ public class MoveUpAndDown : NetworkBehaviour
             if(!HasStateAuthority) transform.parent.GetComponent<NetworkObject>().RequestStateAuthority();
             grabbed = false;
             isGrabbed = false;
-            hasGrabbed = false;
         }
     }
 }
