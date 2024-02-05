@@ -37,7 +37,7 @@ public class LightableObject : NetworkBehaviour
         Debug.DrawRay(transform.position + (Vector3.up * 2f), Vector3.up * 25f, Color.red);
         if (raining && !Physics.Raycast(transform.position + (Vector3.up * 2f), Vector3.up * 25f))
         {
-            Extinguish();
+            RPC_Extinguish();
         }
     }
 
@@ -57,7 +57,8 @@ public class LightableObject : NetworkBehaviour
         raining = true;
     }
 
-    private void Extinguish()
+    [Rpc(sources: RpcSources.All, targets: RpcTargets.All)]
+    private void RPC_Extinguish()
     {
         bridge.torchCount--;
         _lit = false;
